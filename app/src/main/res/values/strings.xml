@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HMRT GPS</string>
+    <string name="coordenadas_de_ubicaci_n">Coordenadas de ubicación</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="n_mero_de_tel_fono">Número de teléfono</string>
+    <string name="enviar_sms">Enviar SMS</string>
+    <string name="ll">\"Latitude = \"</string>
+    <string name="lo">\"Longitude = \"</string>
+</resources>

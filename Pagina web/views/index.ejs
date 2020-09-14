@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es-en">
+
+	<head>
+		
+		<link href="/css/hojadisenopagina.css" rel="stylesheet"/>
+		<meta charset="utf-8"/>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"/>
+		<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&callback=initMap"> 
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- <meta http-equiv="refresh" content="5" /> -->
+		<title>
+		Proyecto 1, diseño electrónico.
+		</title>
+		
+	</head>
+	<body>
+		<section id="contenedor">
+			<header>
+				<h1> <em>Localización gps de coordenadas </em> </h1>
+			</header>
+		
+		
+			<main>
+				<div id="map"></div>
+				<script src="/codigomaps.js">
+				</script>
+				
+			
+			</main>
+		
+			<footer> 
+				<div style=»padding: 10px; float: left; width: 45%; text-align: justify;»>
+				<p>
+				Desarrollado por grupo 1, conformado por:
+				</p>
+				<ul>
+					<li> Alfredo Hugueth. </li>
+					<li> Ezequiel Mantilla. </li>
+					<li> Carlos Tous. </li>
+					<li> Lazaro Reina. </li>
+				
+				</ul>
+				<p>
+					Estudiantes de ingenieria electronica.
+				</p>
+				<img src="/imagenes/logou.png"> 
+				<p>
+					<strong> <em> Universidad del Norte </em>.</strong>
+				</p>
+			</div>
+			</footer>
+			<div style=»padding: 10px; float: right; width: 45%; text-align: justify;»>
+				<h1 id="showLatitude"></h1>
+				<br />
+				<h1 id="showLongitude"></h1>
+				<br />
+				<h1 id="showFecha"></h1>
+			</div>
+		</section>
+		<script>
+			let str;
+			let datos;
+			let latitud;
+			let longitud;
+			let fecha_hora;
+
+			function update() {
+				fetch('/ruta')
+					.then((response) => response.json())
+					.then((json) => {
+						console.log(json);
+						var str = '';
+						for (var i = 0; i < json.msg.data.length; ++i) {
+							str += String.fromCharCode(json.msg.data[i]);
+						}
+
+						datos = str.split(',');
+						latitud = datos[0];
+						longitud = datos[1];
+						fecha = datos[2];
+
+						document.getElementById(
+							'showLatitude'
+						).innerHTML = `Latitud : ${latitud}`;
+						document.getElementById(
+							'showLongitude'
+						).innerHTML = `Longitud : ${longitud}`;
+						document.getElementById(
+							'showFecha'
+						).innerHTML = `Fecha y hora : ${fecha}`;
+
+						setTimeout(update, 60);
+					});
+			}
+			update();
+
+		</script>
+	</body>
+</html>

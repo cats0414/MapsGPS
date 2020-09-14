@@ -1,0 +1,53 @@
+*{
+	border:0;
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+#contenedor{
+	background: gray;
+	margin-right: auto;
+	margin-left: auto;
+}
+header{
+	font-size: 2em;
+	text-align: center;
+	background: url("/imagenes/fondo.jpeg");
+	color:white;
+	margin: 6px 6px;
+}
+
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	margin: auto;
+}
+main{
+	text-align: center;
+	margin:auto;
+	color: black;
+	height: 550px;
+	margin: 6px 6px;
+	
+}
+footer{
+	color: white;
+	text-align:left;
+	margin:auto;
+	background:gray;
+	height: 300px;
+	margin: 6px 6px;
+}
+ul{
+	margin-left:40px;
+}
+img{
+	height:100px;
+	width:300px;
+}
+
+#map{
+	height: inherit;
+	width: inherit;
+}
+
