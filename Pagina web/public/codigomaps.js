@@ -24,8 +24,8 @@ function update() {
 				lonn=lng;
 			}
 			coordi = {lat:ltan,lng:lonn}
-			setTimeout(update, 60);
-			return coord;
+			setTimeout(update, 4000);
+			return coordi;
 		});
 }
 update();
@@ -34,10 +34,12 @@ function initMap(){
 	zoom: 10,
 	center: {lat:11.003  , lng:-74.82 }
 	});
+	function actMarc(){
 	marcador = new google.maps.Marker({
 		position: coordi ,
 		map: map
+	});
+	setTimeout(actMarc, 5000);
 	}
-	);
-	
+	actMarc();
 }
