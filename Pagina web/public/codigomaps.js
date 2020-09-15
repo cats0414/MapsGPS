@@ -1,4 +1,5 @@
 let map;
+var coordi={lat:11.003  , lng:-74.82 };
 function update() {
 	fetch('/ruta')
 		.then((response) => response.json())
@@ -22,20 +23,19 @@ function update() {
 				ltan=lta;
 				lonn=lng;
 			}
-			var coord = {lat:ltan,lng:lonn}
+			coordi = {lat:ltan,lng:lonn}
 			setTimeout(update, 60);
 			return coord;
 		});
 }
 update();
 function initMap(){
-	coord=update();
 	map = new google.maps.Map(document.getElementById('map'),{
 	zoom: 10,
 	center: {lat:11.003  , lng:-74.82 }
 	});
 	marcador = new google.maps.Marker({
-		position: coord ,
+		position: coordi ,
 		map: map
 	}
 	);
