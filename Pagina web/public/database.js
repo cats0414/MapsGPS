@@ -1,6 +1,6 @@
 import mysql from 'mysql';
 const {promisify} = require('util');
-database = 'Employees'
+const{ database } = require('/key.js');
 const pool = mysql.createPool(database);
 pool.getConnection((err, connection) => {
     if (err){
