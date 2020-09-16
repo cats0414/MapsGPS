@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                                 });
                             }
                         };
-                        timer.schedule(task, 0, 60);
+                        timer.schedule(task, 0, 1000);
                     }else{
                         Toast.makeText(getApplicationContext(),"Set enable ON to start",Toast.LENGTH_SHORT).show();
                     }

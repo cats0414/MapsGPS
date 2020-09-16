@@ -24,18 +24,22 @@ function update() {
 				lonn=lng;
 			}
 			coordi = {lat:ltan,lng:lonn}
-			map = new google.maps.Map(document.getElementById('map'),{
-				zoom: 10,
-				center: {lat:11.003  , lng:-74.82 }
-				});
-				marcador = new google.maps.Marker({
-					position: coordi ,
-					map: map
-				}
-				);
-			setTimeout(update, 3000);
-			return coord;
+			setTimeout(update, 4000);
+			return coordi;
 		});
 }
 update();
-
+function initMap(){
+	map = new google.maps.Map(document.getElementById('map'),{
+	zoom: 10,
+	center: {lat:11.003  , lng:-74.82 }
+	});
+	function actMarc(){
+	marcador = new google.maps.Marker({
+		position: coordi ,
+		map: map
+	});
+	setTimeout(actMarc, 1000);
+	}
+	actMarc();
+}
