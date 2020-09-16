@@ -54,16 +54,13 @@
         android:layout_marginEnd="99dp"
         android:ems="14"
         android:inputType="phone"
-        android:text="Host"
+        android:text="Host 1"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnEnviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDireccion"
-        app:layout_constraintVertical_bias="0.061" />
-
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccion" />
     <EditText
-        android:id="@+id/tcpport"
+        android:id="@+id/ipvalue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
@@ -71,13 +68,13 @@
         android:layout_marginEnd="99dp"
         android:ems="14"
         android:inputType="phone"
-        android:text="Puerto TCP"
+        android:text="Host 2"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnEnviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phonevalue"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/udpport" />
+
+
 
     <EditText
         android:id="@+id/udpport"
@@ -88,29 +85,26 @@
         android:layout_marginEnd="99dp"
         android:ems="14"
         android:inputType="phone"
-        android:text="Puerto UDP"
+        android:text="Puerto 1"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnEnviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tcpport" />
-
-    <Button
-        android:id="@+id/btnEnviar"
+        app:layout_constraintTop_toBottomOf="@+id/phonevalue" />
+    <EditText
+        android:id="@+id/udpport1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="udpp"
-        android:text="Enviar"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="99dp"
+        android:ems="14"
+        android:inputType="phone"
+        android:text="Puerto host 2"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/udpport" />
+        app:layout_constraintTop_toBottomOf="@+id/ipvalue" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -126,5 +120,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="156dp"
+        android:onClick="envio"
+        android:text="Enable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/udpport1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
