@@ -24,9 +24,10 @@ database.connect((err,connection) =>{
 		 console.error('CONEXION RECHAZADA');
 	 }
 	 }
-	 if (connection) connection.release();
+	
 	 console.log('Base de datos conectada')
 });
+
 
 app.set('view engine', 'ejs');
 
@@ -36,18 +37,16 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-	console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
-	mensaje = msg;
-	msg = msg.toString().split(",")
-	var sql = "INSERT INTO usuarios (id, latitud, longitud, tiempo) VALUES ? ";
-	var values = [
-		[1,1.344,2.455,"hola"]
-	];
-	let query = database.query(sql, [values],(err,result) =>{
-		if (err) throw err;
-		console.log(`Numero de datos subidos: ${result.affectedRows}`);
-	});
-
+    console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    mensaje = msg;
+    msg = msg.toString().split(",")
+    msg = {id : "1" ,latitud: msg[0], longitud: msg[1], tiempo: msg[2]}
+    let sql = 'INSERT INTO usuarios SET ?';
+    let query = database.query(sql, msg, (err, result) => {
+    if (err){
+	console.trace('error=' + err.message);
+};
+});
 });
 
 server.on('listening', () => {
@@ -55,7 +54,7 @@ server.on('listening', () => {
 	console.log(`server listening ${address.address}:${address.port}`);
 });
 
-server.bind(3659);
+server.bind(11000);
 
 app.get('/', function (req, res) {
 	res.render('index', {
