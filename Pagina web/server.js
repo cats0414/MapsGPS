@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 
-
+var mensaje = 'Hola';
 
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
