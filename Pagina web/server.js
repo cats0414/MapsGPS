@@ -54,7 +54,7 @@ server.on('listening', () => {
 	console.log(`server listening ${address.address}:${address.port}`);
 });
 
-server.bind(11000);
+server.bind(3659);
 
 app.get('/', function (req, res) {
 	res.render('index', {
