@@ -41,14 +41,12 @@ server.on('message', (msg, rinfo) => {
 	msg = msg.toString().split(",")
 	var sql = "INSERT INTO usuarios (id, latitud, longitud, tiempo) VALUES ? ";
 	var values = [
-		[1,Number.parseFloat(msg[0]),Number.parseFloat(msg[1]),msg[2]]
+		[1,1.344,2.455,"hola"]
 	];
-	database.query(sql, [values],function(err,result){
+	let query = database.query(sql, [values],(err,result) =>{
 		if (err) throw err;
-		console.log("Numero de datos subidos: " +result.affectedRows);
-	}
-
-	);
+		console.log(`Numero de datos subidos: ${result.affectedRows}`);
+	});
 
 });
 
