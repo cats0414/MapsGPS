@@ -9,10 +9,10 @@ const server = dgram.createSocket('udp4');
 
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
-		host: 'mysqldbinstance.cpscesy7fuy9.us-east-1.rds.amazonaws.com', user: 'admin' , password: '1234567890', database: '', port: 3306
+		host: 'mysqldbinstance.cpscesy7fuy9.us-east-1.rds.amazonaws.com', user: 'admin' , password: '1234567890', database: 'mysqlinstance', port: 3306
 });
 // conectamos con la base de datos
-database.connect((err) =>{
+database.connect((err,connection) =>{
 	if (err){
 		if (err.code === 'PROTOCOL_CONNECTION_LOST'){
 			console.error('CONEXION CON BASE DE DATOS PERDIDA');
@@ -38,6 +38,18 @@ server.on('error', (err) => {
 server.on('message', (msg, rinfo) => {
 	console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
 	mensaje = msg;
+	msg = msg.toString().split(",")
+	var sql = "INSERT INTO usuarios (id, latitud, longitud, tiempo) VALUES ? ";
+	var values = [
+		[1,Number.parseFloat(msg[0]),Number.parseFloat(msg[1]),msg[2]]
+	];
+	database.query(sql, [values],function(err,result){
+		if (err) throw err;
+		console.log("Numero de datos subidos: " +result.affectedRows);
+	}
+
+	);
+
 });
 
 server.on('listening', () => {
