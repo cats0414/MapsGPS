@@ -24,7 +24,7 @@ function update() {
 				lonn=lng;
 			}
 			coordi = {lat:ltan,lng:lonn}
-			setTimeout(update, 4000);
+			setTimeout(update, 1000);
 			return coordi;
 		});
 }
