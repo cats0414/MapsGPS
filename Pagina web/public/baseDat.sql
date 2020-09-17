@@ -19,4 +19,4 @@ CREATE TABLE links(
 );
 ALTER TABLE links
     ADD PRIMARY KEY (id);  /*Poner para ambas tablas
-    
+DESCRIBE usuarios;  
