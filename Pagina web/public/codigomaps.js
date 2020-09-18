@@ -24,7 +24,11 @@ function update() {
 				lonn=lng;
 			}
 			coordi = {lat:ltan,lng:lonn}
+<<<<<<< HEAD
 			setTimeout(update, 1000);
+=======
+			setTimeout(update, 4000);
+>>>>>>> origin/alfredodev
 			return coordi;
 		});
 }
@@ -36,6 +40,7 @@ function initMap(){
 	});
 	function actMarc(){
 	marcador = new google.maps.Marker({
+<<<<<<< HEAD
 				position: coordi ,
 				map: map
 			});
@@ -43,3 +48,12 @@ function initMap(){
 	}
 	actMarc();
 }
+=======
+		position: coordi ,
+		map: map
+	});
+	setTimeout(actMarc, 5000);
+	}
+	actMarc();
+}
+>>>>>>> origin/alfredodev
