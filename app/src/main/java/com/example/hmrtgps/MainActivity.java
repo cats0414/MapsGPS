@@ -28,7 +28,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     TextView latitud,longitud;
-    TextView direccion;
+    TextView direccion, text;
     Switch switchE;
     public static String message, ip, puertoudp, ipr,puertoudpp;
     @Override
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         latitud = (TextView) findViewById(R.id.txtLatitud);
         longitud = (TextView) findViewById(R.id.txtLongitud);
         direccion = (TextView) findViewById(R.id.txtDireccion);
+        text= (TextView) findViewById(R.id.txt);
         switchE= (Switch) findViewById(R.id.switch1);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
          ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -109,31 +110,36 @@ public class MainActivity extends AppCompatActivity {
             final String men =String.format(String.format("%%s,%%s,%s", fecha),sLatitud,sLongitud);
             message= men;
             switchE.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                  if (switchE.isEnabled()) {
-                        final Handler handler = new Handler();
-                        Timer timer = new Timer();
-                        TimerTask task = new TimerTask() {
-                            @Override
-                            public void run() {
-                                handler.post(new Runnable() {
-                                    public void run() {
-                                        try {
-                                            Eudp eu = new Eudp();
-                                            eu.execute();
-                                        } catch (Exception e) {
-                                            Log.e("error", e.getMessage());
+                public void onClick(View view) {
+                    if (view.getId()==R.id.switch1) {
+                        if (switchE.isEnabled()) {
+                            text.setText("Sending.....");
+                            final Handler handler = new Handler();
+                            Timer timer = new Timer();
+                            TimerTask task = new TimerTask() {
+                                @Override
+                                public void run() {
+                                    handler.post(new Runnable() {
+                                        public void run() {
+                                            try {
+                                                Eudp eu = new Eudp();
+                                                eu.execute();
+                                            } catch (Exception e) {
+                                                Log.e("error", e.getMessage());
+                                            }
                                         }
-                                    }
-                                });
-                            }
-                        };
-                        timer.schedule(task, 0, 1000);
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Set enable ON to start",Toast.LENGTH_SHORT).show();
-                    }
+                                    });
+                                }
+                            };
+                            timer.schedule(task, 0, 1000);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Set enable ON to start", Toast.LENGTH_SHORT).show();
+                        }
 
-                                   }
+                    } else {
+
+                    }
+                }
             });
 
                     }
