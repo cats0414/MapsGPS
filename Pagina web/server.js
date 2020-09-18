@@ -1,15 +1,14 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
-
-
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
+require('dotenv').config()
 
 
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
-		host: 'mysqldbinstance.cpscesy7fuy9.us-east-1.rds.amazonaws.com', user: 'admin' , password: '1234567890', database: 'mysqlinstance', port: 3306
+		host: process.env.db_host, user: process.env.db_user , password: process.env.db_pass, database: process.env.db_data , port: process.env.db_port
 });
 // conectamos con la base de datos
 database.connect((err,connection) =>{
