@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-const express = require('express');
-const app = express();
-const mysql = require('mysql');
-
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-const dgram = require('dgram');
-const server = dgram.createSocket('udp4');
-=======
->>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
-=======
 const express = require('express');
 const app = express();
 var mensaje= 'hola';
@@ -40,6 +27,7 @@ database.connect((err,connection) =>{
 });
 
 
+<<<<<<< HEAD
 
 app.set('view engine', 'ejs');
 <<<<<<< HEAD
@@ -54,8 +42,12 @@ const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 >>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 
+=======
+>>>>>>> 9a8688e5059ffcfa072714b9dad903308b93ab3b
 
+app.set('view engine', 'ejs');
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
@@ -81,18 +73,13 @@ database.connect((err) =>{
      }
      if (connection) connection.release();
      console.log('Base de datos conectada')
+=======
+server.on('error', (err) => {
+        console.log(`server error:\n${err.stack}`);
+        server.close();
+>>>>>>> 9a8688e5059ffcfa072714b9dad903308b93ab3b
 });
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-app.set('view engine', 'ejs');
-
-
-server.on('error', (err) => {
-    console.log(`server error:\n${err.stack}`);
-    server.close();
-=======
 server.on('message', (msg, rinfo) => {
     console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
     mensaje = msg;
@@ -104,13 +91,9 @@ server.on('message', (msg, rinfo) => {
         console.trace('error=' + err.message);
 };
 });
-<<<<<<< HEAD
->>>>>>> origin/alfredodev
-=======
->>>>>>> alfredodev
->>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 });
 
+<<<<<<< HEAD
 
 server.on('message', (msg, rinfo) => {
     console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
@@ -136,11 +119,16 @@ server.on('listening', () => {
         const address = server.address();
         console.log(`server listening ${address.address}:${address.port}`);
 >>>>>>> cats
+=======
+server.on('listening', () => {
+        const address = server.address();
+        console.log(`server listening ${address.address}:${address.port}`);
+>>>>>>> 9a8688e5059ffcfa072714b9dad903308b93ab3b
 });
-
 
 server.bind(3659);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 app.get('/', function (req, res) {
@@ -148,16 +136,21 @@ app.get('/', function (req, res) {
         msg: mensaje,
     });
 =======
+=======
+>>>>>>> 9a8688e5059ffcfa072714b9dad903308b93ab3b
 app.get('/', function (req, res) {
         res.render('index', {
                 msg: mensaje,
         });
+<<<<<<< HEAD
 >>>>>>> cats
+=======
+>>>>>>> 9a8688e5059ffcfa072714b9dad903308b93ab3b
 });
-
 
 app.use(express.static('public'));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 app.get('/ruta', function (req, res) {
@@ -170,9 +163,12 @@ app.get('/ruta', function (req, res) {
 app.listen('40000', function () {
         console.log('Todo en orden');
 >>>>>>> cats
+=======
+app.get('/ruta', function (req, res) {
+        res.json({ msg: mensaje });
+>>>>>>> 9a8688e5059ffcfa072714b9dad903308b93ab3b
 });
 
-
-app.listen('40000', function () {
-    console.log('Todo en orden');
+app.listen('40000', function () {
+        console.log('Todo en orden');
 });
