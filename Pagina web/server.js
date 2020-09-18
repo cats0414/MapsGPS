@@ -3,10 +3,13 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 
-var mensaje = 'Hola';
+<<<<<<< HEAD
 
+<<<<<<< HEAD
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
+=======
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 =======
 const express = require('express');
 const app = express();
@@ -40,7 +43,17 @@ database.connect((err,connection) =>{
 
 
 app.set('view engine', 'ejs');
+<<<<<<< HEAD
 >>>>>>> origin/alfredodev
+=======
+>>>>>>> alfredodev
+=======
+var mensaje = 'Hola';
+>>>>>>> 28027d24434434ced13574b9a5965cb50c1e7cc4
+
+const dgram = require('dgram');
+const server = dgram.createSocket('udp4');
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 
 
 
@@ -67,6 +80,7 @@ database.connect((err) =>{
 
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 app.set('view engine', 'ejs');
 
 
@@ -85,19 +99,26 @@ server.on('message', (msg, rinfo) => {
 	console.trace('error=' + err.message);
 };
 });
+<<<<<<< HEAD
 >>>>>>> origin/alfredodev
+=======
+>>>>>>> alfredodev
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 });
 
 
 server.on('message', (msg, rinfo) => {
     console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
     mensaje = msg;
+<<<<<<< HEAD
 	msg = msg.toString().split(",")
 	msg = {latitud: msg[0], longitud: msg[1], fecha:msg[2]}
 	let sql = 'INSERT INTO datos SET ?';
 	let query = database.query(sql, msg, (err, result) => {
 	if (err) throw err;
 });
+=======
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 });
 
 

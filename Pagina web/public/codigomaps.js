@@ -28,7 +28,11 @@ function update() {
 			setTimeout(update, 1000);
 =======
 			setTimeout(update, 4000);
+<<<<<<< HEAD
 >>>>>>> origin/alfredodev
+=======
+>>>>>>> alfredodev
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 			return coordi;
 		});
 }
@@ -41,10 +45,20 @@ function initMap(){
 	function actMarc(){
 	marcador = new google.maps.Marker({
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		position: coordi ,
+		map: map
+	});
+<<<<<<< HEAD
+=======
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 				position: coordi ,
 				map: map
 			});
+>>>>>>> 28027d24434434ced13574b9a5965cb50c1e7cc4
 	setTimeout(actMarc, 1000);
+<<<<<<< HEAD
 	}
 	actMarc();
 }
@@ -52,8 +66,16 @@ function initMap(){
 		position: coordi ,
 		map: map
 	});
+=======
+=======
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
 	setTimeout(actMarc, 5000);
+>>>>>>> alfredodev
 	}
 	actMarc();
+<<<<<<< HEAD
 }
 >>>>>>> origin/alfredodev
+=======
+}
+>>>>>>> 9d1b8a211999e297efb14c22f14cbe6f270a515b
