@@ -11,7 +11,7 @@ const server = dgram.createSocket('udp4');
 
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
-        host: 'mysqldbinstance.cpscesy7fuy9.us-east-1.rds.amazonaws.com', user: 'admin' , password: '1234567890', database: 'mysqldbinstance', port: 3306
+        host: 'db-cats.ckplc44wafdp.us-east-1.rds.amazonaws.com', user: 'admin' , password: '01201404', database: 'db-cats', port: 3306
 });
 // conectamos con la base de datos
 database.connect((err) =>{
@@ -43,6 +43,12 @@ server.on('error', (err) => {
 server.on('message', (msg, rinfo) => {
     console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
     mensaje = msg;
+	msg = msg.toString().split(",")
+	msg = {latitud: msg[0], longitud: msg[1], fecha:msg[2]}
+	let sql = 'INSERT INTO datos SET ?';
+	let query = database.query(sql, msg, (err, result) => {
+	if (err) throw err;
+});
 });
 
 
