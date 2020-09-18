@@ -24,7 +24,11 @@ function update() {
 				lonn=lng;
 			}
 			coordi = {lat:ltan,lng:lonn}
+<<<<<<< HEAD
 			setTimeout(update, 1000);
+=======
+			setTimeout(update, 4000);
+>>>>>>> alfredodev
 			return coordi;
 		});
 }
@@ -39,7 +43,11 @@ function initMap(){
 		position: coordi ,
 		map: map
 	});
+<<<<<<< HEAD
 	setTimeout(actMarc, 1000);
+=======
+	setTimeout(actMarc, 5000);
+>>>>>>> alfredodev
 	}
 	actMarc();
 }
