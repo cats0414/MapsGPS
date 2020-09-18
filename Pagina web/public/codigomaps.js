@@ -1,5 +1,5 @@
 let map;
-var coordi={lat:11.003  , lng:-74.82 };
+var coordi;
 function update() {
 	fetch('/ruta')
 		.then((response) => response.json())
@@ -40,10 +40,16 @@ function initMap(){
 	});
 	function actMarc(){
 	marcador = new google.maps.Marker({
+<<<<<<< HEAD
 		position: coordi ,
 		map: map
 	});
 <<<<<<< HEAD
+=======
+				position: coordi ,
+				map: map
+			});
+>>>>>>> 28027d24434434ced13574b9a5965cb50c1e7cc4
 	setTimeout(actMarc, 1000);
 =======
 	setTimeout(actMarc, 5000);

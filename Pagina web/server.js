@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 
+<<<<<<< HEAD
 
 =======
 const express = require('express');
@@ -38,6 +39,9 @@ database.connect((err,connection) =>{
 
 app.set('view engine', 'ejs');
 >>>>>>> alfredodev
+=======
+var mensaje = 'Hola';
+>>>>>>> 28027d24434434ced13574b9a5965cb50c1e7cc4
 
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
