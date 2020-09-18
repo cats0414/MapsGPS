@@ -13,20 +13,25 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="52dp"
         android:text="Latitud"
+        app:layout_constraintBottom_toTopOf="@+id/txtLongitud"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/txtLongitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="48dp"
         android:text="Longitud"
+        app:layout_constraintBottom_toTopOf="@+id/txtDireccion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,74 +42,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="58dp"
         android:text="Direccion"
+        app:layout_constraintBottom_toTopOf="@+id/switch1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLongitud" />
-
-    <EditText
-        android:id="@+id/phonevalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="99dp"
-        android:ems="14"
-        android:inputType="phone"
-        android:text="Host 1"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDireccion" />
-    <EditText
-        android:id="@+id/ipvalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="99dp"
-        android:ems="14"
-        android:inputType="phone"
-        android:text="Host 2"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/udpport" />
-
-
-
-    <EditText
-        android:id="@+id/udpport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="99dp"
-        android:ems="14"
-        android:inputType="phone"
-        android:text="Puerto 1"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phonevalue" />
-    <EditText
-        android:id="@+id/udpport1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="99dp"
-        android:ems="14"
-        android:inputType="phone"
-        android:text="Puerto host 2"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ipvalue" />
-
 
     <TextView
         android:id="@+id/textView"
@@ -123,17 +69,19 @@
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="58dp"
         android:layout_marginStart="165dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="135dp"
         android:layout_marginEnd="165dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="268dp"
         android:onClick="envio"
         android:text="Enable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/udpport1" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccion"
+        app:layout_constraintVertical_bias="0.677" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

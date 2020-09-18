@@ -101,10 +101,6 @@ public class MainActivity extends AppCompatActivity {
             String sLongitud = String.valueOf(loc.getLongitude());
             latitud.setText("Latitud= " +sLatitud);
             longitud.setText("Longitud= "+sLongitud);
-            final EditText phone= (EditText) findViewById(R.id.phonevalue);
-            final EditText ph= (EditText) findViewById(R.id.ipvalue);
-            final EditText portudp= (EditText) findViewById(R.id.udpport);
-            final EditText portudpp= (EditText) findViewById(R.id.udpport1);
             final Switch switchE= (Switch) findViewById(R.id.switch1);
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fecha = dateFormat.format(new Date()); // Find todays date
@@ -112,10 +108,6 @@ public class MainActivity extends AppCompatActivity {
             //Latitud, Longitud,fecha
             final String men =String.format(String.format("%%s,%%s,%s", fecha),sLatitud,sLongitud);
             message= men;
-            ip=phone.getText().toString();
-            ipr=ph.getText().toString();
-            puertoudp=portudp.getText().toString();
-            puertoudpp=portudpp.getText().toString();
             switchE.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                   if (switchE.isEnabled()) {

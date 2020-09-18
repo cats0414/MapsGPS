@@ -3,27 +3,25 @@ package com.example.hmrtgps;
 import android.os.AsyncTask;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import static com.example.hmrtgps.MainActivity.ip;
 import static com.example.hmrtgps.MainActivity.ipr;
 import static com.example.hmrtgps.MainActivity.message;
-import static com.example.hmrtgps.MainActivity.puertoudp;
-import static com.example.hmrtgps.MainActivity.puertoudpp;
+
 
 public class Eudp extends AsyncTask<String,Void, Void>{
         DatagramSocket med;
         @Override
+
     protected Void doInBackground(String... strings) {
         try {
             med= new DatagramSocket();
             byte[] m = message.getBytes();
-            InetAddress IPA = InetAddress.getByName(ip);
-            InetAddress IPA1 = InetAddress.getByName(ipr);
-            DatagramPacket packet = new DatagramPacket(m,m.length,IPA, Integer.parseInt(puertoudp));
-            DatagramPacket packet1 = new DatagramPacket(m,m.length,IPA1, Integer.parseInt(puertoudpp));
+            InetAddress IPA = InetAddress.getByName("34.238.181.248");
+            InetAddress IPA1 = InetAddress.getByName("18.204.168.161");
+            DatagramPacket packet = new DatagramPacket(m,m.length,IPA, 3659);
+            DatagramPacket packet1 = new DatagramPacket(m,m.length,IPA1, 3659);
             med.send(packet);
             med.send(packet1);
             med.close();
