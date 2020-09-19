@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -25,11 +26,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class MainActivity extends AppCompatActivity {
     TextView latitud,longitud;
     TextView direccion, text;
     Switch switchE;
+    int n=1;
     public static String message, ip, puertoudp, ipr,puertoudpp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, (LocationListener) Local);
         mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
         latitud.setText("Localización agregada");
+        if(n==1){
+            text.setText("Turn it enable to start");
+        }
 
     }
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -72,15 +78,42 @@ public class MainActivity extends AppCompatActivity {
                 locationStart();
                 return;
             }
+
         }
     }
-
+    ScheduledExecutorService executor = null;
     public void envio(View view) {
+        n = n+1;
+            final Handler handler = new Handler();
+            final Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    handler.post(new Runnable() {
+                        public void run() {
+                            try {
+                                Eudp eu = new Eudp();
+                                eu.execute();
+                            } catch (Exception e) {
+                                Log.e("error", e.getMessage());
+                            }
+                            if((n % 2) == 0){
+                                text.setText("Sending.....");
+                            } else {
+                                text.setText("Turn me on!");
+                                timer.cancel();
+                                timer.purge();
+                            }
+                        }
+                    });
+                }
+            };
 
-
-
+        timer.schedule(task, 0, 1000);
 
     }
+
+
 
 
     /* Aqui empieza la Clase Localizacion */
@@ -102,47 +135,14 @@ public class MainActivity extends AppCompatActivity {
             String sLongitud = String.valueOf(loc.getLongitude());
             latitud.setText("Latitud= " +sLatitud);
             longitud.setText("Longitud= "+sLongitud);
-            final Switch switchE= (Switch) findViewById(R.id.switch1);
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fecha = dateFormat.format(new Date()); // Find todays date
             direccion.setText(fecha);
             //Latitud, Longitud,fecha
             final String men =String.format(String.format("%%s,%%s,%s", fecha),sLatitud,sLongitud);
             message= men;
-            switchE.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    if (view.getId()==R.id.switch1) {
-                        if (switchE.isEnabled()) {
-                            text.setText("Sending.....");
-                            final Handler handler = new Handler();
-                            Timer timer = new Timer();
-                            TimerTask task = new TimerTask() {
-                                @Override
-                                public void run() {
-                                    handler.post(new Runnable() {
-                                        public void run() {
-                                            try {
-                                                Eudp eu = new Eudp();
-                                                eu.execute();
-                                            } catch (Exception e) {
-                                                Log.e("error", e.getMessage());
-                                            }
-                                        }
-                                    });
-                                }
-                            };
-                            timer.schedule(task, 0, 1000);
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Set enable ON to start", Toast.LENGTH_SHORT).show();
-                        }
 
-                    } else {
-
-                    }
-                }
-            });
-
-                    }
+        }
 
 
 
@@ -172,8 +172,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-
     }
 
 
