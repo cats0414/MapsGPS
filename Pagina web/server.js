@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 require('dotenv').config()
-
+var mensaje='Hola'
 
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
