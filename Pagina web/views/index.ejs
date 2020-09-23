@@ -32,7 +32,23 @@
 			
 			</main>
 		
-			<footer> 
+			<footer>
+			<input id="polilinea" type = "button" value="GENERAR POLYLINEA" onclick ="polylinea()"/> 
+				<script>
+					function polylinea(){
+						var polinvalue = [
+						{lat: 10.983672976421273,lng: -74.817238},
+						{lat: 10.951,lng: -74.792}
+							];
+						var roadTrip = new google.maps.Polyline({
+						path: polinvalue,
+						strokeColor: '#FF0000',
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+						});
+						roadTrip.setMap(map);
+					}
+				</script> 
 				<div>
 				<p>
 				Desarrollado por grupo 1, conformado por:
