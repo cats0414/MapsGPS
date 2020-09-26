@@ -6,7 +6,7 @@ const server = dgram.createSocket('udp4');
 require('dotenv').config();
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
-		host: process.env.db_host, user: process.env.db-user , password: process.env.db_pass, database: process.env.db_data, port: process.env.db_port
+		host: process.env.db_host, user: process.env.db_user , password: process.env.db_pass, database: process.env.db_data, port: process.env.db_port
 });
 // conectamos con la base de datos
 database.connect((err,connection) =>{
