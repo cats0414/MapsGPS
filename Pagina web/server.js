@@ -42,8 +42,11 @@ server.on('message', (msg, rinfo) => {
     console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
     mensaje = msg;
     msg = msg.toString().split(",")
-    msg = {id : "1" ,latitud: msg[0], longitud: msg[1], tiempo: msg[2]}
-    let sql = 'INSERT INTO usuarios SET ?';
+    lati = parseFloat(msg[0]).toFixed(4);
+    longi = parseFloat(msg[1]).toFixed(4);
+    msg = {id : "1" ,latitud: lati, longitud: longi, tiempo: msg[2]}
+    msg2 = {id: "1" ,latitud: parseFloat(msg[0]), longitud: parseFloat(msg[1]),tiempo: msg[2]} 
+    let sql = 'INSERT INTO usuarios2 SET ?';
     let query = database.query(sql, msg, (err, result) => {
     if (err){
         console.trace('error=' + err.message);

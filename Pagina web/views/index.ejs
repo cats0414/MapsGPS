@@ -6,7 +6,7 @@
 		<link href="/css/hojadisenopagina.css" rel="stylesheet"/>
 		<meta charset="utf-8"/>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"/>
-		<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&callback=initMap"> 
+		<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&sensor=false&callback=initMap"> 
 		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<meta charset="UTF-8" />
@@ -32,8 +32,32 @@
 			
 			</main>
 		
+<<<<<<< .merge_file_CJMWZG
 			<footer> 
+<<<<<<< HEAD
+				
+=======
+=======
+			<footer>
+			<input id="polilinea" type = "button" value="GENERAR POLYLINEA" onclick ="polylinea()"/> 
+				<script>
+					function polylinea(){
+						var polinvalue = [
+						{lat: 10.983672976421273,lng: -74.817238},
+						{lat: 10.951,lng: -74.792}
+							];
+						var roadTrip = new google.maps.Polyline({
+						path: polinvalue,
+						strokeColor: '#FF0000',
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+						});
+						roadTrip.setMap(map);
+					}
+				</script> 
+>>>>>>> .merge_file_tFpRQG
 				<div>
+>>>>>>> origin/alfredodev
 				<p>
 				Desarrollado por grupo 1, conformado por:
 				</p>
@@ -51,15 +75,18 @@
 				<p>
 					<strong> <em> Universidad del Norte </em>.</strong>
 				</p>
-			</div>
 			</footer>
+<<<<<<< HEAD
+	
+=======
 			<div>
+>>>>>>> origin/alfredodev
 				<h1 id="showLatitude"></h1>
 				<br />
 				<h1 id="showLongitude"></h1>
 				<br />
 				<h1 id="showFecha"></h1>
-			</div>
+		
 		</section>
 		<script>
 			let str;
@@ -67,7 +94,10 @@
 			let latitud;
 			let longitud;
 			let fecha_hora;
-
+			let lati;
+			let long;
+			var caminoP = [];
+			var cont = 0;
 			function update() {
 				fetch('/ruta')
 					.then((response) => response.json())
@@ -79,10 +109,17 @@
 						}
 
 						datos = str.split(',');
-						latitud = datos[0];
-						longitud = datos[1];
+						latitud = datos[0]
+						
+						longitud = datos[1]
+						
 						fecha = datos[2];
-
+						latit = parseFloat(latitud).toFixed(4);
+						longi = parseFloat(longitud).toFixed(4);
+						console.log(latit);
+						console.log(longi);
+						var coorde = {lat: latit, lng: longi};
+						
 						document.getElementById(
 							'showLatitude'
 						).innerHTML = `Latitud : ${latitud}`;
@@ -92,12 +129,41 @@
 						document.getElementById(
 							'showFecha'
 						).innerHTML = `Fecha y hora : ${fecha}`;
-
-						setTimeout(update, 60);
+						actualPuntero(latit,longi);
+						setTimeout(update, 15000);
 					});
 			}
 			update();
-
+			function actualPuntero(latit,longi){
+				var coor = new google.maps.LatLng(latit,longi);
+				marcador = new google.maps.Marker({
+					position: coor ,
+					map: map
+				});
+				
+				caminoP[cont] = coor;
+				cont = cont+1;
+				console.log(caminoP)
+				dibujarpoli(caminoP); 
+				marcador.setMap(map);
+				
+				
+			}
+			function dibujarpoli(caminoP){
+				var linea = new google.maps.Polyline({
+				path: caminoP,
+				strokeColor: '#FF0000',
+				strokeOpacity:1.0,
+				strokeWeight: 2
+});
+		
+		linea.setMap(map);
+		addLatLng(caminoP);
+}
+			function addLatLng(caminoP){
+				const path = caminoP;
+				path.push;
+}
 		</script>
 	</body>
 </html>
