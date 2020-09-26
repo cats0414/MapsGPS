@@ -3,8 +3,14 @@
 <html lang="es-en">
 
 	<head>
-		
-		<link href="/css/hojadisenopagina.css" rel="stylesheet"/>
+		<base href="/"> 
+		<link type="text/css" href="/css/hojadisenopagina.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="/css/skel.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/style-xlarge.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="/dtpicker.js"></script>
+		<link type="text/css" href="/css/jquery.simple-dtpicker.css" rel="stylesheet" />
 		<meta charset="utf-8"/>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"/>
 		<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&sensor=false&callback=initMap"> 
@@ -12,29 +18,92 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- <meta http-equiv="refresh" content="5" /> -->
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/skel.min.js"></script>
+		<script src="/js/skel-layers.min.js"></script>
+		<script src="/js/init.js"></script>
 		<title>
-		Proyecto 1, diseño electrónico.
+		HMRT GPS
 		</title>
 		
 	</head>
-	<body>
-		<section id="contenedor">
-			<header>
-				<h1> <em>Localización gps de coordenadas </em> </h1>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="#">HMRT GPS</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="#banner">Home</a></li>
+						<li><a href="#Maps">Live on</a></li>
+						<li><a href="#Hist">Históricos</a></li>
+						<li><a href="#tree">Developers</a></li>
+						<li><a href="#four">Contactanos</a></li>
+					</ul>
+				</nav>
 			</header>
-		
-		
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h2>Bienvenido</h2>
+					<p>Sistema de seguimiento de coordenadas para su vehiculo</p>
+					<ul class="actions">
+						<li><a href="#Maps" class="button big special">Live on</a></li>
+						<li><a href="#Hist" class="button big alt">Históricos</a></li>
+					</ul>
+				</div>
+			</section>
+		</body>
+		<section id="Maps" class="wrapper style1">
 			<main>
 				<div id="map"></div>
 				<script src="/codigomaps.js">
 				</script>
-				
-			
+						
 			</main>
-		
-			<footer>
-			<input id="polilinea" type = "button" value="GENERAR POLYLINEA" onclick ="polylinea()"/> 
+		</section>
+		<section id="Hist" class="wrapper style1">
+			<header class="major">
+				<h2>Consulta de Históricos</h2>
+				<p>Seleccione fecha de inicio y fin</p>
+			</header>
+			<div class="container">
+				<div class="row">
+					<div class="6u">
+						<section class="special">
+							<h3>Fecha de inicio </h3>
+							<input type="text" name="date2">
+							<script type="text/javascript">
+								$(function(){
+									$('*[name=date2]').appendDtpicker({"inline": true});
+								});
+							</script>
+						</section>
+					</div>
+					<div class="6u">
+						<section class="special">
+							<h3>Fecha de fin </h3>
+								<div id="date_picker"> </div>
+								<script type="text/javascript" src="/dtpicker.js">
+								$(function(){
+								$('#date_picker').dtpicker();
+								});
+								</script>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="Dev" class="wrapper style4">
+		<div class="container">
+			<div class="row">
+				<div class="6u">
+					<section class="special">
+						<input id="polilinea" type = "button" value="GENERAR POLYLINEA" onclick ="polylinea()"/> 
 				<script>
 					function polylinea(){
 						var polinvalue = [
@@ -49,35 +118,38 @@
 						});
 						roadTrip.setMap(map);
 					}
-				</script> 
-				<div>
-				<p>
-				Desarrollado por grupo 1, conformado por:
-				</p>
+				</script>
+				 
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer1>
+		<div id="footer-imagen">
+			<div>
+				<h3>
+				Developed by:
+				</h3>
 				<ul>
-					<li> Alfredo Hugueth. </li>
-					<li> Ezequiel Mantilla. </li>
-					<li> Carlos Tous. </li>
-					<li> Lazaro Reina. </li>
+					<p> Alfredo Hugueth. </p>
+					<p> Ezequiel Mantilla. </p>
+					<p> Carlos Tous. </p>
+					<p> Lazaro Reina. </p>
 				
 				</ul>
-				<p>
-					Estudiantes de ingenieria electronica.
-				</p>
-				<img src="/imagenes/logou.png"> 
-				<p>
-					<strong> <em> Universidad del Norte </em>.</strong>
-				</p>
+				<h3>
+					Estudiantes de ingeniería electrónica.
+				</h3>
+				
 			</div>
-			</footer>
-			<div>
-				<h1 id="showLatitude"></h1>
-				<br />
-				<h1 id="showLongitude"></h1>
-				<br />
-				<h1 id="showFecha"></h1>
-			</div>
-		</section>
+		<img src="/imagenes/logou.png"> 
+					<p>
+						<strong> <em> Universidad del Norte </em>.</strong>
+					</p>
+		</div>			
+	</footer1>
+</section>
 		<script>
 			let str;
 			let datos;
