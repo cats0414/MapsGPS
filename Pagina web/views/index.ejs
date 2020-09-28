@@ -42,10 +42,9 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="#banner">Home</a></li>
-						<li><a href="#Maps">Live on</a></li>
+						<li><a href="#Maps">Track</a></li>
 						<li><a href="#Hist">Históricos</a></li>
-						<li><a href="#tree">Developers</a></li>
-						<li><a href="#four">Contáctanos</a></li>
+						<li><a href="#Dev">Developers</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -75,12 +74,11 @@
 				<h2>Consulta de Históricos</h2>
 				<p>Seleccione fecha de inicio y fin</p>
 			</header>
-			<div class="container">
-				<div class="row">
-					<div class="6u">
-						<section class="special">
-							<h3>Fecha</h3>
-							<input type="text" name="datetimes" />
+			
+				<footer1>
+					<div id="footer-imagen">
+						<div>
+							<input type="text" name="datetimes" style="text-align: center;">
 
 							<script>
 								$(function() {
@@ -94,12 +92,22 @@
  								 });
 								});
 							</script>
-						</section>
-					</div>
-				</div>
-			</div>
+							<br>
+							<input type="button" onclick="polylinea" value="Consultar">
+							<div id="map1"></div>
+							<br>
+							<div class="row" style="justify-content: center;">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15668.989172855125!2d-74.79221985000001!3d10.9446832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sco!4v1601329660411!5m2!1ses-419!2sco" 
+							width="1348" height="460" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+							</div>	
+						</div>			
+				</footer1>
+				
+					
+		
+
 		</section>
-		<section id="Dev" class="wrapper style4">
+		<section id="" class="wrapper style4">
 		<div class="container">
 			<div class="row">
 				<div class="6u">
@@ -125,6 +133,7 @@
 			</div>
 		</div>
 	</section>
+	<section id="Dev">
 	<footer1>
 		<div id="footer-imagen">
 			<div>
@@ -149,7 +158,7 @@
 					</p>
 		</div>			
 	</footer1>
-</section>
+	</section>
 		<script>
 			let str;
 			let datos;
