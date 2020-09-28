@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="/css/style.css" />
 		<link rel="stylesheet" href="/css/style-xlarge.css" />
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-		<script type="text/javascript" src="/dtpicker.js"></script>
-		<link type="text/css" href="/css/jquery.simple-dtpicker.css" rel="stylesheet" />
+		<script type="text/javascript" src="/calendario.js"></script>
+		<link type="text/css" href="/css/calendario.css" rel="stylesheet" />
 		<meta charset="utf-8"/>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"/>
 		<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&sensor=false&callback=initMap"> 
@@ -25,6 +25,10 @@
 		<script src="/js/skel.min.js"></script>
 		<script src="/js/skel-layers.min.js"></script>
 		<script src="/js/init.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 		<title>
 		HMRT GPS
 		</title>
@@ -41,7 +45,7 @@
 						<li><a href="#Maps">Live on</a></li>
 						<li><a href="#Hist">Históricos</a></li>
 						<li><a href="#tree">Developers</a></li>
-						<li><a href="#four">Contactanos</a></li>
+						<li><a href="#four">Contáctanos</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -50,9 +54,9 @@
 			<section id="banner">
 				<div class="inner">
 					<h2>Bienvenido</h2>
-					<p>Sistema de seguimiento de coordenadas para su vehiculo</p>
+					<p>Sistema de seguimiento de coordenadas para su vehículo</p>
 					<ul class="actions">
-						<li><a href="#Maps" class="button big special">Live on</a></li>
+						<li><a href="#Maps" class="button big special">Track</a></li>
 						<li><a href="#Hist" class="button big alt">Históricos</a></li>
 					</ul>
 				</div>
@@ -75,24 +79,21 @@
 				<div class="row">
 					<div class="6u">
 						<section class="special">
-							<h3>Fecha de inicio </h3>
-							<input type="text" name="date2">
-							<script type="text/javascript">
-								$(function(){
-									$('*[name=date2]').appendDtpicker({"inline": true});
+							<h3>Fecha</h3>
+							<input type="text" name="datetimes" />
+
+							<script>
+								$(function() {
+  								$('input[name="datetimes"]').daterangepicker({
+    							timePicker: true,
+    							startDate: moment().startOf('hour'),
+    							endDate: moment().startOf('hour').add(32, 'hour'),
+    							locale: {
+      							format: 'M/DD hh:mm A'
+   										 }
+ 								 });
 								});
 							</script>
-						</section>
-					</div>
-					<div class="6u">
-						<section class="special">
-							<h3>Fecha de fin </h3>
-								<div id="date_picker"> </div>
-								<script type="text/javascript" src="/dtpicker.js">
-								$(function(){
-								$('#date_picker').dtpicker();
-								});
-								</script>
 						</section>
 					</div>
 				</div>
@@ -103,8 +104,7 @@
 			<div class="row">
 				<div class="6u">
 					<section class="special">
-						<input id="polilinea" type = "button" value="GENERAR POLYLINEA" onclick ="polylinea()"/> 
-				<script>
+					<script>
 					function polylinea(){
 						var polinvalue = [
 						{lat: 10.983672976421273,lng: -74.817238},
