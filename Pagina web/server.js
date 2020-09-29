@@ -71,7 +71,7 @@ app.get('/', function (req, res) {
 		msg: mensaje,
 	});
 });
-app.post('/resp', urlencodedParser, function (req, res) {
+app.post('/', urlencodedParser, function (req, res) {
         console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
@@ -89,9 +89,9 @@ app.post('/resp', urlencodedParser, function (req, res) {
 	console.log(rute);
 	
 });
-	response.json({
+	res.json({
 		status: 'success',
-		rut = rute
+		rut: rute
 });
 });
 app.use(express.static(__dirname + '/public'));

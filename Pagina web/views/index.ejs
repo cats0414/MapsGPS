@@ -76,22 +76,34 @@
 				<footer1>
 					<div id="footer-imagen">
 						<div>
-							<form id="formulario" method = "POST" action="/resp">
+							<form id="formulario" method = "POST" action="/">
 							<input type="text" name="datetimes" style="text-align: center;">
 
 							<script>
-								$(function() {
-  								$('input[name="datetimes"]').daterangepicker({
-    							timePicker: true,
-							timePicker24Hours: true,
-    							startDate: moment().startOf('hour'),
-    							endDate: moment().startOf('hour').add(32, 'hour'),
-    							locale: {
-      							format: 'YYYY-MM-DD hh:mm'
-   										 }
- 								 });
-								});
-							</script>
+
+                                                                 $(function() {
+
+                                                                 $('input[name="datetimes"]').daterangepicker({
+
+                                                         timePicker: true,
+
+                                                         timePicker24Hour:true,
+
+                                                         startDate: moment().startOf('hour'),
+
+                                                         endDate: moment().startOf('hour').add(32, 'hour'),
+
+                                                         locale: {
+
+                                                         format: 'YYYY-MM-DD hh:mm'
+
+                                                                                  }
+
+                                                                  });
+
+                                                                 });
+
+                                                         </script>
 							<br>
 							<input type="submit" value="Consultar">
 							
@@ -236,7 +248,7 @@
 			},
 			body: JSON.stringify(data)
 		};
-			fetch('/resp',options);
+			fetch('/',options);
 		</script>
 	</body>
 </html>
