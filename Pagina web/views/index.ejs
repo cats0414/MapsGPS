@@ -76,14 +76,14 @@
 				<footer1>
 					<div id="footer-imagen">
 						<div>
-							<form id="formulario" method = "POST">
+							<form id="formulario" method = "POST" action="/resp">
 							<input type="text" name="datetimes" style="text-align: center;">
 
 							<script>
 								$(function() {
   								$('input[name="datetimes"]').daterangepicker({
     							timePicker: true,
-							timePicker24Hours:true,
+							timePicker24Hours: true,
     							startDate: moment().startOf('hour'),
     							endDate: moment().startOf('hour').add(32, 'hour'),
     							locale: {
@@ -225,6 +225,18 @@
 				const path = caminoP;
 				path.push;
 }
+		</script>
+		<script>
+		let data;
+		let fuent;
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		};
+			fetch('/resp',options);
 		</script>
 	</body>
 </html>

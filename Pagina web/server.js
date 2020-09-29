@@ -71,7 +71,7 @@ app.get('/', function (req, res) {
 		msg: mensaje,
 	});
 });
-app.post('/', urlencodedParser, function (req, res) {
+app.post('/resp', urlencodedParser, function (req, res) {
         console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
@@ -87,12 +87,13 @@ app.post('/', urlencodedParser, function (req, res) {
         };
         rute = result;
 	console.log(rute);
+	
 });
-        res.render('index', {
-                rut: rute,
-        });
+	response.json({
+		status: 'success',
+		rut = rute
 });
-
+});
 app.use(express.static(__dirname + '/public'));
 
 
