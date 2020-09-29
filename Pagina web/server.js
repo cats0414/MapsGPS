@@ -5,6 +5,11 @@ const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const path = require('path');
 var mensaje = 'Hola';
+var rut = 'Loquesea';
+var rute = [];
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var datapri = [];
 app.set('views', path.join(__dirname, 'views'));
 app.set('imagenes', path.join(__dirname, '/public/imagenes'));
 app.set('calendar', path.join(__dirname, '/public/calendar'));
@@ -39,14 +44,14 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-    console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    // console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
     mensaje = msg;
     msg = msg.toString().split(",")
     lati = parseFloat(msg[0]).toFixed(4);
     longi = parseFloat(msg[1]).toFixed(4);
     msg = {id : "1" ,latitud: lati, longitud: longi, tiempo: msg[2]}
-    msg = {id: "1" ,latitud: msg[0], longitud: msg[1],tiempo: msg[2]} 
-    let sql = 'INSERT INTO usuarios SET ?';
+    msg2 = {id: "1" ,latitud: msg[0], longitud: msg[1],tiempo: msg[2]} 
+    let sql = 'INSERT INTO usuarios2 SET ?';
     let query = database.query(sql, msg, (err, result) => {
     if (err){
 	console.trace('error=' + err.message);
@@ -65,6 +70,27 @@ app.get('/', function (req, res) {
 	res.render('index', {
 		msg: mensaje,
 	});
+});
+app.post('/', urlencodedParser, function (req, res) {
+        console.log(req.body);
+        data1 = req.body;
+        dat = data1.datetimes;
+	datapri = dat.toString().split(" - ");
+	console.log(datapri[0]);
+	console.log(datapri[1]);
+	da1 = datapri[0];
+	da2 = datapri[1];
+        let sql2 = 'SELECT latitud, longitud FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
+        let query2 = database.query(sql2,[da1,da2],(err, result) => {
+        if(err){
+        console.trace('error = ' +err.message);
+        };
+        rute = result;
+	console.log(rute);
+});
+        res.render('index', {
+                rut: rute,
+        });
 });
 
 app.use(express.static(__dirname + '/public'));
