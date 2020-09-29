@@ -10,7 +10,6 @@ var valores = [];
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var datapri = [];
-var cons = require('consolidate');
 app.set('views', path.join(__dirname, 'views'));
 app.set('imagenes', path.join(__dirname, '/public/imagenes'));
 app.set('calendar', path.join(__dirname, '/public/calendar'));
@@ -36,8 +35,8 @@ database.connect((err,connection) =>{
 	 console.log('Base de datos conectada')
 });
 
-app.engine('html',cons.swig)
-app.set('view engine', 'html');
+
+app.set('view engine', 'ejs');
 
 server.on('error', (err) => {
 	console.log(`server error:\n${err.stack}`);
@@ -72,7 +71,7 @@ app.get('/', function (req, res) {
 		msg: mensaje,
 	});
 });
-app.post('/resp', urlencodedParser, function (req,res) {
+app.post('/', urlencodedParser, function (req, res) {
         console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
@@ -81,13 +80,13 @@ app.post('/resp', urlencodedParser, function (req,res) {
 	console.log(datapri[1]);
 	da1 = datapri[0];
 	da2 = datapri[1];
-        let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
+        let sql2 = 'SELECT latitud, longitud FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
         let query2 = database.query(sql2,[da1,da2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
         };
-        valores = result;
-	res.render('index',{msg: mensaje, valores});
+        let valores = result;
+	res.
 });
 });
 app.use(express.static(__dirname + '/public'));
@@ -99,7 +98,7 @@ app.get('/ruta', function (req, res) {
 });
 
 app.get('/resp', function (req,res){
-	res.json({valores});
+	res.json({rut:valores});
 });
 
 app.listen('40000', function () {
