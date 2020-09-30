@@ -199,6 +199,9 @@
 						console.log(latit);
 						console.log(longi);
 						var coorde = {lat: latit, lng: longi};
+						if (cont > 0){
+                                                        marcador.setMap(null);
+                                                };
 						actualPuntero(latit,longi);
 						setTimeout(update, 10000);
 					});
