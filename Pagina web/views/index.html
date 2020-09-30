@@ -3,37 +3,36 @@
 <html lang="es-en">
 
 	<head>
-		<base href="/"> 
-		<link type="text/css" href="/css/hojadisenopagina.css" rel="stylesheet"/>
-		<link rel="stylesheet" href="/css/skel.css" />
-		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" href="/css/style-xlarge.css" />
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-		<script type="text/javascript" src="/calendario.js"></script>
-		<link type="text/css" href="/css/calendario.css" rel="stylesheet" />
-		<meta charset="utf-8"/>
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"/>
-		<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&sensor=false&callback=initMap"> 
-		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/skel.min.js"></script>
-		<script src="/js/skel-layers.min.js"></script>
-		<script src="/js/init.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-		<title>
-		HMRT GPS
-		</title>
-		
-	</head>
+	<base href="/">
+	<link type="text/css" href="/css/hojadisenopagina.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="/css/skel.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/style-xlarge.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/calendario.js"></script>
+	<link type="text/css" href="/css/calendario.css" rel="stylesheet" />
+	<meta charset="utf-8"/>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"/>
+	<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&sensor=false&callback=initMap">
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/skel.min.js"></script>
+	<script src="/js/skel-layers.min.js"></script>
+	<script src="/js/init.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<title>
+	HMRT GPS
+	</title>
+</head>
 	<body id="top">
 
 		<!-- Header -->
@@ -69,55 +68,47 @@
 		</section>
 		<section id="Hist" class="wrapper style1">
 			<header class="major">
-				<h2>Consulta de Históricos</h2>
-				<p>Seleccione fecha de inicio y fin</p>
+			<h2>Consulta de Históricos</h2>
 			</header>
-			
-				<footer1>
-					<div id="footer-imagen">
-						<div>
-							<form id="formulario" method = "POST" action="/resp">
-							<input type="text" name="datetimes" style="text-align: center;">
-
-							<script>
-
-                                                                 $(function() {
-
-                                                                 $('input[name="datetimes"]').daterangepicker({
-
-                                                         timePicker: true,
-
-                                                         timePicker24Hour:true,
-
-                                                         startDate: moment().startOf('hour'),
-
-                                                         endDate: moment().startOf('hour').add(32, 'hour'),
-
-                                                         locale: {
-
-                                                         format: 'YYYY-MM-DD hh:mm'
-
-                                                                                  }
-
-                                                                  });
-
-                                                                 });
-
-                                                         </script>
-							<br>
-							<input type="submit" value="Consultar">
-							
-						</form>
-
-						
-						<script src="/codigomaps.js">
-                                                </script>			
-				</footer1>
-				
-					
-		
-
-		</section>
+			<footer1>
+			<div id="footer-imagen" >
+			<div style="font-size: 24px;">
+			<p>Seleccione fecha de inicio y fin</p>
+			</div>
+			<div>
+			<form id="formulario" method = "POST" action="/resp">
+			<input type="text" name="datetimes" style="text-align: center;">
+			<script>
+			$(function() {
+			$('input[name="datetimes"]').daterangepicker({
+			opens: 'center',
+			autoApply: true,
+			startDate: moment().startOf('hour'),
+			endDate: moment().startOf('hour').add(32, 'hour'),
+			locale: {
+			format: 'YYYY-MM-DD'
+			}
+			});
+			});
+			</script>
+			<br>
+			<div style="font-size: 24px;">
+			<p>Seleccione la hora </p>
+			</div>
+			<div style="text-align: center;">
+			Hora inicial &nbsp &nbsp<input type="time" name="hora_inicial" min="00:00" max="23:59" step="1800" />
+			</div>
+			<div style="text-align: center;">
+			Hora Final &nbsp &nbsp<input type="time" name="hora_final" min="00:00" max="23:59" step="1800" />
+			</div>
+			<br>
+			<br>
+			<input type="submit" value="Consultar">
+			</form>
+			<script src="/codigomaps.js">
+			</script>
+			</footer1>
+			</section>
 		<section id="" class="wrapper style4">
 		<div id = "map2">
 		</div>
