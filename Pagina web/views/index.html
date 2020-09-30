@@ -103,13 +103,13 @@
 			</div>
 			<br>
 			<br>
-			<input type="submit" value="Consultar">
+			<input type="submit" value="Consultar" onclick="myFunction()">
 			</form>
 			<script src="/codigomaps.js">
 			</script>
 			</footer1>
 			</section>
-		<section id="" class="wrapper style4">
+		<section id="mapi" class="wrapper style4">
 		<div id = "map2">
 		</div>
 		<div class="container">
@@ -145,10 +145,11 @@
 				Developed by:
 				</h3>
 				<ul>
-					<p> Alfredo Hugueth. </p>
-					<p> Ezequiel Mantilla. </p>
 					<p> Carlos Tous. </p>
 					<p> Lazaro Reina. </p>
+					<p> Alfredo Hugueth. </p>
+					<p> Ezequiel Mantilla. </p>
+					
 				
 				</ul>
 				<h3>
@@ -163,6 +164,11 @@
 		</div>			
 	</footer1>
 	</section>
+	<script>
+		function myFunction() {
+		  location.href = "#mapi";
+		}
+		</script>
 		<script>
 			let str;
 			let datos;
