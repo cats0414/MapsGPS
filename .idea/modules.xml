@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HMRT GPS.iml" filepath="$PROJECT_DIR$/HMRT GPS.iml" group="HMRT GPS" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/HMRT_GPS.iml" filepath="$PROJECT_DIR$/.idea/modules/HMRT_GPS.iml" group="HMRT_GPS" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="HMRT GPS/app" />
     </modules>
   </component>
