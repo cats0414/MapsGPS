@@ -73,16 +73,17 @@ app.get('/', function (req, res) {
 	});
 });
 app.post('/resp', urlencodedParser, function (req,res) {
+		// esto recibe la información. 
         console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
-	hora1 = data1.hora_inicial;
-	hora2 = data1.hora_final;
-	datapri = dat.toString().split(" - ");
-	da1 = datapri[0].concat(" " ,hora1);
-	da2 = datapri[1].concat( " " ,hora2);
-	console.log(da1);
-	console.log(da2);
+		hora1 = data1.hora_inicial;
+		hora2 = data1.hora_final;
+		datapri = dat.toString().split(" - ");
+		da1 = datapri[0].concat(" " ,hora1);
+		da2 = datapri[1].concat( " " ,hora2);
+		console.log(da1);
+		console.log(da2);
         let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
         let query2 = database.query(sql2,[da1,da2],(err, result) => {
         if(err){
