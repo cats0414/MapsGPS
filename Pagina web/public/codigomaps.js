@@ -9,5 +9,10 @@ function initMap(){
 	zoom: 10,
 	center: {lat:11.003  , lng:-74.82 }
 	});
+	map1 = new google.maps.Map(document.getElementById('map2'),{
+        zoom: 8,
+        center: {lat:11.003  , lng:-74.82 }
+        });
+
 	
 }	

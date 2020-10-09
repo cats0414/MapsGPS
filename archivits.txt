@@ -1,0 +1,5 @@
+Tous, sugiero que la pagina tenga un diseño mas emo
+Y que Alfredo también
+
+Sugerencia: La pagina debería tener un mensaje de alerta cuando la fecha de 
+inicio es mayor a la fecha de final. 

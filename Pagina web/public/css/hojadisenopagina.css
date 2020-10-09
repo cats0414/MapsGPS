@@ -9,13 +9,7 @@
 	margin-right: auto;
 	margin-left: auto;
 }
-header{
-	font-size: 2em;
-	text-align: center;
-	background: url("/imagenes/fondo.jpeg");
-	color:white;
-	margin: 6px 6px;
-}
+
 
 body{
 	font-family: 'Open Sans', sans-serif;
@@ -48,6 +42,10 @@ img{
 
 #map{
 	height: inherit;
+	width: inherit;
+}
+#map2{
+	height: 500px;
 	width: inherit;
 }
 
