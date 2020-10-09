@@ -89,11 +89,13 @@ app.post('/resp', urlencodedParser, function (req,res) {
         if(err){
         console.trace('error = ' +err.message);
         };
-        valores = result;
-	res.render('index',{msg: mensaje, valores});
+		valores = result;
+		res.render('index',{msg: mensaje, valores});
+		res.redirect('index/#mapi');
 });
 });
 app.use(express.static(__dirname + '/public'));
+
 
 
 
