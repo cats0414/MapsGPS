@@ -11,7 +11,11 @@
 /* Basic */
 
 	body {
+<<<<<<< HEAD
 		background: rgb(161, 235, 245);
+=======
+		background: rgb(167, 152, 152);
+>>>>>>> 506b79d00b34d2470d13d4192d696d72ad5c0a8f
 	}
 
 	body, input, select, textarea {

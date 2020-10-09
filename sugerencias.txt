@@ -1,0 +1,1 @@
+Deberiamos colocar mensajes de alerar cuando la fecha de fin sea anterior a la fecha inicio

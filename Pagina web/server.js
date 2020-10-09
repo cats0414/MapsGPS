@@ -6,10 +6,11 @@ const server = dgram.createSocket('udp4');
 const path = require('path');
 var mensaje = 'Hola';
 var rut = 'Loquesea';
-var rute = [];
+var valores = [];
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var datapri = [];
+var cons = require('consolidate');
 app.set('views', path.join(__dirname, 'views'));
 app.set('imagenes', path.join(__dirname, '/public/imagenes'));
 app.set('calendar', path.join(__dirname, '/public/calendar'));
@@ -35,8 +36,8 @@ database.connect((err,connection) =>{
 	 console.log('Base de datos conectada')
 });
 
-
-app.set('view engine', 'ejs');
+app.engine('html',cons.swig)
+app.set('view engine', 'html');
 
 server.on('error', (err) => {
 	console.log(`server error:\n${err.stack}`);
@@ -49,8 +50,8 @@ server.on('message', (msg, rinfo) => {
     msg = msg.toString().split(",")
     lati = parseFloat(msg[0]).toFixed(4);
     longi = parseFloat(msg[1]).toFixed(4);
-    msg = {id : "1" ,latitud: lati, longitud: longi, tiempo: msg[2]}
-    msg2 = {id: "1" ,latitud: msg[0], longitud: msg[1],tiempo: msg[2]} 
+    msg = {id : "1" ,lat: lati, lng: longi, tiempo: msg[2]}
+    msg2 = {id: "1" ,lat: msg[0], lng: msg[1],tiempo: msg[2]} 
     let sql = 'INSERT INTO usuarios2 SET ?';
     let query = database.query(sql, msg, (err, result) => {
     if (err){
@@ -71,34 +72,39 @@ app.get('/', function (req, res) {
 		msg: mensaje,
 	});
 });
-app.post('/', urlencodedParser, function (req, res) {
+app.post('/resp', urlencodedParser, function (req,res) {
+		// esto recibe la información. 
         console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
-	datapri = dat.toString().split(" - ");
-	console.log(datapri[0]);
-	console.log(datapri[1]);
-	da1 = datapri[0];
-	da2 = datapri[1];
-        let sql2 = 'SELECT latitud, longitud FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
+		hora1 = data1.hora_inicial;
+		hora2 = data1.hora_final;
+		datapri = dat.toString().split(" - ");
+		da1 = datapri[0].concat(" " ,hora1);
+		da2 = datapri[1].concat( " " ,hora2);
+		console.log(da1);
+		console.log(da2);
+        let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
         let query2 = database.query(sql2,[da1,da2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
         };
-        rute = result;
-	console.log(rute);
+		valores = result;
+		res.render('index',{msg: mensaje, valores});
+		res.redirect('index/#mapi');
 });
-        res.render('index', {
-                rut: rute,
-        });
 });
-
 app.use(express.static(__dirname + '/public'));
+
 
 
 
 app.get('/ruta', function (req, res) {
 	res.json({ msg: mensaje });
+});
+
+app.get('/resp', function (req,res){
+	res.json({valores});
 });
 
 app.listen('40000', function () {
