@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             String fecha = dateFormat.format(new Date()); // Find todays date
             direccion.setText(fecha);
             //Latitud, Longitud,fecha
-            final String men =String.format(String.format("%%s,%%s,%s", fecha," 2"),sLatitud,sLongitud);
+            final String men =String.format(String.format("%%s,%%s,%s", fecha," 1"),sLatitud,sLongitud);
             final String men1 =String.format(String.format("%%s,%%s,%s", fecha," 2"),sLatitud,sLongitud);
             if(id) {
                 message = men1;
