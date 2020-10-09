@@ -45,13 +45,13 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-    // console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
     mensaje = msg;
     msg = msg.toString().split(",")
     lati = parseFloat(msg[0]).toFixed(4);
-    longi = parseFloat(msg[1]).toFixed(4);
-    msg = {id : "1" ,lat: lati, lng: longi, tiempo: msg[2]}
-    msg2 = {id: "1" ,lat: msg[0], lng: msg[1],tiempo: msg[2]} 
+	longi = parseFloat(msg[1]).toFixed(4);
+	ID = parseInt(msg[2]);
+    msg = {id : ID ,lat: lati, lng: longi, tiempo: msg[2]}
     let sql = 'INSERT INTO usuarios2 SET ?';
     let query = database.query(sql, msg, (err, result) => {
     if (err){
