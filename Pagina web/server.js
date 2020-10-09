@@ -3,8 +3,6 @@ const app = express();
 const mysql = require('mysql');
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
-<<<<<<< HEAD
-=======
 const path = require('path');
 var mensaje = 'Hola';
 var rut = 'Loquesea';
@@ -16,7 +14,6 @@ var cons = require('consolidate');
 app.set('views', path.join(__dirname, 'views'));
 app.set('imagenes', path.join(__dirname, '/public/imagenes'));
 app.set('calendar', path.join(__dirname, '/public/calendar'));
->>>>>>> 506b79d00b34d2470d13d4192d696d72ad5c0a8f
 require('dotenv').config();
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
