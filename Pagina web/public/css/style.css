@@ -385,7 +385,7 @@
 	}
 
 	:-ms-input-placeholder {
-		color: rgb(255, 0, 0)255, 0, 0) !important;
+		color: rgb(255, 0, 0) !important;
 		opacity: 1.0;
 	}
 
@@ -814,10 +814,11 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 		input[type="submit"].special,
 		input[type="reset"].special,
 		input[type="button"].special,
-		.button.special {
+		.button.special,.button.big.alt {
 			background-color: #272727;
 			color: #ffffff !important;
 		}
+		
 
 			input[type="submit"].special:hover,
 			input[type="reset"].special:hover,
@@ -1040,12 +1041,12 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 		}
 
 		#banner .button.alt {
-			box-shadow: inset 13px 9px 12px 1px rgba(144, 144, 144, 0.75);
+			box-shadow: inset 0px 0px 0px 1px #272727;
 			color: #ffffff !important;
 		}
 
 			#banner .button.alt:hover {
-				background-color: rgba(255,255,255);
+				background-color: #0f2862;
 			}
 
 			#banner .button.alt:active {
