@@ -72,7 +72,7 @@ app.get('/', function (req, res) {
 		msg: mensaje,
 	});
 });
-app.post('/resp', urlencodedParser, function (req,res) {
+app.post('/', urlencodedParser, function (req,res) {
 		// esto recibe la información. 
         console.log(req.body);
         data1 = req.body;
@@ -90,7 +90,9 @@ app.post('/resp', urlencodedParser, function (req,res) {
         console.trace('error = ' +err.message);
         };
         valores = result;
-	res.render('index',{msg: mensaje, valores});
+		res.render('index',{valores});
+		
+		
 });
 });
 app.use(express.static(__dirname + '/public'));
@@ -101,9 +103,7 @@ app.get('/ruta', function (req, res) {
 	res.json({ msg: mensaje });
 });
 
-app.get('/resp', function (req,res){
-	res.json({valores});
-});
+
 
 app.listen('40000', function () {
 	console.log('Todo en orden');
