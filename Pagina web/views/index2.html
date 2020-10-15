@@ -101,6 +101,7 @@
 			</div>
 			<div style="text-align: center;">
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Hora inicial &nbsp &nbsp<input type="time" id="hora_inicial" name="hora_inicial" min="00:00" max="23:59" step="1800" />
 			</div>
 			<div style="text-align: center;">
@@ -111,6 +112,12 @@
 			<div style="text-align: center;">
 			Hora Final &nbsp &nbsp<input type="time" name="hora_final" min="00:00" max="23:59" step="1800" />
 >>>>>>> 3125be2fc5fbddc42b5163f227cb23f3c6d61bd8
+=======
+			Hora inicial &nbsp &nbsp<input type="time" name="hora_inicial" min="00:00" max="23:59" step="1800" list="timevalue"/>
+			</div>
+			<div style="text-align: center;">
+			Hora Final &nbsp &nbsp<input type="time" name="hora_final" min="00:00" max="23:59" step="1800" list="timevalue"/>
+>>>>>>> 62f47e86dab54f0a6b6db235c63367c3b01340d8
 			</div>
 			<br>
 			<br>
@@ -221,6 +228,7 @@
 			update();
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
+				map.setCenter(coor);
 				marcador = new google.maps.Marker({
 					position: coor ,
 					map: map
@@ -261,9 +269,12 @@
 			fetch('/resp').then((response) => response.json())
 				.then((json) => {
 					let rutahist = Object.entries(json);
-					console.log((rutahist[0])[1]);
 					console.log(typeof(rutahist));
 					let camino2 = (rutahist[0])[1];
+					let centro = camino2[1];
+					console.log(typeof(centro));
+					console.log(centro);
+					map1.setCenter(centro);
 					dibujarpoli2(camino2);
 			});
 			function dibujarpoli2(camino2){
@@ -276,5 +287,55 @@
 			
 
 		</script>
+		<datalist id="timevalue">
+			<option value="00:00">
+			<option value="00:30">
+			<option value="01:00">
+			<option value="01:30">
+			<option value="02:00">
+			<option value="02:30">
+			<option value="03:00">
+			<option value="03:30">
+			<option value="04:00">
+			<option value="04:30">	
+			<option value="05:00">
+			<option value="05:30">
+			<option value="06:00">
+			<option value="06:30">
+			<option value="07:00">
+			<option value="07:30">
+			<option value="08:00">
+			<option value="08:30">
+			<option value="09:00">
+			<option value="09:30">
+			<option value="10:00">	
+			<option value="10:30">
+			<option value="11:00">
+			<option value="11:30">
+			<option value="12:00">
+			<option value="12:30">
+			<option value="13:00">
+			<option value="13:30">
+			<option value="14:00">
+			<option value="14:30">
+			<option value="15:00">
+			<option value="15:30">	
+			<option value="16:00">
+			<option value="16:30">
+			<option value="17:00">
+			<option value="17:30">
+			<option value="18:00">
+			<option value="18:30">
+			<option value="19:00">
+			<option value="19:30">
+			<option value="20:00">
+			<option value="20:30">
+			<option value="21:00">	
+			<option value="21:30">
+			<option value="22:00">
+			<option value="22:30">
+			<option value="23:00">
+			<option value="23:30">
+		 </datalist>
 	</body>
 </html>
