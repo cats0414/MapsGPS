@@ -185,16 +185,17 @@
 				const data = await response.json();
 				console.log(data);
 				var str = '';
-			}
-				/*for (var i = 0; i < json.msg.data.length; ++i) {
-				str += String.fromCharCode(json.msg.data[i]);
-						}
+			
+				for (var i = 0; i < data.msg.data.length; ++i) {
+				str += String.fromCharCode(data.msg.data[i]);
+				}
 						datos = str.split(',');
 						latitud = datos[0]
-						
+						console.log(latitud);
 						longitud = datos[1]
-						
+						console.log(longitud);
 						fecha = datos[2];
+						console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
 						console.log(latit);
@@ -205,10 +206,8 @@
                                                 };
 						
 						actualPuntero(latit,longi);
-						setTimeout(update, 10000);
-					});
-			
-			update();*/
+						//setTimeout(update, 10000);
+					}
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
 				map.setCenter(coor);
