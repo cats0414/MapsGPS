@@ -90,7 +90,7 @@ app.post('/resp', urlencodedParser, function (req,res) {
         console.trace('error = ' +err.message);
         };
         valores = result;
-	res.render('index',{msg: mensaje, valores});
+	res.render('index2',{msg: mensaje, valores});
 });
 });
 app.use(express.static(__dirname + '/public'));
