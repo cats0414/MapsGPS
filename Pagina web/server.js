@@ -45,13 +45,16 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-    console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    //console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
     mensaje = msg;
     msg = msg.toString().split(",")
     lati = parseFloat(msg[0]).toFixed(4);
 	longi = parseFloat(msg[1]).toFixed(4);
-	ID = parseInt(msg[2]);
-    msg = {id : ID ,lat: lati, lng: longi, tiempo: msg[2]}
+	ID = parseInt(msg[3]);
+	fecha = new Date(msg[2]);
+	console.log(typeof(fecha));
+	console.log(fecha);
+    msg = {id : ID ,lat: lati, lng: longi, tiempo: fecha}
     let sql = 'INSERT INTO usuarios2 SET ?';
     let query = database.query(sql, msg, (err, result) => {
     if (err){
@@ -82,10 +85,14 @@ app.post('/resp', urlencodedParser, function (req,res) {
 		datapri = dat.toString().split(" - ");
 		da1 = datapri[0].concat(" " ,hora1);
 		da2 = datapri[1].concat( " " ,hora2);
+		var tiempoconsulta1 = new Date(da1);
+		var tiempoconsulta2 = new Date(da2); 
 		console.log(da1);
 		console.log(da2);
-        let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
-        let query2 = database.query(sql2,[da1,da2],(err, result) => {
+		console.log(tiempoconsulta1);
+		console.log(tiempoconsulta2);
+        let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
+        let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
         };
