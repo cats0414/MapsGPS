@@ -202,6 +202,7 @@
 						if (cont > 0){
                                                         marcador.setMap(null);
                                                 };
+						
 						actualPuntero(latit,longi);
 						setTimeout(update, 10000);
 					});
@@ -209,6 +210,7 @@
 			update();
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
+				map.setCenter(coor);
 				marcador = new google.maps.Marker({
 					position: coor ,
 					map: map
@@ -252,6 +254,9 @@
 					console.log((rutahist[0])[1]);
 					console.log(typeof(rutahist));
 					let camino2 = (rutahist[0])[1];
+					let centro = camino2[1];
+					console.log(centro);
+					map1.setCenter(centro);
 					dibujarpoli2(camino2);
 			});
 			function dibujarpoli2(camino2){
