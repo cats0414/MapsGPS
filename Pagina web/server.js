@@ -99,7 +99,7 @@ app.post('/resp',function (req,res) {
         console.trace('error = ' +err.message);
         };
         valores = result;
-	res.json({valores});
+	res.json({val: valores});
 });
 });
 app.use(express.static(__dirname + '/public'));
