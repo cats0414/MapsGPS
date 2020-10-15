@@ -147,9 +147,12 @@ public class MainActivity extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fecha = dateFormat.format(new Date()); // Find todays date
             direccion.setText(fecha);
+            String idd=",1";
+            String iddx=",2";
             //Latitud, Longitud,fecha
-            final String men =String.format(String.format("%%s,%%s,%s", fecha," 1"),sLatitud,sLongitud);
-            final String men1 =String.format(String.format("%%s,%%s,%s", fecha," 2"),sLatitud,sLongitud);
+            String jui= String.format(String.format("%%s,%%s,%s",fecha),sLatitud,sLongitud);
+            final String men =jui.concat(idd);
+            final String men1 =jui.concat(iddx);
             if(id) {
                 message = men1;
             }else{
