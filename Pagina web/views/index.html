@@ -183,11 +183,13 @@
 			async function update() {
 				const response = await fetch('/ruta');
 				const data = await response.json();
-				console.log(data);
+				console.log(data.msg);
 				var str = '';
-			
-				for (var i = 0; i < data.msg.data.length; ++i) {
-				str += String.fromCharCode(data.msg.data[i]);
+				if(data.msg == ""){
+					setTimeout(update, 10000);
+				}else{
+					for (var i = 0; i < data.msg.data.length; ++i) {
+					str += String.fromCharCode(data.msg.data[i]);
 				}
 						datos = str.split(',');
 						latitud = datos[0]
@@ -206,8 +208,9 @@
                                                 };
 						
 						actualPuntero(latit,longi);
-						//setTimeout(update, 10000);
+						setTimeout(update, 10000);
 					}
+				}
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
 				map.setCenter(coor);
