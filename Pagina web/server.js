@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const path = require('path');
-var mensaje = 'Hola';
+var mensaje = '';
 var rut = 'Loquesea';
 var valores = [];
 var bodyParser = require('body-parser');
@@ -84,6 +84,9 @@ app.post('/resp',function (req,res) {
         dat = data1.datetimes;
 		hora1 = data1.hora_inicial;
 		hora2 = data1.hora_final;
+		camion = parseInt(data1.camion);
+		console.log(camion);
+		console.log(typeof(camion));
 		datapri = dat.toString().split(" - ");
 		da1 = datapri[0].concat(" " ,hora1);
 		da2 = datapri[1].concat( " " ,hora2);
@@ -93,6 +96,7 @@ app.post('/resp',function (req,res) {
 		console.log(da2);
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
+		if (camion == 3){
         let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
         let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
@@ -101,6 +105,16 @@ app.post('/resp',function (req,res) {
         valores = result;
 	res.json({val: valores});
 });
+		}else{
+			let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
+			let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2,camion],(err, result) => {
+				if(err){
+				console.trace('error = ' +err.message);
+				};
+				valores = result;
+			res.json({val: valores});
+		});
+		}
 });
 app.use(express.static(__dirname + '/public'));
 

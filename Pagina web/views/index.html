@@ -103,6 +103,13 @@
 			</div>
 			<br>
 			<br>
+			<select id="menu">
+				<option value="1">Primer Camion</option>
+				<option value="2">Segundo Camion</option>
+				<option value="3">Ambos camiones</option>
+			</select>
+			<br>
+			<br>
 			<input type="submit" value="Consultar" onclick="myFunction()">
 			</form>
 			<script src="/codigomaps.js">
@@ -247,6 +254,7 @@
 		<script>
 		let data;
 		let fuent;
+		let contador = 0;
 			const formLogin = document.querySelector('#formulario');
 			formLogin.addEventListener('submit',event =>{
 			// Mandar el formulario automaticamente.
@@ -259,11 +267,21 @@
 
 			var hora_final = document.getElementById('hora_final').value;
 			console.log(hora_final);
+			var camion = document.getElementById("menu").value;
+			console.log(camion);
+			var id;
+			if(camion == "3"){
+				 id = camion;
+			}else{
+				id = parseInt(camion);
+			}
+			console.log(id);
+			console.log(typeof(id));
 			var informacion = {
 				datetimes: datetimes,
 				hora_inicial: hora_inicial,
-				hora_final: hora_final
-
+				hora_final: hora_final,
+				camion:id
 			}
 			const options = {
 			method: 'POST',
@@ -284,6 +302,10 @@
 					let centro = camino2[1];
 					console.log(centro);
 					map1.setCenter(centro);
+					if(contador>0){
+						linea2.setMap(NULL);
+					}
+					contador = contador+1;
 					dibujarpoli2(camino2);
 			});
 			function dibujarpoli2(camino2){
@@ -291,7 +313,7 @@
 				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
 }
 );
-				linea2.setMap(map1)
+				linea2.setMap(map1);
 }
 			});
 			</script>
