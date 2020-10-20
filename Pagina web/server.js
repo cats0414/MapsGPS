@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const path = require('path');
-var mensaje = 'Hola';
+var mensaje = '';
 var rut = 'Loquesea';
 var valores = [];
 var bodyParser = require('body-parser');
@@ -14,6 +14,7 @@ var cons = require('consolidate');
 app.set('views', path.join(__dirname, 'views'));
 app.set('imagenes', path.join(__dirname, '/public/imagenes'));
 app.set('calendar', path.join(__dirname, '/public/calendar'));
+app.use(express.json({limit:'1mb'}));
 require('dotenv').config();
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
@@ -75,13 +76,17 @@ app.get('/', function (req, res) {
 		msg: mensaje,
 	});
 });
-app.post('/resp', urlencodedParser, function (req,res) {
+app.post('/resp',function (req,res) {
 		// esto recibe la información. 
+		console.log("LLego informacion del cliente");
         console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
 		hora1 = data1.hora_inicial;
 		hora2 = data1.hora_final;
+		camion = parseInt(data1.camion);
+		console.log(camion);
+		console.log(typeof(camion));
 		datapri = dat.toString().split(" - ");
 		da1 = datapri[0].concat(" " ,hora1);
 		da2 = datapri[1].concat( " " ,hora2);
@@ -91,14 +96,25 @@ app.post('/resp', urlencodedParser, function (req,res) {
 		console.log(da2);
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
+		if (camion == 3){
         let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
         let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
         };
         valores = result;
-	res.render('index2',{msg: mensaje, valores});
+	res.json({val: valores});
 });
+		}else{
+			let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
+			let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2,camion],(err, result) => {
+				if(err){
+				console.trace('error = ' +err.message);
+				};
+				valores = result;
+			res.json({val: valores});
+		});
+		}
 });
 app.use(express.static(__dirname + '/public'));
 
@@ -108,9 +124,7 @@ app.get('/ruta', function (req, res) {
 	res.json({ msg: mensaje });
 });
 
-app.get('/resp', function (req,res){
-	res.json({valores});
-});
+
 
 app.listen('40000', function () {
 	console.log('Todo en orden');
