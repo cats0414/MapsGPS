@@ -1127,36 +1127,38 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 			justify-content: center;
 			align-items: center;
 		}
-<<<<<<< HEAD
 
 		/* Form de ID */
-=======
-		/* CARS */
->>>>>>> 29ac40e92d75fe529b8c2ff97fe662d105522c79
 		/* The container must be positioned relative: */
 .custom-select {
 	position: relative;
 	font-family: Arial;
-<<<<<<< HEAD
 	margin-left: auto;
 	margin-right: auto;
 	justify-content: center;
 	align-items: center;
-=======
->>>>>>> 29ac40e92d75fe529b8c2ff97fe662d105522c79
   }
+  .padre {
+  /* IMPORTANTE */
+  text-align: center;
+}
+
+.hijo {
+  background-color: transparent;
+  padding: 5px;
+  margin: 5px;
+  
+  /* IMPORTANTE */
+  display: inline-block;
+}
   
   .custom-select select {
 	display: none; /*hide original SELECT element: */
   }
   
   .select-selected {
-<<<<<<< HEAD
 	background-color: #272727;
 	color: #ffffff !important;
-=======
-	background-color: DodgerBlue;
->>>>>>> 29ac40e92d75fe529b8c2ff97fe662d105522c79
   }
   
   /* Style the arrow inside the select element: */
@@ -1189,12 +1191,8 @@ input[type="time"]::-webkit-calendar-picker-indicator{
   /* Style items (options): */
   .select-items {
 	position: absolute;
-<<<<<<< HEAD
 	background-color: #272727;
 	color: #ffffff !important;;
-=======
-	background-color: DodgerBlue;
->>>>>>> 29ac40e92d75fe529b8c2ff97fe662d105522c79
 	top: 100%;
 	left: 0;
 	right: 0;
