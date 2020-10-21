@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void id(View view) {
         n1=n1+1;
-        if((n % 2) == 0){
+        if((n1 % 2) == 0){
             id=true;
         } else {
             id=false;
