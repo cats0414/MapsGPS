@@ -1127,19 +1127,38 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 			justify-content: center;
 			align-items: center;
 		}
-		/* CARS */
+
+		/* Form de ID */
 		/* The container must be positioned relative: */
 .custom-select {
 	position: relative;
 	font-family: Arial;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
+	align-items: center;
   }
+  .padre {
+  /* IMPORTANTE */
+  text-align: center;
+}
+
+.hijo {
+  background-color: transparent;
+  padding: 5px;
+  margin: 5px;
+  
+  /* IMPORTANTE */
+  display: inline-block;
+}
   
   .custom-select select {
 	display: none; /*hide original SELECT element: */
   }
   
   .select-selected {
-	background-color: DodgerBlue;
+	background-color: #272727;
+	color: #ffffff !important;
   }
   
   /* Style the arrow inside the select element: */
@@ -1172,7 +1191,8 @@ input[type="time"]::-webkit-calendar-picker-indicator{
   /* Style items (options): */
   .select-items {
 	position: absolute;
-	background-color: DodgerBlue;
+	background-color: #272727;
+	color: #ffffff !important;;
 	top: 100%;
 	left: 0;
 	right: 0;
