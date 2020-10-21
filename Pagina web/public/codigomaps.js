@@ -43,7 +43,7 @@ function consultahora(event) {
 					console.log(datostem);
 					condi = (datostem[0])[1];
 					console.log(condi);
-					tiemp = toString((datostem[0]));
+					tiemp = toString(condi);
 					comp = "El camion paso por el punto el los siguientes instantes:";
 					
 					mens = comp.concat(" ",tiemp);
@@ -57,7 +57,7 @@ function consultahora(event) {
 					console.log(mens);
 					
 					infowindow = new google.maps.InfoWindow({
-						content: mens,
+						content: tiemp ,
 					});
 					marca = new google.maps.Marker({
 						position: event.latLng,
