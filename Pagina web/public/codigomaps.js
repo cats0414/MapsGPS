@@ -40,14 +40,14 @@ function consultahora(event) {
 					datostem = Object.entries(json);
 					tiemp = datostem[0];
 					console.log(tiemp);
-
+					infowindow = new google.maps.InfoWindow({
+						content: tiemp,
+					});
+					marca = new google.maps.Marker({
+						position: event.latLng,
+						map: map1,
+					  });
+					infowindow.open(map1, marca);
 				});
-	const infowindow = new google.maps.InfoWindow({
-		content: tiemp,
-	});
-	marca = new google.maps.Marker({
-		position: event.latLng,
-		map: map1,
-	  });
-	  infowindow.open(map1, marca);
+	
 }	
