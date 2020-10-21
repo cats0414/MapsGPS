@@ -55,7 +55,7 @@
 					<p>Sistema de seguimiento de coordenadas para su vehículo</p>
 					<ul class="actions">
 						<li><a href="#Maps" class="button big special">Track</a></li>
-						<li><a href="#Hist" class="button big special">Históricos</a></li>
+						<li><a href="#Hist" class="button big alt">Históricos</a></li>
 					</ul>
 				</div>
 			</section>
@@ -76,8 +76,8 @@
 			<p>Seleccione fecha de inicio y fin</p>
 			</div>
 			<div>
-			<form id="formulario" method = "POST" action="/resp">
-			<input type="text" name="datetimes" style="text-align: center;">
+			<form id="formulario" method = "post">
+			<input type="text" id="datetimes" name="datetimes" style="text-align: center;">
 			<script>
 			$(function() {
 			$('input[name="datetimes"]').daterangepicker({
@@ -95,11 +95,96 @@
 			<div style="font-size: 24px;">
 			<p>Seleccione la hora </p>
 			</div>
-			<div style="text-align: center;">
-			Hora inicial &nbsp &nbsp<input type="time" name="hora_inicial" min="00:00" max="23:59" step="1800" />
+			<div style="text-align: center;" class="padre">
+			Hora inicial &nbsp &nbsp
+			<div class="hijo">
+			<select id="hora_inicial" name="hora_inicial" >
+				<option value="00">00</option>
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+			</select>
+		</div>
+		<div class="hijo">
+			<p>:</p>
+		</div>
+		<div class="hijo">	
+		<select id="Minutos">
+				<option value="00">00</option>
+				<option value="01">30</option>
+			</select>
+		</div>
+		
 			</div>
-			<div style="text-align: center;">
-			Hora Final &nbsp &nbsp<input type="time" name="hora_final" min="00:00" max="23:59" step="1800" />
+			<div style="text-align: center;" class="padre">
+				Hora final &nbsp &nbsp &nbsp
+				<div class="hijo">
+				<select id="hora_inicial" name="hora_inicial" >
+					<option value="00">00</option>
+					<option value="01">01</option>
+					<option value="02">02</option>
+					<option value="03">03</option>
+					<option value="04">04</option>
+					<option value="05">05</option>
+					<option value="06">06</option>
+					<option value="07">07</option>
+					<option value="08">08</option>
+					<option value="09">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+				</select>
+			</div>
+			<div class="hijo">
+				<p>:</p>
+			</div>
+			<div class="hijo">	
+			<select id="Minutos">
+					<option value="00">00</option>
+					<option value="01">30</option>
+				</select>
+				</div>
+				</div>
+			<br>
+			<div style="text-align: center; font-size: 24px;"></div>
+			<div class="custom-select" style="width:300px; font-size: 18px;">
+			<select id="menu">
+				<option value="0">Seleccione el camión</option>
+				<option value="1">Primer Camion</option>
+				<option value="2">Segundo Camion</option>
+				<option value="3">Ambos camiones</option>
+			</select>
 			</div>
 			<br>
 			<br>
@@ -179,21 +264,25 @@
 			let long;
 			var caminoP = [];
 			var cont = 0;
-			function update() {
-				fetch('/ruta')
-					.then((response) => response.json())
-					.then((json) => {
-						console.log(json);
-						var str = '';
-						for (var i = 0; i < json.msg.data.length; ++i) {
-							str += String.fromCharCode(json.msg.data[i]);
-						}
+			update();
+			async function update() {
+				const response = await fetch('/ruta');
+				const data = await response.json();
+				console.log(data.msg);
+				var str = '';
+				if(data.msg == ""){
+					setTimeout(update, 10000);
+				}else{
+					for (var i = 0; i < data.msg.data.length; ++i) {
+					str += String.fromCharCode(data.msg.data[i]);
+				}
 						datos = str.split(',');
 						latitud = datos[0]
-						
+						console.log(latitud);
 						longitud = datos[1]
-						
+						console.log(longitud);
 						fecha = datos[2];
+						console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
 						console.log(latit);
@@ -202,13 +291,14 @@
 						if (cont > 0){
                                                         marcador.setMap(null);
                                                 };
+						
 						actualPuntero(latit,longi);
 						setTimeout(update, 10000);
-					});
-			}
-			update();
+					}
+				}
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
+				map.setCenter(coor);
 				marcador = new google.maps.Marker({
 					position: coor ,
 					map: map
@@ -242,16 +332,58 @@
 		<script>
 		let data;
 		let fuent;
-		const options = {
+		let contador = 0;
+			const formLogin = document.querySelector('#formulario');
+			formLogin.addEventListener('submit',event =>{
+			// Mandar el formulario automaticamente.
+			event.preventDefault();
+			var datetimes= document.getElementById('datetimes').value;
+			console.log(datetimes);
+
+			var hora_inicial = document.getElementById('hora_inicial').value;
+			console.log(hora_inicial);
+
+			var hora_final = document.getElementById('hora_final').value;
+			console.log(hora_final);
+			var camion = document.getElementById("menu").value;
+			console.log(camion);
+			var id;
+			if(camion == "3"){
+				 id = camion;
+			}else{
+				id = parseInt(camion);
+			}
+			console.log(id);
+			console.log(typeof(id));
+			var informacion = {
+				datetimes: datetimes,
+				hora_inicial: hora_inicial,
+				hora_final: hora_final,
+				camion:id
+			}
+			const options = {
 			method: 'POST',
-			body: JSON.stringify(data)
+			body: JSON.stringify(informacion) ,
+			headers:{
+				'Content-Type': 'application/json'
+      			// 'Content-Type': 'application/x-www-form-urlencoded',
+			}
+			
 		};
-			fetch('/resp').then((response) => response.json())
+		fetch('/resp',options).then((response) => response.json())
 				.then((json) => {
+					console.log(json)
 					let rutahist = Object.entries(json);
 					console.log((rutahist[0])[1]);
 					console.log(typeof(rutahist));
 					let camino2 = (rutahist[0])[1];
+					let centro = camino2[1];
+					console.log(centro);
+					map1.setCenter(centro);
+					if(contador>0){
+						linea2.setMap(NULL);
+					}
+					contador = contador+1;
 					dibujarpoli2(camino2);
 			});
 			function dibujarpoli2(camino2){
@@ -259,10 +391,139 @@
 				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
 }
 );
-				linea2.setMap(map1)
+				linea2.setMap(map1);
 }
-			
-
-		</script>
+			});
+			</script>
+			<datalist id="timevalue">
+				<option value="00:00">
+				<option value="00:30">
+				<option value="01:00">
+				<option value="01:30">
+				<option value="02:00">
+				<option value="02:30">
+				<option value="03:00">
+				<option value="03:30">
+				<option value="04:00">
+				<option value="04:30">	
+				<option value="05:00">
+				<option value="05:30">
+				<option value="06:00">
+				<option value="06:30">
+				<option value="07:00">
+				<option value="07:30">
+				<option value="08:00">
+				<option value="08:30">
+				<option value="09:00">
+				<option value="09:30">
+				<option value="10:00">	
+				<option value="10:30">
+				<option value="11:00">
+				<option value="11:30">
+				<option value="12:00">
+				<option value="12:30">
+				<option value="13:00">
+				<option value="13:30">
+				<option value="14:00">
+				<option value="14:30">
+				<option value="15:00">
+				<option value="15:30">	
+				<option value="16:00">
+				<option value="16:30">
+				<option value="17:00">
+				<option value="17:30">
+				<option value="18:00">
+				<option value="18:30">
+				<option value="19:00">
+				<option value="19:30">
+				<option value="20:00">
+				<option value="20:30">
+				<option value="21:00">	
+				<option value="21:30">
+				<option value="22:00">
+				<option value="22:30">
+				<option value="23:00">
+				<option value="23:30">
+			 </datalist>
+			 <script>
+				var x, i, j, l, ll, selElmnt, a, b, c;
+				/*look for any elements with the class "custom-select":*/
+				x = document.getElementsByClassName("custom-select");
+				l = x.length;
+				for (i = 0; i < l; i++) {
+				  selElmnt = x[i].getElementsByTagName("select")[0];
+				  ll = selElmnt.length;
+				  /*for each element, create a new DIV that will act as the selected item:*/
+				  a = document.createElement("DIV");
+				  a.setAttribute("class", "select-selected");
+				  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+				  x[i].appendChild(a);
+				  /*for each element, create a new DIV that will contain the option list:*/
+				  b = document.createElement("DIV");
+				  b.setAttribute("class", "select-items select-hide");
+				  for (j = 1; j < ll; j++) {
+					/*for each option in the original select element,
+					create a new DIV that will act as an option item:*/
+					c = document.createElement("DIV");
+					c.innerHTML = selElmnt.options[j].innerHTML;
+					c.addEventListener("click", function(e) {
+						/*when an item is clicked, update the original select box,
+						and the selected item:*/
+						var y, i, k, s, h, sl, yl;
+						s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+						sl = s.length;
+						h = this.parentNode.previousSibling;
+						for (i = 0; i < sl; i++) {
+						  if (s.options[i].innerHTML == this.innerHTML) {
+							s.selectedIndex = i;
+							h.innerHTML = this.innerHTML;
+							y = this.parentNode.getElementsByClassName("same-as-selected");
+							yl = y.length;
+							for (k = 0; k < yl; k++) {
+							  y[k].removeAttribute("class");
+							}
+							this.setAttribute("class", "same-as-selected");
+							break;
+						  }
+						}
+						h.click();
+					});
+					b.appendChild(c);
+				  }
+				  x[i].appendChild(b);
+				  a.addEventListener("click", function(e) {
+					  /*when the select box is clicked, close any other select boxes,
+					  and open/close the current select box:*/
+					  e.stopPropagation();
+					  closeAllSelect(this);
+					  this.nextSibling.classList.toggle("select-hide");
+					  this.classList.toggle("select-arrow-active");
+					});
+				}
+				function closeAllSelect(elmnt) {
+				  /*a function that will close all select boxes in the document,
+				  except the current select box:*/
+				  var x, y, i, xl, yl, arrNo = [];
+				  x = document.getElementsByClassName("select-items");
+				  y = document.getElementsByClassName("select-selected");
+				  xl = x.length;
+				  yl = y.length;
+				  for (i = 0; i < yl; i++) {
+					if (elmnt == y[i]) {
+					  arrNo.push(i)
+					} else {
+					  y[i].classList.remove("select-arrow-active");
+					}
+				  }
+				  for (i = 0; i < xl; i++) {
+					if (arrNo.indexOf(i)) {
+					  x[i].classList.add("select-hide");
+					}
+				  }
+				}
+				/*if the user clicks anywhere outside the select box,
+				then close all select boxes:*/
+				document.addEventListener("click", closeAllSelect);
+				</script>
 	</body>
 </html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es-en">
+
+	<head>
+	<base href="/">
+	<link type="text/css" href="/css/hojadisenopagina.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="/css/skel.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/style-xlarge.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/calendario.js"></script>
+	<link type="text/css" href="/css/calendario.css" rel="stylesheet" />
+	<meta charset="utf-8"/>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"/>
+	<script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBOUtnWXU9JSAfb_cG7HC5eb3drGiFq-A&sensor=false&callback=initMap">
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/skel.min.js"></script>
+	<script src="/js/skel-layers.min.js"></script>
+	<script src="/js/init.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<title>
+	HMRT GPS
+	</title>
+</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="#">HMRT GPS</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="#banner">Home</a></li>
+						<li><a href="#Maps">Track</a></li>
+						<li><a href="#Hist">Históricos</a></li>
+						<li><a href="#Dev">Developers</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h2>Bienvenido</h2>
+					<p>Sistema de seguimiento de coordenadas para su vehículo</p>
+					<ul class="actions">
+						<li><a href="#Maps" class="button big special">Track</a></li>
+						<li><a href="#Hist" class="button big alt">Históricos</a></li>
+					</ul>
+				</div>
+			</section>
+		</body>
+		<section id="Maps" class="wrapper style1">
+			<main>
+				<div id="map"></div>
+						
+			</main>
+		</section>
+		<section id="Hist" class="wrapper style1">
+			<header class="major">
+			<h2>Consulta de Históricos</h2>
+			</header>
+			<footer1>
+			<div id="footer-imagen" >
+			<div style="font-size: 24px;">
+			<p>Seleccione fecha de inicio y fin</p>
+			</div>
+			<div>
+			<form id="formulario" method = "POST" action="/resp">
+			<input type="text" name="datetimes" style="text-align: center;">
+			<script>
+			$(function() {
+			$('input[name="datetimes"]').daterangepicker({
+			opens: 'center',
+			autoApply: true,
+			startDate: moment().startOf('hour'),
+			endDate: moment().startOf('hour').add(32, 'hour'),
+			locale: {
+			format: 'YYYY-MM-DD'
+			}
+			});
+			});
+			</script>
+			<br>
+			<div style="font-size: 24px;">
+			<p>Seleccione la hora </p>
+			</div>
+			<div style="text-align: center;">
+			Hora inicial &nbsp &nbsp<input type="time" name="hora_inicial" min="00:00" max="23:59" step="1800" list="timevalue"/>
+			</div>
+			<div style="text-align: center;">
+			Hora Final &nbsp &nbsp<input type="time" name="hora_final" min="00:00" max="23:59" step="1800" list="timevalue"/>
+			</div>
+			<br>
+			<div class="custom-select" style="width:200px;">
+				<select>
+				  <option value="0">Seleccione el camión:</option>
+				  <option value="1">Camión 1</option>
+				  <option value="2">Camión 2</option>
+				</select>
+			</div>
+			<br>
+			<input type="submit" value="Consultar" onclick="myFunction()">
+			</form>
+			<script src="/codigomaps.js">
+			</script>
+			</footer1>
+			</section>
+		<section id="mapi" class="wrapper style4">
+		<div id = "map2">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="6u">
+					<section class="special">
+					<script>
+					function polylinea(){
+						var polinvalue = [
+						{lat: 10.983672976421273,lng: -74.817238},
+						{lat: 10.951,lng: -74.792}
+							];
+						var roadTrip = new google.maps.Polyline({
+						path: polinvalue,
+						strokeColor: '#FF0000',
+						strokeOpacity: 1.0,
+						strokeWeight: 2
+						});
+						roadTrip.setMap(map);
+					}
+				</script>
+				 
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="Dev">
+	<footer1>
+		<div id="footer-imagen">
+			<div>
+				<h3>
+				Developed by:
+				</h3>
+				<ul>
+					<p> Carlos Tous. </p>
+					<p> Lazaro Reina. </p>
+					<p> Alfredo Hugueth. </p>
+					<p> Ezequiel Mantilla. </p>
+					
+				
+				</ul>
+				<h3>
+					Estudiantes de ingeniería electrónica.
+				</h3>
+				
+			</div>
+		<img src="/imagenes/logou.png"> 
+					<p>
+						<strong> <em> Universidad del Norte </em>.</strong>
+					</p>
+		</div>			
+	</footer1>
+	</section>
+	<script>
+        window.onload=myFunction();
+		function myFunction() {
+		  location.href = "#mapi";
+		}
+		</script>
+		<script>
+			let str;
+			let datos;
+			let latitud;
+			let longitud;
+			let fecha_hora;
+			let lati;
+			let long;
+			var caminoP = [];
+			var cont = 0;
+			function update() {
+				fetch('/ruta')
+					.then((response) => response.json())
+					.then((json) => {
+						console.log(json);
+						var str = '';
+						for (var i = 0; i < json.msg.data.length; ++i) {
+							str += String.fromCharCode(json.msg.data[i]);
+						}
+						datos = str.split(',');
+						latitud = datos[0]
+						
+						longitud = datos[1]
+						
+						fecha = datos[2];
+						latit = parseFloat(latitud).toFixed(4);
+						longi = parseFloat(longitud).toFixed(4);
+						console.log(latit);
+						console.log(longi);
+						var coorde = {lat: latit, lng: longi};
+						if (cont > 0){
+                                                        marcador.setMap(null);
+                                                };
+						actualPuntero(latit,longi);
+						setTimeout(update, 10000);
+					});
+			}
+			update();
+			function actualPuntero(latit,longi){
+				var coor = new google.maps.LatLng(latit,longi);
+				map.setCenter(coor);
+				marcador = new google.maps.Marker({
+					position: coor ,
+					map: map
+				});
+				
+				caminoP[cont] = coor;
+				cont = cont+1;
+				console.log(caminoP);
+				console.log(typeof(caminoP));
+				dibujarpoli(caminoP); 
+				marcador.setMap(map);
+				
+				
+			}
+			function dibujarpoli(caminoP){
+				var linea = new google.maps.Polyline({
+				path: caminoP,
+				strokeColor: '#FF0000',
+				strokeOpacity:1.0,
+				strokeWeight: 2
+});
+		
+		linea.setMap(map);
+		addLatLng(caminoP);
+}
+			function addLatLng(caminoP){
+				const path = caminoP;
+				path.push;
+}
+		</script>
+		<script>
+		let data;
+		let fuent;
+		const options = {
+			method: 'POST',
+			body: JSON.stringify(data)
+		};
+			fetch('/resp').then((response) => response.json())
+				.then((json) => {
+					let rutahist = Object.entries(json);
+					console.log(typeof(rutahist));
+					let camino2 = (rutahist[0])[1];
+					let centro = camino2[1];
+					console.log(typeof(centro));
+					console.log(centro);
+					map1.setCenter(centro);
+					dibujarpoli2(camino2);
+			});
+			function dibujarpoli2(camino2){
+				var linea2 = new google.maps.Polyline({
+				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
+}
+);
+				linea2.setMap(map1)
+}
+			
+
+		</script>
+		<datalist id="timevalue">
+			<option value="00:00">
+			<option value="00:30">
+			<option value="01:00">
+			<option value="01:30">
+			<option value="02:00">
+			<option value="02:30">
+			<option value="03:00">
+			<option value="03:30">
+			<option value="04:00">
+			<option value="04:30">	
+			<option value="05:00">
+			<option value="05:30">
+			<option value="06:00">
+			<option value="06:30">
+			<option value="07:00">
+			<option value="07:30">
+			<option value="08:00">
+			<option value="08:30">
+			<option value="09:00">
+			<option value="09:30">
+			<option value="10:00">	
+			<option value="10:30">
+			<option value="11:00">
+			<option value="11:30">
+			<option value="12:00">
+			<option value="12:30">
+			<option value="13:00">
+			<option value="13:30">
+			<option value="14:00">
+			<option value="14:30">
+			<option value="15:00">
+			<option value="15:30">	
+			<option value="16:00">
+			<option value="16:30">
+			<option value="17:00">
+			<option value="17:30">
+			<option value="18:00">
+			<option value="18:30">
+			<option value="19:00">
+			<option value="19:30">
+			<option value="20:00">
+			<option value="20:30">
+			<option value="21:00">	
+			<option value="21:30">
+			<option value="22:00">
+			<option value="22:30">
+			<option value="23:00">
+			<option value="23:30">
+		 </datalist>
+	</body>
+</html>
