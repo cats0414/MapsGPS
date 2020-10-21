@@ -39,14 +39,12 @@ function consultahora(event) {
 	fetch('/hora',options2).then((response) => response.json())
 				.then((json) => {
 					console.log(json);
-					datostem = Object.entries(json);
+					datostem = JSON.stringify(json);
+
 					console.log(datostem);
-					condi = (datostem[0])[1];
-					console.log(condi);
-					tiemp = toString((datostem[0]));
 					comp = "El camion paso por el punto el los siguientes instantes:";
 					
-					mens = comp.concat(" ",tiemp);
+					mens = comp.concat(" ",datostem);
 					const inf = '<div id="content">' +
 					'<div id="siteNotice">' +
 					"</div>" +
