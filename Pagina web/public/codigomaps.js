@@ -1,3 +1,5 @@
+const { timeout } = require("async");
+
 let map;
 var coordi={lat:11.003  , lng:-74.82 };
 var lta
@@ -38,10 +40,19 @@ function consultahora(event) {
 				.then((json) => {
 					console.log(json);
 					datostem = Object.entries(json);
-					tiemp = datostem[0];
-					console.log(tiemp);
+					condi = (datostem[0])[1];
+					if(condi = null){
+						comp = "El camion no ha pasado por este punto.";
+						tiemp = "";
+					}else{
+						tiemp = toString((datostem[0])[1]);
+						comp = "El camion paso por el punto el los siguientes instantes:";
+					};
+					mens = comp.concat(" ",tiemp);
+					console.log(mens);
+					
 					infowindow = new google.maps.InfoWindow({
-						content: tiemp,
+						content: mens,
 					});
 					marca = new google.maps.Marker({
 						position: event.latLng,
