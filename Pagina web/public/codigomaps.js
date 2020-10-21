@@ -40,7 +40,9 @@ function consultahora(event) {
 				.then((json) => {
 					console.log(json);
 					datostem = Object.entries(json);
-					condi = (datostem.time[0]);
+					console.log(datostem);
+					condi = (datostem[0])[1];
+					console.log(condi);
 					if(condi = null){
 						comp = "El camion no ha pasado por este punto.";
 						tiemp = "";
