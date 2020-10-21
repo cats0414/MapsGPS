@@ -125,11 +125,11 @@ app.post('/resp',function (req,res) {
 app.post('/hora',function (req,res) {
 	console.log("Llego informacion para hacer consulta de hora en determinado lugar");
 	console.log(req.body);
-	lati = parseFloat(req.body.lat).toFixed(3)+0.01;
-	long = parseFloat(req.body.lng).toFixed(3)+0.01;
+	lati = parseFloat(req.body.lat).toFixed(3)+0.05;
+	long = parseFloat(req.body.lng).toFixed(3)-0.05;
 	lati2 = parseFloat(req.body.lat).toFixed(3);
 	long2 = parseFloat(req.body.lng).toFixed(3);
-	let sql3 = "SELECT tiempo FROM usuarios2 WHERE (lat <= ?) AND (lng <= ?) AND (lat >= ?) AND (lng >= ?)";
+	let sql3 = "SELECT tiempo FROM usuarios2 WHERE (lat <= ?) AND (lng >= ?) AND (lat >= ?) AND (lng <= ?)";
 	let query3 = database.query(sql3,[lati,long,lati2,long2],(err,result) =>{
 		if(err){
 			console.trace('error = ' +err.message);

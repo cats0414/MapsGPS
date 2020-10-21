@@ -1,4 +1,4 @@
-const { timeout } = require("async");
+
 
 let map;
 var coordi={lat:11.003  , lng:-74.82 };
@@ -40,12 +40,12 @@ function consultahora(event) {
 				.then((json) => {
 					console.log(json);
 					datostem = Object.entries(json);
-					condi = (datostem[0])[1];
+					condi = (datostem[0]);
 					if(condi = null){
 						comp = "El camion no ha pasado por este punto.";
 						tiemp = "";
 					}else{
-						tiemp = toString((datostem[0])[1]);
+						tiemp = toString((datostem[0]));
 						comp = "El camion paso por el punto el los siguientes instantes:";
 					};
 					mens = comp.concat(" ",tiemp);
