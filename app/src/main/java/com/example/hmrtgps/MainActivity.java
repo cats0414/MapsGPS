@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
     TextView latitud,longitud;
     TextView direccion, text;
     Switch switchE;
+    boolean id=false;
     int n=1;
-    public static String message, ip, puertoudp, ipr,puertoudpp;
+    int n1=1;
+    public static String message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +115,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    public void id(View view) {
+        n1=n1+1;
+        if((n1 % 2) == 0){
+            id=true;
+        } else {
+            id=false;
+        }
+    }
 
 
     /* Aqui empieza la Clase Localizacion */
@@ -138,20 +147,17 @@ public class MainActivity extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fecha = dateFormat.format(new Date()); // Find todays date
             direccion.setText(fecha);
+            String idd=",1";
+            String iddx=",2";
             //Latitud, Longitud,fecha
-<<<<<<< HEAD
-            final String men =String.format(String.format("%%s,%%s,%s", fecha," 1"),sLatitud,sLongitud);
-            final String men1 =String.format(String.format("%%s,%%s,%s", fecha," 2"),sLatitud,sLongitud);
+            String jui= String.format(String.format("%%s,%%s,%s",fecha),sLatitud,sLongitud);
+            final String men =jui.concat(idd);
+            final String men1 =jui.concat(iddx);
             if(id) {
                 message = men1;
             }else{
                 message= men;
             }
-=======
-            final String men =String.format(String.format("%%s,%%s,%s", fecha),sLatitud,sLongitud);
-            message= men;
-
->>>>>>> master
         }
 
 
