@@ -125,9 +125,9 @@ app.post('/resp',function (req,res) {
 app.post('/hora',function (req,res) {
 	console.log("Llego informacion para hacer consulta de hora en determinado lugar");
 	console.log(req.body);
-	lati = parseFloat(req.body.lat).toFixed(3)+0.3;
+	lati = parseFloat(req.body.lat+0.06).toFixed(3);
 	console.log(lati);
-	long = parseFloat(req.body.lng).toFixed(3)+0.3;
+	long = parseFloat(req.body.lng+0.06).toFixed(3);
 	console.log(long);
 	lati2 = parseFloat(req.body.lat).toFixed(3);
 	console.log(lati2);
