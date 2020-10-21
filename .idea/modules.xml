@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/HMRT_GPS.iml" filepath="$PROJECT_DIR$/.idea/modules/HMRT_GPS.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HMRT_GPS.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HMRT_GPS.app.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/HMRT GPS.iml" filepath="$PROJECT_DIR$/HMRT GPS.iml" group="HMRT GPS" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="HMRT GPS/app" />
->>>>>>> origin
     </modules>
   </component>
 </project>
