@@ -122,6 +122,25 @@ app.post('/resp',function (req,res) {
 		});
 		}
 });
+app.post('/hora',function (req,res) {
+	console.log("Llego informacion para hacer consulta de hora en determinado lugar");
+	console.log(req.body);
+	lati = parseFloat(req.body.lat).toFixed(4);
+	long = parseFloat(req.body.lng).toFixed(4);
+	lati2 = parseFloat(req.body.lat).toFixed(3);
+	long2 = parseFloat(req.body.lng).toFixed(3);
+	console.log(lati);
+	console.log(long);
+	let sql3 = "SELECT tiempo FROM usuarios2 WHERE (lat <= ?) AND (lng <= ?) AND (lat >= ?) AND (lng >= ?)";
+	let query3 = database.query(sql3,[lati,long,lati2,long2],(err,result) =>{
+		if(err){
+			console.trace('error = ' +err.message);
+			};
+		fechas = result;
+		res.json({time:fechas});
+	});
+	
+});
 app.use(express.static(__dirname + '/public'));
 
 
