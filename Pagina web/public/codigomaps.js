@@ -43,14 +43,17 @@ function consultahora(event) {
 					console.log(datostem);
 					condi = (datostem[0])[1];
 					console.log(condi);
-					if(condi = null){
-						comp = "El camion no ha pasado por este punto.";
-						tiemp = "";
-					}else{
-						tiemp = toString((datostem[0]));
-						comp = "El camion paso por el punto el los siguientes instantes:";
-					};
+					tiemp = toString((datostem[0]));
+					comp = "El camion paso por el punto el los siguientes instantes:";
+					
 					mens = comp.concat(" ",tiemp);
+					const inf = '<div id="content">' +
+					'<div id="siteNotice">' +
+					"</div>" +
+					'<h1 id="firstHeading" class="firstHeading">Informacion</h1>' +
+					'<div id="bodyContent">' +
+					"<p><b>{variable}</b></p>"+
+					"</div>";
 					console.log(mens);
 					
 					infowindow = new google.maps.InfoWindow({
