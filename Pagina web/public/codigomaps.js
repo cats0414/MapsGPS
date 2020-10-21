@@ -37,10 +37,17 @@ function consultahora(event) {
 	fetch('/hora',options2).then((response) => response.json())
 				.then((json) => {
 					console.log(json);
-					
+					datostem = Object.entries(json);
+					tiemp = datostem[0];
+					console.log(tiemp);
+
 				});
-	new google.maps.Marker({
+	const infowindow = new google.maps.InfoWindow({
+		content: tiemp,
+	});
+	marca = new google.maps.Marker({
 		position: event.latLng,
 		map: map1,
 	  });
+	  infowindow.open(map1, marca);
 }	
