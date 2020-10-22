@@ -1,3 +1,5 @@
+
+
 let map;
 var coordi={lat:11.003  , lng:-74.82 };
 var lta
@@ -13,6 +15,46 @@ function initMap(){
         zoom: 15,
         center: {lat:11.003  , lng:-74.82 }
         });
+	map1.addListener("click", consultahora);
+	
+}
+function consultahora(event) {
+	coordenadas = event.latLng;
+	lat = coordenadas.lat();
+	lng = coordenadas.lng();
+	console.log(lat);
+	console.log(lng);
+	infoclick = {
+		lat: lat,
+		lng: lng
+	}
+	const options2 = {
+		method: 'POST',
+		body: JSON.stringify(infoclick) ,
+		headers:{
+			'Content-Type': 'application/json'
+			  // 'Content-Type': 'application/x-www-form-urlencoded',
+		}
+	};
+	fetch('/hora',options2).then((response) => response.json())
+	.then((json) => {
+		console.log(json);
+		datostem = JSON.stringify(json);
 
+		console.log(datostem);
+		comp = "El camion paso por el punto el los siguientes instantes:";
+		
+		mens = comp.concat(" ",datostem);
+		console.log(mens);
+		
+		infowindow = new google.maps.InfoWindow({
+			content: mens,
+		});
+					marca = new google.maps.Marker({
+						position: event.latLng,
+						map: map1,
+					  });
+					infowindow.open(map1, marca);
+				});
 	
 }	
