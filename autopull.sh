@@ -1,5 +1,5 @@
 #!/bin/bash
 cd MapsGPS
-git pull origin master
 echo 'Verificando cambios'
+git pull origin master 
 echo 'Up to date'
