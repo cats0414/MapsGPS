@@ -43,8 +43,8 @@ function consultahora(event) {
 
 		console.log(datostem);
 
-		comp = "El camion paso por el punto el los siguientes instantes:";
-		pale = datostem.join('\n');
+		comp = "El camion paso por el punto el los siguientes instantes: \n";
+		pale = datostem.tiempo;
 		console.log(pale);
 		mens = comp.concat(" ",pale);
 		console.log(mens);
