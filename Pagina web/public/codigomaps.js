@@ -39,14 +39,18 @@ function consultahora(event) {
 	fetch('/hora',options2).then((response) => response.json())
 	.then((json) => {
 		console.log(json);
-		datostem = JSON.stringify(json.time);
-
-		console.log(datostem);
+		datostem = JSON.stringify(json.time.tiempo);
+		pruebas = datostem.replace("[{tiempo:"," ");
+		casifi = replaceAll(pruebas,'},{tiempo:','---');
+		function replaceAll(str, find, replace) {
+			return str.replace(new RegExp(find, 'g'), replace);
+		};
+		mensa = casifi.split('---');
+		console.log(mensa);
 
 		comp = "El camion paso por el punto el los siguientes instantes: \n";
-		pale = datostem.tiempo;
-		console.log(pale);
-		mens = comp.concat(" ",pale);
+		pale = datostem;
+		mens = comp.concat("\n",mensa);
 		console.log(mens);
 		
 		infowindow = new google.maps.InfoWindow({
