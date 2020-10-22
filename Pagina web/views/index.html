@@ -129,9 +129,9 @@
 			<p>:</p>
 		</div>
 		<div class="hijo">	
-		<select id="Minutos">
+		<select id="Minutos1">
 				<option value="00">00</option>
-				<option value="01">30</option>
+				<option value="30">30</option>
 			</select>
 		</div>
 		
@@ -139,7 +139,7 @@
 			<div style="text-align: center;" class="padre">
 				Hora final &nbsp &nbsp &nbsp
 				<div class="hijo">
-				<select id="hora_inicial" name="hora_inicial" >
+				<select id="hora_final" name="hora_final" >
 					<option value="00">00</option>
 					<option value="01">01</option>
 					<option value="02">02</option>
@@ -170,9 +170,9 @@
 				<p>:</p>
 			</div>
 			<div class="hijo">	
-			<select id="Minutos">
+			<select id="Minutos2">
 					<option value="00">00</option>
-					<option value="01">30</option>
+					<option value="30">30</option>
 				</select>
 				</div>
 				</div>
@@ -347,19 +347,26 @@
 			console.log(hora_final);
 			var camion = document.getElementById("menu").value;
 			console.log(camion);
+
+			var minutoIni = document.getElementById("Minutos1").value;
+			console.log(minutoIni);
+
+			var minutoFin = document.getElementById("Minutos2").value;
+			console.log(minutoFin);
 			var id;
-			if(camion == "3"){
+			if(camion == "3" || camion == "0"){
 				 id = camion;
 			}else{
 				id = parseInt(camion);
 			}
-			console.log(id);
-			console.log(typeof(id));
+			
 			var informacion = {
 				datetimes: datetimes,
 				hora_inicial: hora_inicial,
 				hora_final: hora_final,
-				camion:id
+				camion:id,
+				minuto_inicial: minutoIni,
+				minuto_final: minutoFin
 			}
 			const options = {
 			method: 'POST',
@@ -372,7 +379,7 @@
 		};
 		fetch('/resp',options).then((response) => response.json())
 				.then((json) => {
-					console.log(json)
+					console.log(json);
 					let rutahist = Object.entries(json);
 					console.log((rutahist[0])[1]);
 					console.log(typeof(rutahist));
@@ -380,18 +387,19 @@
 					let centro = camino2[1];
 					console.log(centro);
 					map1.setCenter(centro);
-					if(contador>0){
-						linea2.setMap(NULL);
-					}
-					contador = contador+1;
+					
 					dibujarpoli2(camino2);
 			});
 			function dibujarpoli2(camino2){
-				var linea2 = new google.maps.Polyline({
+				if(contador>0){
+						linea2.setMap(null);
+					}
+				linea2 = new google.maps.Polyline({
 				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
 }
 );
 				linea2.setMap(map1);
+				contador = contador+1;
 }
 			});
 			</script>
