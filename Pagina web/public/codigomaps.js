@@ -39,12 +39,14 @@ function consultahora(event) {
 	fetch('/hora',options2).then((response) => response.json())
 	.then((json) => {
 		console.log(json);
-		datostem = JSON.stringify(json);
+		datostem = JSON.stringify(json.time);
 
 		console.log(datostem);
+
 		comp = "El camion paso por el punto el los siguientes instantes:";
-		
-		mens = comp.concat(" ",datostem);
+		pale = datostem.join('\n');
+		console.log(pale);
+		mens = comp.concat(" ",pale);
 		console.log(mens);
 		
 		infowindow = new google.maps.InfoWindow({
