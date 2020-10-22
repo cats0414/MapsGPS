@@ -1,5 +1,6 @@
 #!/bin/bash
 cd MapsGPS
+git pull origin master
 cd 'Pagina web'
-cd node server.js
+node server.js
 echo 'Conectando'
