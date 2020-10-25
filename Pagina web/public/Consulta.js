@@ -5,6 +5,11 @@
 		let puntos = [];
 		let tiempos = [] ;
 		let valores = [];
+		let tiempoConsul = [];
+		let lat;
+		let lng;
+		let lat2;
+		let lng2;
 			const formLogin = document.querySelector('#formulario');
 			
 			
@@ -61,13 +66,6 @@
 						puntos[i] = {lat: json.val[i].lat, lng: json.val[i].lng};
 						tiempos[i] = {fecha: json.val[i].tiempo};
 					}
-					console.log(puntos);
-					console.log(tiempos);
-					//let rutahist = Object.entries(json);
-					//console.log(rutahist);
-					//console.log((rutahist[0])[1]);
-					//console.log(typeof(rutahist));
-					//camino2 = (rutahist[0])[1];
 					let centro = puntos[0];
 					console.log(centro);
 					map1.setCenter(centro);
@@ -76,17 +74,21 @@
 					map1.addListener("mousemove", consultahora);
 			});
 			function consultahora(event) {
-				console.log(tiempos);
-				console.log(puntos);
-				console.log(valores);
 				coordenadas = event.latLng;
-				lat = coordenadas.lat();
-				lng = coordenadas.lng();
+				lat = parseFloat(coordenadas.lat()).toFixed(4);
+				lng = parseFloat(coordenadas.lng()).toFixed(4);
+				lat2 = parseFloat(coordenadas.lat()+0.03).toFixed(4);
+				lng2 = parseFloat(coordenadas.lng()+0.03).toFixed(4);
+				tiempoConsul = valores.filter(filtrarPorPosicion);
+				console.log(tiempoConsul);
+				console.log(tiempoConsul);
 				infoclick = {
 					lat: lat,
 					lng: lng,
 					}
-				console.log(infoclick);
+				//console.log(infoclick);
+				// Condicional para hacer un array con los valores que cumplan con las condiciones.
+
 				/*const options2 = {
 					method: 'POST',
 					body: JSON.stringify(infoclick) ,
@@ -115,6 +117,13 @@
 				});*/
 
 			}
+			function filtrarPorPosicion(obj) {
+				if (obj.lat >= lat && obj.lng >= lng && obj.lat <= lat2 && obj.lng <= lng2) {
+				  return true;
+				} else {
+				  return false;
+				}
+			  }
 			function dibujarpoli2(camino2){
 				if(contador>0){
 						linea2.setMap(null);
