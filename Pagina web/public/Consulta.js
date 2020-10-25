@@ -2,6 +2,8 @@
 		let fuent;
 		let contador = 0;
 		let camino2;
+		let puntos;
+		let tiempos;
 			const formLogin = document.querySelector('#formulario');
 			
 			
@@ -51,13 +53,14 @@
 		fetch('/resp',options).then((response) => response.json())
 				.then((json) => {
 					console.log(json);
-					if(json = {}){
-						json = {lat: 10.29, lng:-74.65};
-						console.log("Llego vacio");
-						console.log(typeof(json));
+					console.log(json.val);
+					console.log(json.val.length)
+					for(var i = 0; i < json.val.length; ++i){
+						puntos[i] = {lat: json.val[i].lat, lng: json.val[i].lng};
+						tiempo[i] = {fecha: json.val[i].tiempo};
 					}
-					var prue = JSON_QUERY(json,'$.lat');
-					console.log(prue);
+					console.log(puntos);
+					console.log(tiempo);
 					let rutahist = Object.entries(json);
 					console.log(rutahist);
 					console.log((rutahist[0])[1]);
@@ -78,9 +81,36 @@
 				lng = coordenadas.lng();
 				infoclick = {
 					lat: lat,
-					lng: lng
-				}
+					lng: lng,
+					}
 				console.log(infoclick);
+				const options2 = {
+					method: 'POST',
+					body: JSON.stringify(infoclick) ,
+					headers:{
+						'Content-Type': 'application/json'
+						  // 'Content-Type': 'application/x-www-form-urlencoded',
+					}
+				};
+				fetch('/hora',options2).then((response) => response.json())
+				.then((json) => {
+					console.log(json);
+					console.log(json.time);
+					datostem = JSON.stringify(json.time.tiempo);
+					/*pruebas = datostem.replace("[{tiempo:"," ");
+					casifi = replaceAll(pruebas,'},{tiempo:','---');
+					function replaceAll(str, find, replace) {
+					return str.replace(new RegExp(find, 'g'), replace);
+					};
+					mensa = casifi.split('---');
+					console.log(mensa);
+
+					comp = "El camion paso por el punto el los siguientes instantes: \n";
+					pale = datostem;
+					mens = comp.concat("\n",mensa);
+					console.log(mens);*/
+				});
+
 			}
 			function dibujarpoli2(camino2){
 				if(contador>0){

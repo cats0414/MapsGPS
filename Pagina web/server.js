@@ -103,7 +103,7 @@ app.post('/resp',function (req,res) {
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
 		if (camion == 3 || camion == 0){
-        let sql2 = 'SELECT lat, lng, tiempo FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
+        let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
         let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
@@ -133,9 +133,10 @@ app.post('/hora',function (req,res) {
 	console.log(lati2);
 	
 	long2 = parseFloat(req.body.lng).toFixed(3);
+
 	console.log(long2);
-	let sql3 = "SELECT tiempo FROM usuarios2 WHERE (lat <= ?) AND (lng <= ?) AND (lat >= ?) AND (lng >= ?)";
-	let query3 = database.query(sql3,[lati,long,lati2,long2],(err,result) =>{
+	let sql3 = "SELECT tiempo FROM usuarios2 WHERE (lat <= ?) AND (lng <= ?) AND (lat >= ?) AND (lng >= ?) AND (tiempo BETWEEN ? AND ?)";
+	let query3 = database.query(sql3,[lati,long,lati2,long2,tiempoconsulta1,tiempoconsulta2],(err,result) =>{
 		if(err){
 			console.trace('error = ' +err.message);
 			};
