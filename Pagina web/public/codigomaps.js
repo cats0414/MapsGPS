@@ -2,8 +2,9 @@
 
 let map;
 var coordi={lat:11.003  , lng:-74.82 };
-var lta
-var lng
+var lta;
+var lng;
+let map1;
 
 
 function initMap(){
@@ -15,20 +16,13 @@ function initMap(){
         zoom: 15,
         center: {lat:11.003  , lng:-74.82 }
         });
-	map1.addListener("click", consultahora);
+	
 	
 }
-function consultahora(event) {
-	coordenadas = event.latLng;
-	lat = coordenadas.lat();
-	lng = coordenadas.lng();
-	console.log(lat);
-	console.log(lng);
-	infoclick = {
-		lat: lat,
-		lng: lng
-	}
-	const options2 = {
+
+	//console.log(infoclick);
+	
+	/*const options2 = {
 		method: 'POST',
 		body: JSON.stringify(infoclick) ,
 		headers:{
@@ -61,6 +55,6 @@ function consultahora(event) {
 						map: map1,
 					  });
 					infowindow.open(map1, marca);
-				});
+				});*/
 	
-}	
+	

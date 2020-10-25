@@ -103,7 +103,7 @@ app.post('/resp',function (req,res) {
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
 		if (camion == 3 || camion == 0){
-        let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
+        let sql2 = 'SELECT lat, lng, tiempo FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
         let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
