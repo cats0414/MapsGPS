@@ -79,42 +79,9 @@
 				lng = parseFloat(coordenadas.lng()).toFixed(4);
 				lat2 = parseFloat(coordenadas.lat()+0.03).toFixed(4);
 				lng2 = parseFloat(coordenadas.lng()+0.03).toFixed(4);
-				tiempoConsul = valores.filter(filtrarPorPosicion);
+				ValoresConsul = valores.filter(filtrarPorPosicion);				
+				tiempoConsul = ValoresConsul.tiempo;
 				console.log(tiempoConsul);
-				console.log(tiempoConsul);
-				infoclick = {
-					lat: lat,
-					lng: lng,
-					}
-				//console.log(infoclick);
-				// Condicional para hacer un array con los valores que cumplan con las condiciones.
-
-				/*const options2 = {
-					method: 'POST',
-					body: JSON.stringify(infoclick) ,
-					headers:{
-						'Content-Type': 'application/json'
-						  // 'Content-Type': 'application/x-www-form-urlencoded',
-					}
-				};
-				fetch('/hora',options2).then((response) => response.json())
-				.then((json) => {
-					console.log(json);
-					console.log(json.time);
-					datostem = JSON.stringify(json.time.tiempo);
-					/*pruebas = datostem.replace("[{tiempo:"," ");
-					casifi = replaceAll(pruebas,'},{tiempo:','---');
-					function replaceAll(str, find, replace) {
-					return str.replace(new RegExp(find, 'g'), replace);
-					};
-					mensa = casifi.split('---');
-					console.log(mensa);
-
-					comp = "El camion paso por el punto el los siguientes instantes: \n";
-					pale = datostem;
-					mens = comp.concat("\n",mensa);
-					console.log(mens);
-				});*/
 
 			}
 			function filtrarPorPosicion(obj) {
