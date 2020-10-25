@@ -2,8 +2,9 @@
 		let fuent;
 		let contador = 0;
 		let camino2;
-		let puntos;
-		let tiempos;
+		let puntos = [];
+		let tiempos = [] ;
+		let valores = [];
 			const formLogin = document.querySelector('#formulario');
 			
 			
@@ -54,28 +55,30 @@
 				.then((json) => {
 					console.log(json);
 					console.log(json.val);
+					valores = json.val;
 					console.log(json.val.length)
 					for(var i = 0; i < json.val.length; ++i){
 						puntos[i] = {lat: json.val[i].lat, lng: json.val[i].lng};
-						tiempo[i] = {fecha: json.val[i].tiempo};
+						tiempos[i] = {fecha: json.val[i].tiempo};
 					}
 					console.log(puntos);
-					console.log(tiempo);
-					let rutahist = Object.entries(json);
-					console.log(rutahist);
-					console.log((rutahist[0])[1]);
-					console.log(typeof(rutahist));
-					camino2 = (rutahist[0])[1];
-					let centro = camino2[1];
+					console.log(tiempos);
+					//let rutahist = Object.entries(json);
+					//console.log(rutahist);
+					//console.log((rutahist[0])[1]);
+					//console.log(typeof(rutahist));
+					//camino2 = (rutahist[0])[1];
+					let centro = puntos[0];
 					console.log(centro);
 					map1.setCenter(centro);
 					
-					dibujarpoli2(camino2);
+					dibujarpoli2(puntos);
 					map1.addListener("mousemove", consultahora);
 			});
 			function consultahora(event) {
-				console.log(camino2);
-
+				console.log(tiempos);
+				console.log(puntos);
+				console.log(valores);
 				coordenadas = event.latLng;
 				lat = coordenadas.lat();
 				lng = coordenadas.lng();
@@ -84,7 +87,7 @@
 					lng: lng,
 					}
 				console.log(infoclick);
-				const options2 = {
+				/*const options2 = {
 					method: 'POST',
 					body: JSON.stringify(infoclick) ,
 					headers:{
@@ -108,8 +111,8 @@
 					comp = "El camion paso por el punto el los siguientes instantes: \n";
 					pale = datostem;
 					mens = comp.concat("\n",mensa);
-					console.log(mens);*/
-				});
+					console.log(mens);
+				});*/
 
 			}
 			function dibujarpoli2(camino2){
