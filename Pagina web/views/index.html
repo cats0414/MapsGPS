@@ -197,6 +197,16 @@
 		<section id="mapi" class="wrapper style4">
 		<div id = "map2">
 		</div>
+		<div id = "cursor"></div> 
+		<script type="text/javascript">
+			var cursor = document.getElementById("cursor");
+			document.addEventListener('mousemove',function(e){
+				var x = e.clientX;
+				var y = e.clientY+2040; // Esto es lo que hay que cambiar
+				cursor.style.left = x + "px";
+				cursor.style.top = y + "px";
+				});
+		</script>
 		<div class="container">
 			<div class="row">
 				<div class="6u">
@@ -329,130 +339,9 @@
 				path.push;
 }
 		</script>
-		<script>
-		let data;
-		let fuent;
-		let contador = 0;
-			const formLogin = document.querySelector('#formulario');
-			formLogin.addEventListener('submit',event =>{
-			// Mandar el formulario automaticamente.
-			event.preventDefault();
-			var datetimes= document.getElementById('datetimes').value;
-			console.log(datetimes);
-
-			var hora_inicial = document.getElementById('hora_inicial').value;
-			console.log(hora_inicial);
-
-			var hora_final = document.getElementById('hora_final').value;
-			console.log(hora_final);
-			var camion = document.getElementById("menu").value;
-			console.log(camion);
-
-			var minutoIni = document.getElementById("Minutos1").value;
-			console.log(minutoIni);
-
-			var minutoFin = document.getElementById("Minutos2").value;
-			console.log(minutoFin);
-			var id;
-			if(camion == "3" || camion == "0"){
-				 id = camion;
-			}else{
-				id = parseInt(camion);
-			}
+		<script src="/Consulta.js">
+		</script>
 			
-			var informacion = {
-				datetimes: datetimes,
-				hora_inicial: hora_inicial,
-				hora_final: hora_final,
-				camion:id,
-				minuto_inicial: minutoIni,
-				minuto_final: minutoFin
-			}
-			const options = {
-			method: 'POST',
-			body: JSON.stringify(informacion) ,
-			headers:{
-				'Content-Type': 'application/json'
-      			// 'Content-Type': 'application/x-www-form-urlencoded',
-			}
-			
-		};
-		fetch('/resp',options).then((response) => response.json())
-				.then((json) => {
-					console.log(json);
-					let rutahist = Object.entries(json);
-					console.log((rutahist[0])[1]);
-					console.log(typeof(rutahist));
-					let camino2 = (rutahist[0])[1];
-					let centro = camino2[1];
-					console.log(centro);
-					map1.setCenter(centro);
-					
-					dibujarpoli2(camino2);
-			});
-			function dibujarpoli2(camino2){
-				if(contador>0){
-						linea2.setMap(null);
-					}
-				linea2 = new google.maps.Polyline({
-				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
-}
-);
-				linea2.setMap(map1);
-				contador = contador+1;
-}
-			});
-			</script>
-			<datalist id="timevalue">
-				<option value="00:00">
-				<option value="00:30">
-				<option value="01:00">
-				<option value="01:30">
-				<option value="02:00">
-				<option value="02:30">
-				<option value="03:00">
-				<option value="03:30">
-				<option value="04:00">
-				<option value="04:30">	
-				<option value="05:00">
-				<option value="05:30">
-				<option value="06:00">
-				<option value="06:30">
-				<option value="07:00">
-				<option value="07:30">
-				<option value="08:00">
-				<option value="08:30">
-				<option value="09:00">
-				<option value="09:30">
-				<option value="10:00">	
-				<option value="10:30">
-				<option value="11:00">
-				<option value="11:30">
-				<option value="12:00">
-				<option value="12:30">
-				<option value="13:00">
-				<option value="13:30">
-				<option value="14:00">
-				<option value="14:30">
-				<option value="15:00">
-				<option value="15:30">	
-				<option value="16:00">
-				<option value="16:30">
-				<option value="17:00">
-				<option value="17:30">
-				<option value="18:00">
-				<option value="18:30">
-				<option value="19:00">
-				<option value="19:30">
-				<option value="20:00">
-				<option value="20:30">
-				<option value="21:00">	
-				<option value="21:30">
-				<option value="22:00">
-				<option value="22:30">
-				<option value="23:00">
-				<option value="23:30">
-			 </datalist>
 			 <script>
 				var x, i, j, l, ll, selElmnt, a, b, c;
 				/*look for any elements with the class "custom-select":*/
