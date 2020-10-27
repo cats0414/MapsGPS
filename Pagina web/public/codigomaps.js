@@ -2,8 +2,9 @@
 
 let map;
 var coordi={lat:11.003  , lng:-74.82 };
-var lta
-var lng
+var lta;
+var lng;
+let map1;
 
 
 function initMap(){
@@ -15,20 +16,13 @@ function initMap(){
         zoom: 15,
         center: {lat:11.003  , lng:-74.82 }
         });
-	map1.addListener("click", consultahora);
+	
 	
 }
-function consultahora(event) {
-	coordenadas = event.latLng;
-	lat = coordenadas.lat();
-	lng = coordenadas.lng();
-	console.log(lat);
-	console.log(lng);
-	infoclick = {
-		lat: lat,
-		lng: lng
-	}
-	const options2 = {
+
+	//console.log(infoclick);
+	
+	/*const options2 = {
 		method: 'POST',
 		body: JSON.stringify(infoclick) ,
 		headers:{
@@ -39,12 +33,18 @@ function consultahora(event) {
 	fetch('/hora',options2).then((response) => response.json())
 	.then((json) => {
 		console.log(json);
-		datostem = JSON.stringify(json);
+		datostem = JSON.stringify(json.time.tiempo);
+		pruebas = datostem.replace("[{tiempo:"," ");
+		casifi = replaceAll(pruebas,'},{tiempo:','---');
+		function replaceAll(str, find, replace) {
+			return str.replace(new RegExp(find, 'g'), replace);
+		};
+		mensa = casifi.split('---');
+		console.log(mensa);
 
-		console.log(datostem);
-		comp = "El camion paso por el punto el los siguientes instantes:";
-		
-		mens = comp.concat(" ",datostem);
+		comp = "El camion paso por el punto el los siguientes instantes: \n";
+		pale = datostem;
+		mens = comp.concat("\n",mensa);
 		console.log(mens);
 		
 		infowindow = new google.maps.InfoWindow({
@@ -55,6 +55,6 @@ function consultahora(event) {
 						map: map1,
 					  });
 					infowindow.open(map1, marca);
-				});
+				});*/
 	
-}	
+	
