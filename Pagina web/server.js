@@ -103,7 +103,7 @@ app.post('/resp',function (req,res) {
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
 		if (camion == 3 || camion == 0){
-        let sql2 = 'SELECT lat, lng, tiempo FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
+        let sql2 = 'SELECT * FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
         let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
@@ -112,7 +112,7 @@ app.post('/resp',function (req,res) {
 	res.json({val: valores});
 });
 		}else{
-			let sql2 = 'SELECT lat, lng,tiempo FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
+			let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
 			let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2,camion],(err, result) => {
 				if(err){
 				console.trace('error = ' +err.message);
@@ -122,30 +122,7 @@ app.post('/resp',function (req,res) {
 		});
 		}
 });
-app.post('/hora',function (req,res) {
-	console.log("Llego informacion para hacer consulta de hora en determinado lugar");
-	console.log(req.body);
-	lati = parseFloat(req.body.lat+0.06).toFixed(3);
-	console.log(lati);
-	long = parseFloat(req.body.lng+0.06).toFixed(3);
-	console.log(long);
-	lati2 = parseFloat(req.body.lat).toFixed(3);
-	console.log(lati2);
-	
-	long2 = parseFloat(req.body.lng).toFixed(3);
 
-	console.log(long2);
-	let sql3 = "SELECT tiempo FROM usuarios2 WHERE (lat <= ?) AND (lng <= ?) AND (lat >= ?) AND (lng >= ?) AND (tiempo BETWEEN ? AND ?)";
-	let query3 = database.query(sql3,[lati,long,lati2,long2,tiempoconsulta1,tiempoconsulta2],(err,result) =>{
-		if(err){
-			console.trace('error = ' +err.message);
-			};
-		fechas = result;
-		console.log(fechas);
-		res.json({time:fechas});
-	});
-	
-});
 app.use(express.static(__dirname + '/public'));
 
 
