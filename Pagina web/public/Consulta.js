@@ -111,9 +111,11 @@
 				ValoresConsul = valores.filter(filtrarPorPosicion);	
 				for(var i = 0; i < ValoresConsul.length; ++i){
 					tiempoConsul[i] = ValoresConsul[i].tiempo;
-				}			
+				}
+				let tiemposreales = [... new Set(tiempoConsul)];			
 				console.log(tiempoConsul);
-				document.getElementById("resultiempo").innerHTML = tiempoConsul;
+				console.log(tiemposreales);
+				document.getElementById("resultiempo").innerHTML = tiemposreales;
 
 			}
 			function filtrarPorPosicion(obj) {
@@ -146,7 +148,7 @@
 }
 );
 				linea2.setMap(map1);
-				contador = contador+1;
+				++contador;
 }
 			});
 			function dibujarpolicamion2(puntos2){
@@ -156,4 +158,6 @@
 				linea3 = new google.maps.Polyline({
 					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
 				});
+				linea3.setMap(map1);
+				++contador;
 			};

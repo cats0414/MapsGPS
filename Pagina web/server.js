@@ -55,6 +55,8 @@ server.on('message', (msg, rinfo) => {
 	fecha = new Date(msg[2]);
 	console.log(typeof(fecha));
 	console.log(fecha);
+	// Hay que verificar que el mensaje ha cambiado.
+
     msg = {id : ID ,lat: lati, lng: longi, tiempo: fecha}
     let sql = 'INSERT INTO usuarios2 SET ?';
     let query = database.query(sql, msg, (err, result) => {
