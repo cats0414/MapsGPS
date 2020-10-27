@@ -102,13 +102,17 @@
 				}
 			});
 			function consultahora(event) {
+				console.log(valores);
 				coordenadas = event.latLng;
 				latit = parseFloat(coordenadas.lat()).toFixed(4);
 				lngit = parseFloat(coordenadas.lng()).toFixed(4);
 				latit2 = parseFloat(coordenadas.lat()+0.03).toFixed(4);
 				lngit2 = parseFloat(coordenadas.lng()+0.03).toFixed(4);
-				ValoresConsul = valores.filter(filtrarPorPosicion);				
-				tiempoConsul = ValoresConsul.tiempo;
+				ValoresConsul = valores.filter(filtrarPorPosicion);	
+				for(var i = 0; i < ValoresConsul.length; ++i){
+					tiempoConsul[i] = ValoresConsul[i].tiempo;
+				}			
+				console.log(tiempoConsul);
 				document.getElementById("resultiempo").innerHTML = tiempoConsul;
 
 			}
@@ -146,7 +150,7 @@
 }
 			});
 			function dibujarpolicamion2(puntos2){
-				if(contador>0){
+				if(contador>1){
 					linea3.setMap(null);
 				}
 				linea3 = new google.maps.Polyline({
