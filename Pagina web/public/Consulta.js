@@ -6,10 +6,10 @@
 		let tiempos = [] ;
 		let valores = [];
 		let tiempoConsul = [];
-		let lat;
-		let lng;
-		let lat2;
-		let lng2;
+		let latit;
+		let lngit;
+		let latit2;
+		let lngit2;
 			const formLogin = document.querySelector('#formulario');
 			
 			
@@ -75,17 +75,17 @@
 			});
 			function consultahora(event) {
 				coordenadas = event.latLng;
-				lat = parseFloat(coordenadas.lat()).toFixed(4);
-				lng = parseFloat(coordenadas.lng()).toFixed(4);
-				lat2 = parseFloat(coordenadas.lat()+0.03).toFixed(4);
-				lng2 = parseFloat(coordenadas.lng()+0.03).toFixed(4);
+				latit = parseFloat(coordenadas.lat()).toFixed(4);
+				lngit = parseFloat(coordenadas.lng()).toFixed(4);
+				latit2 = parseFloat(coordenadas.lat()+0.03).toFixed(4);
+				lngit2 = parseFloat(coordenadas.lng()+0.03).toFixed(4);
 				ValoresConsul = valores.filter(filtrarPorPosicion);				
 				tiempoConsul = ValoresConsul.tiempo;
 				console.log(tiempoConsul);
 
 			}
 			function filtrarPorPosicion(obj) {
-				if (obj.lat >= lat && obj.lng >= lng && obj.lat <= lat2 && obj.lng <= lng2) {
+				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
 				  return true;
 				} else {
 				  return false;

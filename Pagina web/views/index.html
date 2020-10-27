@@ -202,11 +202,14 @@
 			var cursor = document.getElementById("cursor");
 			document.addEventListener('mousemove',function(e){
 				var x = e.clientX;
-				var y = e.clientY+2040; // Esto es lo que hay que cambiar
+				var y = e.clientY +window.scrollY; // Esto es lo que hay que cambiar
 				cursor.style.left = x + "px";
 				cursor.style.top = y + "px";
 				});
 		</script>
+		<div id = "Cuadro">
+			<p>Esto contendra los resultados de busqueda</p>
+		</div>
 		<div class="container">
 			<div class="row">
 				<div class="6u">
