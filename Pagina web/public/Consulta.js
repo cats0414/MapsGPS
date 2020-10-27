@@ -109,7 +109,7 @@
 				lngit2 = parseFloat(coordenadas.lng()+0.03).toFixed(4);
 				ValoresConsul = valores.filter(filtrarPorPosicion);				
 				tiempoConsul = ValoresConsul.tiempo;
-				document.getElementById(resultiempo).innerHTML = tiempoConsul;
+				document.getElementById("resultiempo").innerHTML = tiempoConsul;
 
 			}
 			function filtrarPorPosicion(obj) {
