@@ -107,11 +107,11 @@
 				coordenadas = event.latLng;
 				latit = parseFloat(coordenadas.lat()).toFixed(4);
 				lngit = parseFloat(coordenadas.lng()).toFixed(4);
-				latit2 = parseFloat(coordenadas.lat()+0.01).toFixed(4);
-				lngit2 = parseFloat(coordenadas.lng()+0.01).toFixed(4);
+				latit2 = parseFloat(coordenadas.lat()+0.001).toFixed(4);
+				lngit2 = parseFloat(coordenadas.lng()+0.001).toFixed(4);
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
-					document.getElementById().innerHTML = "<p> No hay valores para este periodo de tiempo </p>"
+					document.getElementById("resultiempo").innerHTML = "<p> No hay valores para este periodo de tiempo </p>"
 				}else{	
 				for(var i = 0; i < ValoresConsul.length; ++i){
 					tiempoConsul[i] = ValoresConsul[i].tiempo;
