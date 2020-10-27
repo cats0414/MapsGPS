@@ -116,8 +116,9 @@
 				for(var i = 0; i < ValoresConsul.length; ++i){
 					tiempoConsul[i] = ValoresConsul[i].tiempo;
 				}
-				let tiemposreales = [... new Set(tiempoConsul)];			
-				document.getElementById("resultiempo").innerHTML = tiemposreales;
+				let tiemposreales = [... new Set(tiempoConsul)];
+				let TiemposMostrados = tiemposreales.join(" // ");			
+				document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 			}
 			}
 			function filtrarPorPosicion(obj) {
