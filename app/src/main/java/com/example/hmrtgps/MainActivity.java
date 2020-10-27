@@ -4,11 +4,16 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -28,10 +33,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
     TextView latitud,longitud;
     TextView direccion, text;
+    Sensor sensor;
+    String x,y,z;
     Switch switchE;
+    SensorManager sm;
     boolean id=false;
     int n=1;
     int n1=1;
@@ -44,7 +53,15 @@ public class MainActivity extends AppCompatActivity {
         longitud = (TextView) findViewById(R.id.txtLongitud);
         direccion = (TextView) findViewById(R.id.txtDireccion);
         text= (TextView) findViewById(R.id.txt);
-        switchE= (Switch) findViewById(R.id.switch1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            switchE= (Switch) findViewById(R.id.switch1);
+        }
+        sm=(SensorManager) getSystemService(SENSOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            sensor= sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+            sm.registerListener(this,sensor,SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
          ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
        } else {
@@ -95,7 +112,9 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 Eudp eu = new Eudp();
-                                eu.execute();
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+                                    eu.execute();
+                                }
                             } catch (Exception e) {
                                 Log.e("error", e.getMessage());
                             }
@@ -124,6 +143,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+    x=String.valueOf(event.values[0]);
+    y=String.valueOf(event.values[1]);
+    z=String.valueOf(event.values[2]);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
 
     /* Aqui empieza la Clase Localizacion */
     public class Localizacion implements LocationListener {
@@ -150,9 +181,11 @@ public class MainActivity extends AppCompatActivity {
             String idd=",1";
             String iddx=",2";
             //Latitud, Longitud,fecha
+            String sns= String.format(String.format("%%s,%%s,%s",x),y,z);
             String jui= String.format(String.format("%%s,%%s,%s",fecha),sLatitud,sLongitud);
-            final String men =jui.concat(idd);
-            final String men1 =jui.concat(iddx);
+            String mns=jui.concat(sns);
+            final String men =mns.concat(idd);
+            final String men1 =mns.concat(iddx);
             if(id) {
                 message = men1;
             }else{
