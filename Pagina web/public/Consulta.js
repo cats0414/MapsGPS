@@ -94,6 +94,7 @@
 						for(var i = 0; i < ValoresId2.length; ++i){
 							puntos2[i] = {lat: ValoresId2[i].lat, lng: ValoresId2[i].lng};
 						}
+						map1.setCenter(puntos2[0]);
 						dibujarpolicamion2(puntos2);
 					}
 					
@@ -106,17 +107,18 @@
 				coordenadas = event.latLng;
 				latit = parseFloat(coordenadas.lat()).toFixed(4);
 				lngit = parseFloat(coordenadas.lng()).toFixed(4);
-				latit2 = parseFloat(coordenadas.lat()+0.03).toFixed(4);
-				lngit2 = parseFloat(coordenadas.lng()+0.03).toFixed(4);
-				ValoresConsul = valores.filter(filtrarPorPosicion);	
+				latit2 = parseFloat(coordenadas.lat()+0.01).toFixed(4);
+				lngit2 = parseFloat(coordenadas.lng()+0.01).toFixed(4);
+				ValoresConsul = valores.filter(filtrarPorPosicion);
+				if(ValoresConsul.length == 0){
+					document.getElementById().innerHTML = "<p> No hay valores para este periodo de tiempo </p>"
+				}else{	
 				for(var i = 0; i < ValoresConsul.length; ++i){
 					tiempoConsul[i] = ValoresConsul[i].tiempo;
 				}
 				let tiemposreales = [... new Set(tiempoConsul)];			
-				console.log(tiempoConsul);
-				console.log(tiemposreales);
 				document.getElementById("resultiempo").innerHTML = tiemposreales;
-
+			}
 			}
 			function filtrarPorPosicion(obj) {
 				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
