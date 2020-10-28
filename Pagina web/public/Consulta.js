@@ -12,6 +12,9 @@
 		let lngit;
 		let latit2;
 		let lngit2;
+		let contadorGeneral = 0;
+		let linea2 = [];
+		let linea3 = [];
 			const formLogin = document.querySelector('#formulario');
 			
 			
@@ -63,7 +66,8 @@
 					console.log(json);
 					console.log(json.val);
 					valores = json.val;
-					console.log(json.val.length)
+					console.log(json.val.length);
+
 					// Identifiquemos primero si llego un array vacio:
 					if(json.val.length == 0){
 						console.log("No llegaron datos del servidor, no se tienen datos del periodo");
@@ -75,6 +79,15 @@
 					console.log(ValoresId1);
 					ValoresId2 = json.val.filter(filtrarPorId2);
 					console.log(ValoresId2);
+					if(contadorGeneral >0){
+						if(contador>0){
+							linea2.setMap(null);
+						}
+						if(contador2 >0){
+							linea3.setMap(null);
+						}
+					}
+					
 					// Verificamos ahora si alguno de los dos nuevos arrays estan vacios.
 					if(ValoresId1.length == 0){
 						console.log("No hay datos del primer camion");
@@ -144,27 +157,21 @@
 				}
 			}
 			function dibujarpoli2(camino2){
-				if(contador>0){
-						linea2.setMap(null);
-						linea3.setMap(null);
-						
-					}
+				
 				linea2 = new google.maps.Polyline({
 				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
 }
 );
 				linea2.setMap(map1);
 				++contador;
+				++contadorGeneral;
 }
 			});
 			function dibujarpolicamion2(puntos2){
-				if(contador2>0){
-					linea2.setMap(null);
-					linea3.setMap(null);
-				}
 				linea3 = new google.maps.Polyline({
 					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
 				});
 				linea3.setMap(map1);
 				++contador2;
+				++contadorGeneral;
 			};
