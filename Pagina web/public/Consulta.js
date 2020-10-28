@@ -146,6 +146,8 @@
 			function dibujarpoli2(camino2){
 				if(contador>0){
 						linea2.setMap(null);
+						linea3.setMap(null);
+						
 					}
 				linea2 = new google.maps.Polyline({
 				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
@@ -157,6 +159,7 @@
 			});
 			function dibujarpolicamion2(puntos2){
 				if(contador2>0){
+					linea2.setMap(null);
 					linea3.setMap(null);
 				}
 				linea3 = new google.maps.Polyline({
