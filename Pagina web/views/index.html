@@ -213,7 +213,18 @@
 					<p>Esto contendra los resultados de busqueda</p>
 				</div>
 				<div id = "resulsensor" class="6u">
-					<p>Esto contendra los valores del sensor</p>
+					<p>Magnetic Field Sensor Values</p>
+					<!-- <div id="compass">
+						<span>N</span>
+						<span>E</span>
+						<span>S</span>
+						<span>W</span>
+						<div id="pointer"></div>
+					</div>
+					-->
+					<p>X= </p><p id="x"></p>
+					<p>Y= </p><p id="y">Y= </p>
+					<p>Z= </p> <p id="z">Z= </p>	
 				</div>
 			</div>
 		</div>			
@@ -269,6 +280,18 @@
 		</div>			
 	</footer1>
 	</section>
+	
+	<style>
+	#pointer {
+	width: 60px; height: 30px;
+	/* Centering it */
+	position: relative;
+	left: 50%; top: 50%;
+	margin-left: -30px; margin-top: -15px;
+	/*background: black;*/
+	transform: rotate3D(1,2,5);
+	}
+	</style>
 	<script>
 		function myFunction() {
 		  location.href = "#mapi";
@@ -305,6 +328,12 @@
 						console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
+						x=parseFloat(datos[3]);
+						y=parseFloat(datos[4]);
+						z=parseFloat(datos[5]);
+						document.getElementById("x").innerHTML = x;
+						document.getElementById("y").innerHTML = y;
+						document.getElementById("z").innerHTML = z;
 						console.log(latit);
 						console.log(longi);
 						var coorde = {lat: latit, lng: longi};
