@@ -213,7 +213,7 @@
 					<p>Esto contendra los resultados de busqueda</p>
 				</div>
 				<div id = "resulsensor" class="6u">
-					<p>Esto contendra los valores del sensor</p>
+					<p>Magnetic Field Sensor Values</p>
 					<!-- <div id="compass">
 						<span>N</span>
 						<span>E</span>
@@ -222,9 +222,9 @@
 						<div id="pointer"></div>
 					</div>
 					-->
-					<p id="x">X= </p>
-					<p id="y">Y= </p>
-					<p id="z">Z= </p>	
+					<p>X= </p><p id="x"></p>
+					<p>Y= </p><p id="y">Y= </p>
+					<p>Z= </p> <p id="z">Z= </p>	
 				</div>
 			</div>
 		</div>			
@@ -328,9 +328,9 @@
 						console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
-						x=parseFloat(msg[3]);
-						y=parseFloat(msg[4]);
-						z=parseFloat(msg[5]);
+						x=parseFloat(datos[3]);
+						y=parseFloat(datos[4]);
+						z=parseFloat(datos[5]);
 						document.getElementById("x").innerHTML = x;
 						document.getElementById("y").innerHTML = y;
 						document.getElementById("z").innerHTML = z;
