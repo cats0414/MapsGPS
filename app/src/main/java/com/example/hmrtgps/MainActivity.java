@@ -183,7 +183,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //Latitud, Longitud,fecha
             String sns= String.format(String.format("%%s,%%s,%s",x),y,z);
             String jui= String.format(String.format("%%s,%%s,%s",fecha),sLatitud,sLongitud);
-            String mns=jui.concat(sns);
+            String mnsa=jui.concat(",");
+            String mns=mnsa.concat(sns);
             final String men =mns.concat(idd);
             final String men1 =mns.concat(iddx);
             if(id) {
