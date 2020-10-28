@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const path = require('path');
+var x,y,z;
 var mensaje = '';
 var rut = 'Loquesea';
 var valores = [];
@@ -46,12 +47,12 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-    //console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    console.log(`server got: ${msg}`);
     mensaje = msg;
     msg = msg.toString().split(",")
     lati = parseFloat(msg[0]).toFixed(4);
 	longi = parseFloat(msg[1]).toFixed(4);
-	ID = parseInt(msg[3]);
+	ID = parseInt(msg[6]);
 	fecha = new Date(msg[2]);
 	console.log(typeof(fecha));
 	console.log(fecha);
