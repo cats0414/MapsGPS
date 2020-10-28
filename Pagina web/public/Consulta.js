@@ -1,6 +1,7 @@
         let data;
 		let fuent;
 		let contador = 0;
+		let contador2 = 0;
 		let camino2;
 		let puntos = [];
 		let puntos2 = [];
@@ -155,12 +156,12 @@
 }
 			});
 			function dibujarpolicamion2(puntos2){
-				if(contador>1){
+				if(contador2>0){
 					linea3.setMap(null);
 				}
 				linea3 = new google.maps.Polyline({
 					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
 				});
 				linea3.setMap(map1);
-				++contador;
+				++contador2;
 			};
