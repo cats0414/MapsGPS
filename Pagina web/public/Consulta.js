@@ -119,21 +119,14 @@
 			});
 			function consultahora(event) {
 				coordenadas = event.latLng;
-				// Hay que realizar correcciones a la seleccion de latitud y longitud.
-				/*
-				latit = parseFloat(coordenadas.lat()).toFixed(4);
-				lngit = parseFloat(coordenadas.lng()).toFixed(4);
-				latit2 = parseFloat(coordenadas.lat()+0.001).toFixed(4);
-				lngit2 = parseFloat(coordenadas.lng()+0.001).toFixed(4);
-				ValoresConsul = valores.filter(filtrarPorPosicion);
-				*/
-				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.02/Radio);
+				
+				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.01/Radio);
 				console.log(latit2);
-				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.01/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				console.log(lngit2);
-				latit = parseFloat(coordenadas.lat()) - rad2deg(0.02/Radio);
+				latit = parseFloat(coordenadas.lat()) - rad2deg(0.01/Radio);
 				console.log(latit);
-				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.01/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				console.log(lngit);
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
