@@ -15,6 +15,7 @@
 		let contadorGeneral = 0;
 		let linea2 = [];
 		let linea3 = [];
+		const Radio = 6371; //Radio de la tierra
 			const formLogin = document.querySelector('#formulario');
 			
 			
@@ -119,10 +120,18 @@
 			function consultahora(event) {
 				console.log(valores);
 				coordenadas = event.latLng;
+				// Hay que realizar correcciones a la seleccion de latitud y longitud.
+				/*
 				latit = parseFloat(coordenadas.lat()).toFixed(4);
 				lngit = parseFloat(coordenadas.lng()).toFixed(4);
 				latit2 = parseFloat(coordenadas.lat()+0.001).toFixed(4);
 				lngit2 = parseFloat(coordenadas.lng()+0.001).toFixed(4);
+				ValoresConsul = valores.filter(filtrarPorPosicion);
+				*/
+				latit2 = coordenadas.lat + rad2deg(0.001/Radio);
+				lngit2 = coordenadas.lng + (rad2deg(Math.asin(0.1/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
+				latit = coordenadas.lat - rad2deg(0.001/Radio);
+				lngit = coordenadas.lng - (rad2deg(Math.asin(0.1/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
 					document.getElementById("resultiempo").innerHTML = "<p> No hay valores para este periodo de tiempo </p>"
@@ -155,6 +164,14 @@
 				}else{
 					return false;
 				}
+			}
+			function rad2deg(radians){
+				var pi = Math.PI;
+				return radians*(180/pi);
+			}
+			function deg2rad(angulo){
+				var pi = Math.PI;
+				return angulo*(pi/180);
 			}
 			function dibujarpoli2(camino2){
 				
