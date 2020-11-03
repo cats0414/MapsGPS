@@ -127,13 +127,13 @@
 				lngit2 = parseFloat(coordenadas.lng()+0.001).toFixed(4);
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				*/
-				latit2 = parseFloat(coordenadas.lat) + rad2deg(0.005/Radio);
+				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.005/Radio);
 				console.log(latit2);
-				lngit2 = parseFloat(coordenadas.lng) + (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
+				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				console.log(lngit2);
-				latit = parseFloat(coordenadas.lat) - rad2deg(0.001/Radio);
+				latit = parseFloat(coordenadas.lat()) - rad2deg(0.001/Radio);
 				console.log(latit);
-				lngit = parseFloat(coordenadas.lng) - (rad2deg(Math.asin(0.0005/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
+				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.0005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				console.log(lngit);
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
