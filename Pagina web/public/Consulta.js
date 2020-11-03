@@ -118,7 +118,6 @@
 				}
 			});
 			function consultahora(event) {
-				console.log(valores);
 				coordenadas = event.latLng;
 				// Hay que realizar correcciones a la seleccion de latitud y longitud.
 				/*
@@ -128,10 +127,14 @@
 				lngit2 = parseFloat(coordenadas.lng()+0.001).toFixed(4);
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				*/
-				latit2 = coordenadas.lat + rad2deg(0.001/Radio);
-				lngit2 = coordenadas.lng + (rad2deg(Math.asin(0.1/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
-				latit = coordenadas.lat - rad2deg(0.001/Radio);
-				lngit = coordenadas.lng - (rad2deg(Math.asin(0.1/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
+				latit2 = parseFloat(coordenadas.lat) + rad2deg(0.005/Radio);
+				console.log(latit2);
+				lngit2 = parseFloat(coordenadas.lng) + (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
+				console.log(lngit2);
+				latit = parseFloat(coordenadas.lat) - rad2deg(0.001/Radio);
+				console.log(latit);
+				lngit = parseFloat(coordenadas.lng) - (rad2deg(Math.asin(0.0005/Radio)))/(Math.cos(deg2rad(coordenadas.lat)));
+				console.log(lngit);
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
 					document.getElementById("resultiempo").innerHTML = "<p> No hay valores para este periodo de tiempo </p>"
