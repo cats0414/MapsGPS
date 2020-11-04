@@ -121,13 +121,13 @@
 				coordenadas = event.latLng;
 				latpri = coordenadas.lat();
 				lngpri = coordenadas.lng();	
-				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.02/Radio);
+				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.005/Radio);
 				
-				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
-				latit = parseFloat(coordenadas.lat()) - rad2deg(0.01/Radio);
+				latit = parseFloat(coordenadas.lat()) - rad2deg(0.005/Radio);
 				
-				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
@@ -142,12 +142,12 @@
 			}
 			}
 			function filtrarPorPosicion(obj) {
-				tolerancia = 0.02;
+				tolerancia = 0.005;
 				//distanciaMaxi = Math.acos(Math.sin(latpri)*)
 				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
 					pruebs = Math.acos(Math.sin(deg2rad((latit+latit2)/2))*Math.sin(deg2rad(obj.lat))+Math.cos(deg2rad((latit+latit2)/2))*Math.cos(deg2rad(obj.lat))*Math.cos(deg2rad(obj.lng)-deg2rad((lngit+lngit2)/2)));
 					
-				  if(pruebs<0.02){
+				  if(pruebs<tolerancia){
 					return true;
 				  }else{
 					  return false;
