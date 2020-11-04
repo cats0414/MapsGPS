@@ -119,15 +119,16 @@
 			});
 			function consultahora(event) {
 				coordenadas = event.latLng;
-				
+				latpri = coordenadas.lat();
+				lngpri = coordenadas.lng();	
 				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.02/Radio);
-				console.log(latit2);
+				
 				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
-				console.log(lngit2);
+				
 				latit = parseFloat(coordenadas.lat()) - rad2deg(0.01/Radio);
-				console.log(latit);
+				
 				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
-				console.log(lngit);
+				
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
 					document.getElementById("resultiempo").innerHTML = "<p> No hay valores para este periodo de tiempo </p>"
@@ -141,8 +142,16 @@
 			}
 			}
 			function filtrarPorPosicion(obj) {
+				tolerancia = 0.02;
+				//distanciaMaxi = Math.acos(Math.sin(latpri)*)
 				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
-				  return true;
+					pruebs = Math.acos(Math.sin(deg2rad((latit+latit2)/2))*Math.sin(deg2rad(obj.lat))+Math.cos(deg2rad((latit+latit2)/2))*Math.cos(deg2rad(obj.lat))*Math.cos(deg2rad(obj.lng)-deg2rad((lngit+lngit2)/2)));
+					
+				  if(pruebs<0.02){
+					return true;
+				  }else{
+					  return false;
+				  }
 				} else {
 				  return false;
 				}
