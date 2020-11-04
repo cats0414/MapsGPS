@@ -231,6 +231,7 @@
 		padding: 0 1em;
 		text-decoration: none;
 		width: 100%;
+		box-shadow: 4px 4px 9px 1px #629DD1;
 	}
 
 		input[type="text"]:invalid,
@@ -727,6 +728,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 		text-decoration: none;
 		white-space: nowrap;
 		text-indent: 0.25em;
+		box-shadow: 4px 4px 9px 1px #629DD1;
 	}
 
 		input[type="submit"]:hover,
