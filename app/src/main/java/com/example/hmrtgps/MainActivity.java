@@ -155,6 +155,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    public void Conectar(View view) {
+        Intent intent = new Intent(this, Bluetooth.class);
+        startActivity(intent);
+    }
+
 
     /* Aqui empieza la Clase Localizacion */
     public class Localizacion implements LocationListener {
