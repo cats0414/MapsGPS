@@ -146,8 +146,8 @@
 				//distanciaMaxi = Math.acos(Math.sin(latpri)*)
 				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
 					pruebs = Math.acos(Math.sin(deg2rad((latit+latit2)/2))*Math.sin(deg2rad(obj.lat))+Math.cos(deg2rad((latit+latit2)/2))*Math.cos(deg2rad(obj.lat))*Math.cos(deg2rad(obj.lng)-deg2rad((lngit+lngit2)/2)));
-					console.log(pruebs);
-				  if(Math.acos(Math.sin(deg2rad((latit+latit2)/2)*Math.sin(deg2rad(obj.lat)+Math.cos(deg2rad((latit+latit2)/2))*Math.cos(deg2rad(obj.lat))*Math.cos(deg2rad(obj.lng)-deg2rad((lngit+lngit2)/2)))))<0.02){
+					
+				  if(pruebs<0.02){
 					return true;
 				  }else{
 					  return false;
