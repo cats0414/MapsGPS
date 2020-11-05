@@ -326,9 +326,14 @@
 						console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
-						x=parseFloat(datos[3]);
-						y=parseFloat(datos[4]);
-						z=parseFloat(datos[5]);
+						tempor = datos[3].toString();
+						tempor2 = tempor.split("\r\n");
+						console.log(tempor);
+						console.log(tempor2);
+						max = tempor2.length-2;
+						console.log(max);
+						console.log(tempor2[max]);
+						x=tempor2[max];
 						document.getElementById("x").innerHTML = x;
 						console.log(latit);
 						console.log(longi);

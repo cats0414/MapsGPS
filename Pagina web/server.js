@@ -50,12 +50,7 @@ server.on('message', (msg, rinfo) => {
     console.log(`server got: ${msg}`);
     mensaje = msg;
 	msg = msg.toString().split(",")
-	tempor = msg[3].toString();
-	tempor2 = tempor.split("/n");
-	console.log(tempor);
-	console.log(tempor2);
-	max = tempor2.length;
-	console.log(tempor2[max]);
+	
     lati = parseFloat(msg[0]).toFixed(4);
 	longi = parseFloat(msg[1]).toFixed(4);
 	ID = parseInt(msg[4]);
