@@ -47,7 +47,7 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-    //console.log(`server got: ${msg}`);
+    console.log(`server got: ${msg}`);
     mensaje = msg;
     msg = msg.toString().split(",")
     lati = parseFloat(msg[0]).toFixed(4);
