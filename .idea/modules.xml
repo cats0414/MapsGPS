@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/HMRT_GPS.iml" filepath="$PROJECT_DIR$/.idea/modules/HMRT_GPS.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HMRT_GPS.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HMRT_GPS.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bluetoothjhr/HMRT_GPS.bluetoothjhr.iml" filepath="$PROJECT_DIR$/.idea/modules/bluetoothjhr/HMRT_GPS.bluetoothjhr.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:bluetoothjhr:unspecified">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bluetoothjhr/build/.transforms/0c7bd83c131bd132ce5d261c4aedb0b4/jetified-bluetoothjhr/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/bluetoothjhr/build/.transforms/0c7bd83c131bd132ce5d261c4aedb0b4/jetified-bluetoothjhr/res" />
+      <root url="file://$PROJECT_DIR$/bluetoothjhr/build/.transforms/0c7bd83c131bd132ce5d261c4aedb0b4/jetified-bluetoothjhr/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
