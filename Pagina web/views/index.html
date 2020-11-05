@@ -213,7 +213,7 @@
 					<p>Esto contendra los resultados de busqueda</p>
 				</div>
 				<div id = "resulsensor" class="6u">
-					<p>Magnetic Field Sensor Values</p>
+					<p>Indicador de combustible</p>
 					<!-- <div id="compass">
 						<span>N</span>
 						<span>E</span>
@@ -222,9 +222,7 @@
 						<div id="pointer"></div>
 					</div>
 					-->
-					<p>X= </p><p id="x"></p>
-					<p>Y= </p><p id="y"></p>
-					<p>Z= </p> <p id="z"></p>	
+					<p>ValorCambiante= </p><p id="x"></p>	
 				</div>
 			</div>
 		</div>			
@@ -328,12 +326,15 @@
 						console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
-						x=parseFloat(datos[3]);
-						y=parseFloat(datos[4]);
-						z=parseFloat(datos[5]);
+						tempor = datos[3].toString();
+						tempor2 = tempor.split("\r\n");
+						console.log(tempor);
+						console.log(tempor2);
+						max = tempor2.length-2;
+						console.log(max);
+						console.log(tempor2[max]);
+						x=tempor2[max];
 						document.getElementById("x").innerHTML = x;
-						document.getElementById("y").innerHTML = y;
-						document.getElementById("z").innerHTML = z;
 						console.log(latit);
 						console.log(longi);
 						var coorde = {lat: latit, lng: longi};

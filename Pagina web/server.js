@@ -47,12 +47,13 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-    //console.log(`server got: ${msg}`);
+    console.log(`server got: ${msg}`);
     mensaje = msg;
-    msg = msg.toString().split(",")
+	msg = msg.toString().split(",")
+	
     lati = parseFloat(msg[0]).toFixed(4);
 	longi = parseFloat(msg[1]).toFixed(4);
-	ID = parseInt(msg[6]);
+	ID = parseInt(msg[4]);
 	fecha = new Date(msg[2]);
 	console.log(typeof(fecha));
 	console.log(fecha);

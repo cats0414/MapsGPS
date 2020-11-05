@@ -125,7 +125,7 @@
 				
 				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
-				latit = parseFloat(coordenadas.lat()) - rad2deg(0.01/Radio);
+				latit = parseFloat(coordenadas.lat()) - rad2deg(0.02/Radio);
 				
 				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.02/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
@@ -147,7 +147,7 @@
 				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
 					pruebs = Math.acos(Math.sin(deg2rad((latit+latit2)/2))*Math.sin(deg2rad(obj.lat))+Math.cos(deg2rad((latit+latit2)/2))*Math.cos(deg2rad(obj.lat))*Math.cos(deg2rad(obj.lng)-deg2rad((lngit+lngit2)/2)));
 					
-				  if(pruebs<0.02){
+				  if(pruebs<tolerancia){
 					return true;
 				  }else{
 					  return false;
