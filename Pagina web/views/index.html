@@ -65,6 +65,18 @@
 				<div id="map"></div>
 						
 			</main>
+			<div id = "resulsensor" class="6u">
+				<p>Indicador de combustible</p>
+				<!-- <div id="compass">
+					<span>N</span>
+					<span>E</span>
+					<span>S</span>
+					<span>W</span>
+					<div id="pointer"></div>
+				</div>
+				-->
+				<p>ValorCambiante= </p><p id="x"></p>	
+			</div>
 		</section>
 		<section id="Hist" class="wrapper style1">
 			<header class="major">
@@ -212,18 +224,6 @@
 				<div id = "resultiempo" class="6u">
 					<p>Esto contendra los resultados de busqueda</p>
 				</div>
-				<div id = "resulsensor" class="6u">
-					<p>Indicador de combustible</p>
-					<!-- <div id="compass">
-						<span>N</span>
-						<span>E</span>
-						<span>S</span>
-						<span>W</span>
-						<div id="pointer"></div>
-					</div>
-					-->
-					<p>ValorCambiante= </p><p id="x"></p>	
-				</div>
 			</div>
 		</div>			
 		<div class="container">
@@ -304,7 +304,9 @@
 			let lati;
 			let long;
 			var caminoP = [];
+			var caminoCamion2 = [];
 			var cont = 0;
+			var cont2 = 0;
 			update();
 			async function update() {
 				const response = await fetch('/ruta');
@@ -312,12 +314,16 @@
 				console.log(data.msg);
 				var str = '';
 				if(data.msg == ""){
-					setTimeout(update, 10000);
+					setTimeout(update, 5000);
 				}else{
 					for (var i = 0; i < data.msg.data.length; ++i) {
 					str += String.fromCharCode(data.msg.data[i]);
 				}
 						datos = str.split(',');
+						// Se hace diferenciacion por id.
+						// El id es el datos[4]
+						iden = datos[4];
+						
 						latitud = datos[0]
 						console.log(latitud);
 						longitud = datos[1]
@@ -338,19 +344,32 @@
 						console.log(latit);
 						console.log(longi);
 						var coorde = {lat: latit, lng: longi};
-						if (cont > 0){
-                                                        marcador.setMap(null);
-                                                };
-						
-						actualPuntero(latit,longi);
-						setTimeout(update, 10000);
+						if(iden == 1){
+							// Significa que llego un mensaje con informacion del primer camion.
+							if (cont > 0){
+                                marcador.setMap(null);
+                                };
+								actualPuntero(latit,longi);
+								setTimeout(update, 5000);
+					}else{
+						// LLego informacion del segundo camion.
+						// No se tiene en cuenta que el id sea diferente de 1 o 2
+							if (cont2 >0){
+								marcadorCamion2.setMap(null);
+							}
+							actualPuntero2(latit,longi);
+							setTimeout(update,5000);
 					}
+				}
 				}
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
 				map.setCenter(coor);
 				marcador = new google.maps.Marker({
 					position: coor ,
+					icon: {
+      					url: "/images/Camion1.png"
+    				},
 					map: map
 				});
 				
@@ -363,6 +382,27 @@
 				
 				
 			}
+			function actualPuntero2(latit,longi){
+				var coorden2 = new google.maps.LatLng(latit,longi);
+				map.setCenter(coorden2);
+				marcadorCamion2 = new google.maps.Marker({
+					position: coorden2 ,
+					icon: {
+      					url: "/images/Camion2.png"
+    				},
+					map: map
+				});
+				
+				caminoCamion2[cont2] = coorden2;
+				cont2 = cont2+1;
+				console.log(caminoCamion2);
+				console.log(typeof(caminoCamion2));
+				dibujarpoliCamion2(caminoCamion2); 
+				marcadorCamion2.setMap(map);
+				
+				
+			}
+
 			function dibujarpoli(caminoP){
 				var linea = new google.maps.Polyline({
 				path: caminoP,
@@ -371,13 +411,25 @@
 				strokeWeight: 2
 });
 		
-		linea.setMap(map);
-		addLatLng(caminoP);
+				linea.setMap(map);
+				addLatLng(caminoP);
 }
-			function addLatLng(caminoP){
+				function dibujarpoliCamion2(caminoCamion2){
+				var lineaCamion2 = new google.maps.Polyline({
+				path: caminoCamion2,
+				strokeColor: '0000FF',
+				strokeOpacity:1.0,
+				strokeWeight: 2
+				});
+		
+				lineaCamion2.setMap(map);
+				addLatLng(caminoCamion2);
+				}
+				function addLatLng(caminoP){
 				const path = caminoP;
 				path.push;
-}
+				}
+				
 		</script>
 		<script src="/Consulta.js">
 		</script>
