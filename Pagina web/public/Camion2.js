@@ -15,15 +15,11 @@ async function camion2Track(){
     if(datC2.msg2 == ' '){
         setTimeout(camion2Track, 5000);
     }else{
-        for (var i = 0; i < datC2.msg2.length; ++i) {
-        str2 += String.fromCharCode(datC2.msg2[i]);
-    }
-
-        palabra = str2.split(',');
+        palabra = datC2.msg2;
         console.log(palabra);
         latitudC2 = parseFloat(palabra[0]).toFixed(4);;
         longitudC2 = parseFloat(palabra[1]).toFixed(4);
-        var coordeC2 = {lat: latitudC2, lng: longitudC2};
+        //var coordeC2 = {lat: latitudC2, lng: longitudC2};
         if(cont2 >0){
             marcador2.setMap(null);
         }
