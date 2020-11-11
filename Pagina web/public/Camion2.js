@@ -16,7 +16,7 @@ async function camion2Track(){
         setTimeout(camion2Track, 5000);
     }else{
         for (var i = 0; i < datC2.msg2.length; ++i) {
-        str2 += String.fromCharCode(datC2.msg2.data[i]);
+        str2 += String.fromCharCode(datC2.msg2[i]);
     }
 
         palabra = str2.split(',');
