@@ -318,10 +318,7 @@
 				if(data.msg == " "){
 					setTimeout(update, 5000);
 				}else{
-					for (var i = 0; i < data.msg.data.length; ++i) {
-					str += String.fromCharCode(data.msg.data[i]);
-				}
-						datos = str.split(',');
+						datos = data.msg;
 						// Se hace diferenciacion por id.
 						// El id es el datos[4]
 						iden = datos[4];
