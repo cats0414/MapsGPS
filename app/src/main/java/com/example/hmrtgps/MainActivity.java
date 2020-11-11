@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     TextView latitud,longitud;
     TextView direccion, text;
     String x="0";
+    String[] tempor2;
+    int max;
+    String tempor;
     Switch switchE;
     SensorManager sm;
     boolean id=false;
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         direccion = (TextView) findViewById(R.id.txtDireccion);
         bluetoothJhr2=new BluetoothJhr(Bluetooth.class,wh);
         text= (TextView) findViewById(R.id.txt);
-        /*new rec().start();*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             switchE= (Switch) findViewById(R.id.switch1);
         }
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.e("error", e.getMessage());
                             }
                             if((n % 2) == 0){
-                                text.setText("Sending.....");
+                                /*text.setText("Sending.....");*/
                             } else {
                                 text.setText("Turn me on!");
                                 timer.cancel();
@@ -168,16 +170,22 @@ public class MainActivity extends AppCompatActivity {
             x="";
             loc.getLatitude();
             loc.getLongitude();
-            Delay();
-            String ss= System.getProperty("line.separator");
             if(bluetoothJhr2.Rx() != null && bluetoothJhr2.Rx() != "null" && bluetoothJhr2.Rx() != "" && bluetoothJhr2.Rx() != "null7"&& bluetoothJhr2.Rx() != "null1"
                     && bluetoothJhr2.Rx() != "null2"&& bluetoothJhr2.Rx() != "null3"&& bluetoothJhr2.Rx() != "null4"&& bluetoothJhr2.Rx() != "null5"
                     && bluetoothJhr2.Rx() != "null6"&& bluetoothJhr2.Rx() != "null7"&& bluetoothJhr2.Rx() != "null8"&& bluetoothJhr2.Rx() != "null9"){
-                x=bluetoothJhr2.Rx();
+            tempor= bluetoothJhr2.Rx();
+            tempor2 = tempor.split("\r\n");
+            if(tempor2.length>2){
+            max = tempor2.length-2;
+            }else{
+                max=0;
+            }
+            x=tempor2[max];
 
             }else{
                 x="Nada";
             }
+            text.setText("Sensor= "+x);
             String sLatitud = String.valueOf(loc.getLatitude());
             String sLongitud = String.valueOf(loc.getLongitude());
             latitud.setText("Latitud= " +sLatitud);
