@@ -15,6 +15,7 @@
 		let contadorGeneral = 0;
 		let linea2 = [];
 		let linea3 = [];
+		var TiemposMostrados;
 		const Radio = 6371; //Radio de la tierra
 			const formLogin = document.querySelector('#formulario');
 			
@@ -121,13 +122,13 @@
 				coordenadas = event.latLng;
 				latpri = coordenadas.lat();
 				lngpri = coordenadas.lng();	
-				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.008/Radio);
+				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.003/Radio);
 				
-				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.008/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.003/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
-				latit = parseFloat(coordenadas.lat()) - rad2deg(0.008/Radio);
+				latit = parseFloat(coordenadas.lat()) - rad2deg(0.003/Radio);
 				
-				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.008/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.003/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
@@ -136,9 +137,31 @@
 				for(var i = 0; i < ValoresConsul.length; ++i){
 					tiempoConsul[i] = ValoresConsul[i].tiempo;
 				}
+				if(tiempoConsul.length > 4){
+					for(var i = 1;i<4;++i){
+						tiempoCorreg[i] = tiempoConsul[i];
+					}
+					let tiemposreales = set(tiempoCorreg);
+					console.log("Valores muy grandes");
+					TiemposMostrados = tiemposCorreg.join(" // ");
+					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
+				}else{
+					console.log("Valores optimos");
+					TiemposMostrados = tiempoConsul.join(" // ");
+					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
+				}
+				/*
 				let tiemposreales = Set(tiempoConsul);
-				let TiemposMostrados = tiemposreales.join(" // ");			
-				document.getElementById("resultiempo").innerHTML = TiemposMostrados;
+				//let TiemposMostrados = tiemposreales.join(" // ");
+				//if (TiemposMostrados.length>3){
+					for(i = 1;i>3;++i){
+						tiemposCorregidos[i] = TiemposMostrados[i];
+					}
+
+				document.getElementById("resultiempo").innerHTML = tiemposCorregidos;
+				}else{
+
+				} */
 			}
 			}
 			function filtrarPorPosicion(obj) {
