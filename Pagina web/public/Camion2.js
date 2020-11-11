@@ -21,7 +21,7 @@ async function camion2Track(){
         longitudC2 = parseFloat(palabra[1]).toFixed(4);
         //var coordeC2 = {lat: latitudC2, lng: longitudC2};
         if(cont2 >0){
-            marcador2.setMap(null);
+            marcadorCamion2.setMap(null);
         }
         y = palabra[3];
         document.getElementById("y").innerHTML = y;
