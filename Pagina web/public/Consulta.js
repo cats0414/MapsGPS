@@ -136,7 +136,7 @@
 				for(var i = 0; i < ValoresConsul.length; ++i){
 					tiempoConsul[i] = ValoresConsul[i].tiempo;
 				}
-				let tiemposreales = [... new Set(tiempoConsul)];
+				let tiemposreales = Set(tiempoConsul);
 				let TiemposMostrados = tiemposreales.join(" // ");			
 				document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 			}
