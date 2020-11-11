@@ -315,7 +315,7 @@
 				const data = await response.json();
 				//console.log(data.msg);
 				var str = '';
-				if(data.msg == ""){
+				if(data.msg == " "){
 					setTimeout(update, 5000);
 				}else{
 					for (var i = 0; i < data.msg.data.length; ++i) {
@@ -385,26 +385,7 @@
 				
 				
 			}
-			function actualPuntero2(latit,longi){
-				var coorden2 = new google.maps.LatLng(latit,longi);
-				//map.setCenter(coorden2);
-				marcadorCamion2 = new google.maps.Marker({
-					position: coorden2 ,
-					icon: {
-      					url: "/images/Camion2.png"
-    				},
-					map: map
-				});
-				
-				caminoCamion2[cont2] = coorden2;
-				cont2 = cont2+1;
-				console.log(caminoCamion2);
-				console.log(typeof(caminoCamion2));
-				dibujarpoliCamion2(caminoCamion2); 
-				marcadorCamion2.setMap(map);
-				
-				
-			}
+			
 
 			function dibujarpoli(caminoP){
 				var linea = new google.maps.Polyline({
@@ -417,17 +398,7 @@
 				linea.setMap(map);
 				addLatLng(caminoP);
 }
-				function dibujarpoliCamion2(caminoCamion2){
-				var lineaCamion2 = new google.maps.Polyline({
-				path: caminoCamion2,
-				strokeColor: '#0000FF',
-				strokeOpacity:1.0,
-				strokeWeight: 2
-				});
-		
-				lineaCamion2.setMap(map);
-				addLatLng(caminoCamion2);
-				}
+				
 				function addLatLng(caminoP){
 				const path = caminoP;
 				path.push;
