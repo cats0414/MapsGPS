@@ -122,6 +122,7 @@
 					map1.addListener("mousemove", consultahora);
 				}
 			});
+		});
 			function consultahora(event) {
 				coordenadas = event.latLng;
 				latpri = coordenadas.lat();
@@ -154,6 +155,8 @@
 					TiemposMostrados = tiempoConsul.join(" // ");
 					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 				}
+			}
+				
 				/*
 				let tiemposreales = Set(tiempoConsul);
 				//let TiemposMostrados = tiemposreales.join(" // ");
@@ -167,7 +170,8 @@
 
 				} */
 			}
-			}
+			
+
 			function filtrarPorPosicion(obj) {
 				tolerancia = 0.01;
 				//distanciaMaxi = Math.acos(Math.sin(latpri)*)
@@ -212,15 +216,21 @@
 }
 );
 				linea2.setMap(map1);
+				addLatLng(camino2);
 				++contador;
 				++contadorGeneral;
 }
-			});
+			
 			function dibujarpolicamion2(puntos2){
 				linea3 = new google.maps.Polyline({
 					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
 				});
 				linea3.setMap(map1);
+				addLatLng(puntos2);
 				++contador2;
 				++contadorGeneral;
-			};
+			}
+			function addLatLng(caminoP){
+				const path = caminoP;
+				path.push;
+			}
