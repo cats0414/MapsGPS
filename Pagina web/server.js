@@ -92,27 +92,20 @@ app.get('/', function (req, res) {
 app.post('/resp',function (req,res) {
 		// esto recibe la información. 
 		console.log("LLego informacion del cliente");
-        console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
 		hora1 = data1.hora_inicial;
 		hora2 = data1.hora_final;
 		minutoIni = data1.minuto_inicial;
-		console.log(minutoIni);
 		minutoFin = data1.minuto_final;
-		console.log(minutoFin);
 		camion = parseInt(data1.camion);
 		console.log(camion);
 		console.log(typeof(camion));
 		datapri = dat.toString().split(" - ");
 		da1 = datapri[0].concat(" " ,hora1,":",minutoIni);
 		da2 = datapri[1].concat( " " ,hora2,":",minutoFin);
-		console.log(da1);
-		console.log(da2);
 		var tiempoconsulta1 = new Date(da1);
 		var tiempoconsulta2 = new Date(da2); 
-		console.log(da1);
-		console.log(da2);
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
 		if (camion == 3 || camion == 0){
