@@ -80,9 +80,9 @@
 					}
 					if(json.iden == 3){
 						// Seleccionaron ambos camiones.
-						ValoresId1= json.val.filter(element => element.id = 1 );
+						ValoresId1= json.val.filter(filtrarPorId1);
 						console.log(ValoresId1);
-						ValoresId2 = json.val.filter(element => element.id = 2);
+						ValoresId2 = json.val.filter(filtrarPorId2);
 						console.log(ValoresId2);
 					}
 					
