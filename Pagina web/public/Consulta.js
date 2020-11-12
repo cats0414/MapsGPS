@@ -17,6 +17,7 @@
 		let linea3 = [];
 		var tiempoCorreg = [];
 		var TiemposMostrados;
+		var valores;
 		const Radio = 6371; //Radio de la tierra
 			const formLogin = document.querySelector('#formulario');
 			
@@ -69,8 +70,8 @@
 						linea3.setMap(null);
 					}
 					valores = json.val;
-					ValoresId2 = 0;
-					ValoresId1 = 0;
+					var ValoresId2 = 0;
+					var ValoresId1 = 0;
 					// Identifiquemos primero si llego un array vacio:
 					if(json.val.length == 0){
 						alert("No se tienen datos del periodo ingresado, favor ingresar nuevo periodo.");
@@ -80,7 +81,7 @@
 					if(json.iden == 1){
 						// Significa que solo tengo datos el primer camion:
 						ValoresId1 = json.val;
-						console.log(ValoresId2);
+						console.log(ValoresId1);
 						ValoresId2 = [];
 					}
 					if(json.iden == 2){
