@@ -1003,6 +1003,14 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 			#header .container nav {
 				right: 0;
 			}
+			#left{
+				float: left;
+			}
+
+			#right{
+				float: right;
+			}
+
 
 /* Banner */
 
