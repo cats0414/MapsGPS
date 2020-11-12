@@ -5,7 +5,8 @@ const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const path = require('path');
 var x,y,z;
-var mensaje = '';
+var mensaje = ' ';
+var mensajeC2 = ' ';
 var rut = 'Loquesea';
 var valores = [];
 var bodyParser = require('body-parser');
@@ -48,15 +49,23 @@ server.on('error', (err) => {
 
 server.on('message', (msg, rinfo) => {
     console.log(`server got: ${msg}`);
-    mensaje = msg;
-	msg = msg.toString().split(",")
+    //mensaje = msg;
+	msg = msg.toString().split(",");
 	
     lati = parseFloat(msg[0]).toFixed(4);
 	longi = parseFloat(msg[1]).toFixed(4);
 	ID = parseInt(msg[4]);
+	console.log(ID);
 	fecha = new Date(msg[2]);
-	console.log(typeof(fecha));
-	console.log(fecha);
+	if(ID == 1){
+		mensaje = msg;
+		console.log("Camion1");
+		console.log(mensaje);
+	}else{
+		mensajeC2 = msg;
+		console.log("Camion2");
+		console.log(mensajeC2);
+	}
 	// Hay que verificar que el mensaje ha cambiado.
 
     msg = {id : ID ,lat: lati, lng: longi, tiempo: fecha}
@@ -133,6 +142,10 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/ruta', function (req, res) {
 	res.json({ msg: mensaje });
+});
+
+app.get('/camion2', function (req,res){
+	res.json({ msg2: mensajeC2});
 });
 
 

@@ -65,6 +65,20 @@
 				<div id="map"></div>
 						
 			</main>
+			<div id = "resulsensor" class="6u">
+				<p>Indicador de combustible</p>
+				<!-- <div id="compass">
+					<span>N</span>
+					<span>E</span>
+					<span>S</span>
+					<span>W</span>
+					<div id="pointer"></div>
+				</div>
+				-->
+				<p>Valor Cambiante camion 1 = </p><p id="x"></p>	
+				<br>
+				<p>Valor Cambiante camion 2 = </p> <p id="y"></p>
+			</div>
 		</section>
 		<section id="Hist" class="wrapper style1">
 			<header class="major">
@@ -212,18 +226,6 @@
 				<div id = "resultiempo" class="6u">
 					<p>Esto contendra los resultados de busqueda</p>
 				</div>
-				<div id = "resulsensor" class="6u">
-					<p>Indicador de combustible</p>
-					<!-- <div id="compass">
-						<span>N</span>
-						<span>E</span>
-						<span>S</span>
-						<span>W</span>
-						<div id="pointer"></div>
-					</div>
-					-->
-					<p>ValorCambiante= </p><p id="x"></p>	
-				</div>
 			</div>
 		</div>			
 		<div class="container">
@@ -304,53 +306,70 @@
 			let lati;
 			let long;
 			var caminoP = [];
+			var caminoCamion2 = [];
 			var cont = 0;
+			var cont2 = 0;
 			update();
 			async function update() {
 				const response = await fetch('/ruta');
 				const data = await response.json();
-				console.log(data.msg);
+				//console.log(data.msg);
 				var str = '';
-				if(data.msg == ""){
-					setTimeout(update, 10000);
+				if(data.msg == " "){
+					setTimeout(update, 5000);
 				}else{
-					for (var i = 0; i < data.msg.data.length; ++i) {
-					str += String.fromCharCode(data.msg.data[i]);
-				}
-						datos = str.split(',');
+						datos = data.msg;
+						// Se hace diferenciacion por id.
+						// El id es el datos[4]
+						iden = datos[4];
+						
 						latitud = datos[0]
 						console.log(latitud);
 						longitud = datos[1]
-						console.log(longitud);
+						//console.log(longitud);
 						fecha = datos[2];
-						console.log(fecha);
+						//console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
-						tempor = datos[3].toString();
-						tempor2 = tempor.split("\r\n");
-						console.log(tempor);
-						console.log(tempor2);
-						max = tempor2.length-2;
-						console.log(max);
-						console.log(tempor2[max]);
-						x=tempor2[max];
-						document.getElementById("x").innerHTML = x;
-						console.log(latit);
-						console.log(longi);
-						var coorde = {lat: latit, lng: longi};
-						if (cont > 0){
-                                                        marcador.setMap(null);
-                                                };
+						// Filtro Pagina web javascript
+						//tempor = datos[3].toString();
+						//tempor2 = tempor.split("\r\n");
+						//max = tempor2.length-2;
 						
-						actualPuntero(latit,longi);
-						setTimeout(update, 10000);
+						//console.log(latit);
+						//console.log(longi);
+						var coorde = {lat: latit, lng: longi};
+						// Significa que llego un mensaje con informacion del primer camion.
+							if (cont > 0){
+                                marcador.setMap(null);
+                                };
+								x=datos[3];
+								// Aca termina el filtro.
+								document.getElementById("x").innerHTML = x;
+								actualPuntero(latit,longi);
+								setTimeout(update, 5000);
+					//else{
+						// LLego informacion del segundo camion.
+						// No se tiene en cuenta que el id sea diferente de 1 o 2
+							/*if (cont2 >0){
+								marcadorCamion2.setMap(null);
+							}
+							y = datos[3];
+							document.getElementById("y").innerHTML = y;
+							actualPuntero2(latit,longi);
+							setTimeout(update,2000);
 					}
+					*/
+				}
 				}
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
 				map.setCenter(coor);
 				marcador = new google.maps.Marker({
 					position: coor ,
+					icon: {
+      					url: "/images/Camion1.png"
+    				},
 					map: map
 				});
 				
@@ -363,6 +382,8 @@
 				
 				
 			}
+			
+
 			function dibujarpoli(caminoP){
 				var linea = new google.maps.Polyline({
 				path: caminoP,
@@ -371,13 +392,18 @@
 				strokeWeight: 2
 });
 		
-		linea.setMap(map);
-		addLatLng(caminoP);
+				linea.setMap(map);
+				addLatLng(caminoP);
 }
-			function addLatLng(caminoP){
+				
+				function addLatLng(caminoP){
 				const path = caminoP;
 				path.push;
-}
+				}
+				
+		</script>
+		<script src ="/Camion2.js">
+
 		</script>
 		<script src="/Consulta.js">
 		</script>
