@@ -73,10 +73,12 @@
 					if(json.iden == 1){
 						// Significa que solo tengo datos el primer camion:
 						ValoresId1 = json.val;
+						ValoresId2 = [];
 					}
 					if(json.iden == 2){
 						// Solo llegaron datos del segundo camion:
 						ValoresId2 = json.val;
+						ValoresId1 = [];
 					}
 					if(json.iden == 3){
 						// Seleccionaron ambos camiones.
