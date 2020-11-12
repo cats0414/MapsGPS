@@ -92,37 +92,33 @@ app.get('/', function (req, res) {
 app.post('/resp',function (req,res) {
 		// esto recibe la información. 
 		console.log("LLego informacion del cliente");
-        console.log(req.body);
         data1 = req.body;
         dat = data1.datetimes;
 		hora1 = data1.hora_inicial;
 		hora2 = data1.hora_final;
 		minutoIni = data1.minuto_inicial;
-		console.log(minutoIni);
 		minutoFin = data1.minuto_final;
-		console.log(minutoFin);
 		camion = parseInt(data1.camion);
 		console.log(camion);
 		console.log(typeof(camion));
 		datapri = dat.toString().split(" - ");
 		da1 = datapri[0].concat(" " ,hora1,":",minutoIni);
 		da2 = datapri[1].concat( " " ,hora2,":",minutoFin);
-		console.log(da1);
-		console.log(da2);
 		var tiempoconsulta1 = new Date(da1);
 		var tiempoconsulta2 = new Date(da2); 
-		console.log(da1);
-		console.log(da2);
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
 		if (camion == 3 || camion == 0){
-        let sql2 = 'SELECT * FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
+        let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = 1 OR id = 2) ';
         let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
         };
-        valores = result;
-	res.json({val: valores});
+		valores = result;
+		// Podria realizar un filtro en esta parte
+		valoresCamion1 = valores.filter(filtrarPorId1);
+		valoresCamion2 = valores.filter(filtrarPorId2);
+	res.json({val: valores, iden: 3, valC1 : valoresCamion1, valC2 : valoresCamion2});
 });
 		}else{
 			let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
@@ -131,10 +127,25 @@ app.post('/resp',function (req,res) {
 				console.trace('error = ' +err.message);
 				};
 				valores = result;
-			res.json({val: valores});
+			res.json({val: valores, iden:camion});
 		});
 		}
 });
+function filtrarPorId1(obj){
+	if(obj.id == 1){
+		return true;
+	}else{
+		return false;
+	}
+}
+function filtrarPorId2(obj){
+	if(obj.id == 2){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 
 app.use(express.static(__dirname + '/public'));
 

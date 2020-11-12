@@ -6,17 +6,19 @@
 		let puntos = [];
 		let puntos2 = [];
 		let tiempos = [] ;
-		let valores = [];
+		var valores = [];
 		let tiempoConsul = [];
 		let latit;
 		let lngit;
 		let latit2;
 		let lngit2;
 		let contadorGeneral = 0;
-		let linea2 = [];
-		let linea3 = [];
+		var linea2 = [];
+		var linea3 = [];
 		var tiempoCorreg = [];
 		var TiemposMostrados;
+
+
 		const Radio = 6371; //Radio de la tierra
 			const formLogin = document.querySelector('#formulario');
 			
@@ -24,6 +26,12 @@
 			formLogin.addEventListener('submit',event =>{
 			// Mandar el formulario automaticamente.
 			event.preventDefault();
+			if(contador != 0){
+				linea2.setMap(null);
+			}
+			if(contador2 != 0){
+				linea3.setMap(null);
+			}
 			var datetimes= document.getElementById('datetimes').value;
 			console.log(datetimes);
 
@@ -41,11 +49,7 @@
 			var minutoFin = document.getElementById("Minutos2").value;
 			console.log(minutoFin);
 			var id;
-			if(camion == "3" || camion == "0"){
-				 id = camion;
-			}else{
-				id = parseInt(camion);
-			}
+			id = parseInt(camion);
 			
 			var informacion = {
 				datetimes: datetimes,
@@ -66,30 +70,62 @@
 		};
 		fetch('/resp',options).then((response) => response.json())
 				.then((json) => {
-					console.log(json);
-					console.log(json.val);
+					
 					valores = json.val;
-					console.log(json.val.length);
-
+					var ValoresId2 = 0;
+					var ValoresId1 = 0;
 					// Identifiquemos primero si llego un array vacio:
 					if(json.val.length == 0){
-						console.log("No llegaron datos del servidor, no se tienen datos del periodo");
 						alert("No se tienen datos del periodo ingresado, favor ingresar nuevo periodo.");
 					}else{
 					// Si estamos en esta parte, significa que llegaron datos del servidor
 					// aplicamos un filtro dependiendo del id.
-					ValoresId1= json.val.filter(filtrarPorId1);
-					console.log(ValoresId1);
-					ValoresId2 = json.val.filter(filtrarPorId2);
-					console.log(ValoresId2);
-					if(contadorGeneral >0){
-						if(contador>0){
+					if(json.iden == 1){
+						// Significa que solo tengo datos el primer camion:
+						ValoresId1 = json.val;
+						console.log(ValoresId1);
+						ValoresId2 = [];
+					}
+					if(json.iden == 2){
+						// Solo llegaron datos del segundo camion:
+						ValoresId2 = json.val;
+						console.log(ValoresId2);
+						ValoresId1 = [];
+					}
+					if(json.iden == 3){
+						// Seleccionaron ambos camiones.
+						ValoresId1= json.valC1;
+						console.log(ValoresId1);
+						ValoresId2 = json.valC2;
+						console.log(ValoresId2);
+						if(cont != 0){
+							linea2.setMap(null);
+
+						}
+						if(cont2 != 0){
+							linea3.setMap(null);
+
+						}
+					}
+					
+
+					// Aplicamos 
+					
+					/*if(contadorGeneral >0){
+						//if(contador>0){
+							if(contador2>0){
+								linea3.setMap(null);
+							}
 							linea2.setMap(null);
 						}
 						if(contador2 >0){
 							linea3.setMap(null);
+							if(contador>0){
+								linea2.setMap(null);
+							}
 						}
-					}
+					}   
+					*/
 					
 					// Verificamos ahora si alguno de los dos nuevos arrays estan vacios.
 					if(ValoresId1.length == 0){
@@ -119,17 +155,18 @@
 					map1.addListener("mousemove", consultahora);
 				}
 			});
+		});
 			function consultahora(event) {
 				coordenadas = event.latLng;
 				latpri = coordenadas.lat();
 				lngpri = coordenadas.lng();	
-				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.005/Radio);
+				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.01/Radio);
 				
-				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.01/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
-				latit = parseFloat(coordenadas.lat()) - rad2deg(0.005/Radio);
+				latit = parseFloat(coordenadas.lat()) - rad2deg(0.01/Radio);
 				
-				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.01/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
 				
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
@@ -142,15 +179,17 @@
 					for(var i = 1;i<4;++i){
 						tiempoCorreg[i] = tiempoConsul[i];
 					}
-					let tiemposreales = set(tiempoCorreg);
+					//let tiemposreales = set(tiempoCorreg);
 					console.log("Valores muy grandes");
-					TiemposMostrados = tiemposCorreg.join(" // ");
+					TiemposMostrados = tiempoCorreg.join(" // ");
 					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 				}else{
 					console.log("Valores optimos");
 					TiemposMostrados = tiempoConsul.join(" // ");
 					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 				}
+			}
+				
 				/*
 				let tiemposreales = Set(tiempoConsul);
 				//let TiemposMostrados = tiemposreales.join(" // ");
@@ -164,9 +203,10 @@
 
 				} */
 			}
-			}
+			
+
 			function filtrarPorPosicion(obj) {
-				tolerancia = 0.005;
+				tolerancia = 0.01;
 				//distanciaMaxi = Math.acos(Math.sin(latpri)*)
 				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
 					pruebs = Math.acos(Math.sin(deg2rad((latit+latit2)/2))*Math.sin(deg2rad(obj.lat))+Math.cos(deg2rad((latit+latit2)/2))*Math.cos(deg2rad(obj.lat))*Math.cos(deg2rad(obj.lng)-deg2rad((lngit+lngit2)/2)));
@@ -180,20 +220,8 @@
 				  return false;
 				}
 			  }
-			function filtrarPorId1(obj){
-				if(obj.id == 1){
-					return true;
-				}else{
-					return false;
-				}
-			}
-			function filtrarPorId2(obj){
-				if(obj.id == 2){
-					return true;
-				}else{
-					return false;
-				}
-			}
+			
+			
 			function rad2deg(radians){
 				var pi = Math.PI;
 				return radians*(180/pi);
@@ -203,16 +231,15 @@
 				return angulo*(pi/180);
 			}
 			function dibujarpoli2(camino2){
-				
 				linea2 = new google.maps.Polyline({
-				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
-}
-);
+					path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
+				});
 				linea2.setMap(map1);
+				//addLatLng(camino2);
 				++contador;
 				++contadorGeneral;
 }
-			});
+			
 			function dibujarpolicamion2(puntos2){
 				linea3 = new google.maps.Polyline({
 					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
@@ -220,4 +247,8 @@
 				linea3.setMap(map1);
 				++contador2;
 				++contadorGeneral;
-			};
+			}
+			/*function addLatLng(caminoP){
+				const path = caminoP;
+				path.push;
+			}*/

@@ -75,9 +75,9 @@
 					<div id="pointer"></div>
 				</div>
 				-->
-				<p>Valor Cambiante camion 1 = </p><p id="x"></p>	
+				<p>Valor Cambiante camion 1 = </p><p id="x"></p> <p>%</p>	
 				<br>
-				<p>Valor Cambiante camion 2 = </p> <p id="y"></p>
+				<p>Valor Cambiante camion 2 = </p> <p id="y"></p> <p>%</p>
 			</div>
 		</section>
 		<section id="Hist" class="wrapper style1">
@@ -223,7 +223,7 @@
 		</script>
 		<div id="cuadro" class="container">
 			<div class="row">
-				<div id = "resultiempo" class="6u">
+				<div style = "margin-left: 25%;" id = "resultiempo" class="6u">
 					<p>Esto contendra los resultados de busqueda</p>
 				</div>
 			</div>
@@ -342,8 +342,13 @@
 						// Significa que llego un mensaje con informacion del primer camion.
 							if (cont > 0){
                                 marcador.setMap(null);
-                                };
-								x=datos[3];
+								};
+								porcentajetemp = datos[3];
+								if(porcentajetemp > 100){
+									x = 0;
+								}else{
+									x = 100-datos[3];
+								}
 								// Aca termina el filtro.
 								document.getElementById("x").innerHTML = x;
 								actualPuntero(latit,longi);
