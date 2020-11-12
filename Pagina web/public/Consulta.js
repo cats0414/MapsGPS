@@ -71,17 +71,28 @@
 					// Si estamos en esta parte, significa que llegaron datos del servidor
 					// aplicamos un filtro dependiendo del id.
 					ValoresId1= json.val.filter(filtrarPorId1);
-					console.log(ValoresId1);
 					ValoresId2 = json.val.filter(filtrarPorId2);
-					console.log(ValoresId2);
-					if(contadorGeneral >0){
-						if(contador>0){
+					if(contador != 0){
+						linea2.setMap(null);
+					}
+					if(contador2 != 0){
+						linea3.setMap(null);
+					}
+					/*if(contadorGeneral >0){
+						//if(contador>0){
+							if(contador2>0){
+								linea3.setMap(null);
+							}
 							linea2.setMap(null);
 						}
 						if(contador2 >0){
 							linea3.setMap(null);
+							if(contador>0){
+								linea2.setMap(null);
+							}
 						}
-					}
+					}   
+					*/
 					
 					// Verificamos ahora si alguno de los dos nuevos arrays estan vacios.
 					if(ValoresId1.length == 0){
