@@ -145,9 +145,9 @@
 					for(var i = 1;i<4;++i){
 						tiempoCorreg[i] = tiempoConsul[i];
 					}
-					let tiemposreales = set(tiempoCorreg);
+					//let tiemposreales = set(tiempoCorreg);
 					console.log("Valores muy grandes");
-					TiemposMostrados = tiemposCorreg.join(" // ");
+					TiemposMostrados = tiempoCorreg.join(" // ");
 					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 				}else{
 					console.log("Valores optimos");
