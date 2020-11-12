@@ -1209,3 +1209,154 @@ input[type="time"]::-webkit-calendar-picker-indicator{
   .select-items div:hover, .same-as-selected {
 	background-color: rgba(0, 0, 0, 0.1);
   }
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+  }
+  
+  
+  :root{
+	/*¿Altura del liquido*/
+	--liquid: 10%;
+	/*Altura de la onda
+	* Siendo 0.5 (cero) el minimo
+	* y 0.99 (cero) el maximo*/
+	--h-wave: 0.5;
+	/*¿Color del borde?*/
+	--cl-bd: black;
+	/*¿Color del liquido?*/
+	--cl-lq: blue;
+	/*¿Grosor del borde*/
+	--bd: 0.4vw;
+	/*¿Ancho del contenedor*/
+	--w-cnt: 10vw;
+	/*¿Cuantas cajas son?*/
+	--n-box: 1;
+	/*Ancho del contenedor menos el ancho de los bordes del contenedor*/
+	--wlessbd: calc(var(--w-cnt) - ( (var(--bd) * 2) ) );
+	/*¿Medida automatica de las cajas?*/
+	--s-box: calc(  var(--wlessbd) / var(--n-box) );
+  }
+  
+  .containe {
+	width: var(--w-cnt);
+	margin: auto;
+	border: solid var(--bd) var(--cl-bd);
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .containe:not(.opcion2)::before{
+	content: '';
+	display: inline-block;
+	background-color: var(--cl-lq);
+	bottom: 0; 
+	left: -25%;
+	position: absolute;
+	z-index: 1;
+	width: 150%;
+	height: calc(var(--liquid) * 2);
+	trasform-origin: 0 50%;
+	--b-wave: translateY(52%);
+	transform: var(--b-wave);
+	animation: wave 5s linear infinite;
+  }
+  
+  .rowier{
+	display: flex;
+	font-size: 0;
+	letter-spacing: 0;
+	position: relative;
+	z-index: 2;
+  }
+  
+  .box{  
+	box-shadow: inset 0 0 0 var(--bd) var(--cl-bd);
+	display: inline-block;
+	width: var(--s-box) ;
+	height: var(--s-box) ;
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .box::before,
+  .box::after{
+	content: '';
+	top: 0;
+	left: 0;
+	display: inline-block;
+	position: absolute;  
+  }
+  
+  /* para simular el hexagono*/
+  .box::before{
+	width: 100% ;
+	height: 100% ;
+	--bd2: calc(var(--bd) * 2);
+	box-shadow: inset 0 0 0 var(--bd2) var(--cl-bd); 
+	transform: rotateZ(45deg);
+	z-index: 2;
+  }
+  
+  .box::after{ 
+	--sw1: calc(var(--s-box) / 8);
+	--sw2: calc(var(--s-box) / -4);  
+	--sw3: calc(var(--s-box) / 3);
+	--c-sw: rgba(0,0,0,.3);
+	left: 3%;
+	top: 3%;
+	width: 94% ;
+	height: 94% ;
+	border-radius: 50%;
+	box-shadow: 
+	  inset 2px -2px 6px var(--c-sw),
+	  inset var(--sw1) var(--sw2) var(--sw3) var(--c-sw); 
+	z-index: 1;
+  }
+  
+  .opcion2::before,
+  .opcion2::after{
+	content: '';
+	display: block;
+	position: absolute;
+	background-color: var(--cl-lq);
+	height: var(--liquid);
+	bottom: 0;
+	left: 0;
+  }
+  
+  .opcion2::before{
+	z-index: 2;
+	width: 100%;
+	transform-origin: 50% 100%;
+	animation: wave-shrink 3s linear infinite;
+  }
+  
+  .opcion2::after{
+	z-index: 1;
+	width: 200%;
+	border-radius: 50%;
+	animation: wave-sway 5s linear infinite;
+  }
+  
+  @keyframes wave{
+	0%, 100%{
+	  transform: var(--b-wave) rotateZ(0deg);
+	}
+	25%, 30%{
+	  transform: var(--b-wave) rotateZ(2deg);
+	}
+	70%, 75%{
+	  transform: var(--b-wave) rotateZ(-2deg);
+	}
+  }
+  
+  @keyframes wave-shrink{
+	50%{ transform: scaleY(var(--h-wave));}
+  }
+  
+  @keyframes wave-sway{
+	0%{ transform: translateX(-100%);}
+	100%{ transform: translateX(100%);}
+  }
