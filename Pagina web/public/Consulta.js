@@ -26,6 +26,12 @@
 			formLogin.addEventListener('submit',event =>{
 			// Mandar el formulario automaticamente.
 			event.preventDefault();
+			if(contador != 0){
+				linea2.setMap(null);
+			}
+			if(contador2 != 0){
+				linea3.setMap(null);
+			}
 			var datetimes= document.getElementById('datetimes').value;
 			console.log(datetimes);
 
@@ -64,12 +70,7 @@
 		};
 		fetch('/resp',options).then((response) => response.json())
 				.then((json) => {
-					if(contador != 0){
-						linea2.setMap(null);
-					}
-					if(contador2 != 0){
-						linea3.setMap(null);
-					}
+					
 					valores = json.val;
 					var ValoresId2 = 0;
 					var ValoresId1 = 0;
@@ -231,7 +232,7 @@
 			}
 			function dibujarpoli2(camino2){
 				linea3 = new google.maps.Polyline({
-					path: camino2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
+					path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
 				});
 				linea2.setMap(map1);
 				//addLatLng(camino2);
@@ -241,7 +242,7 @@
 			
 			function dibujarpolicamion2(puntos2){
 				linea3 = new google.maps.Polyline({
-					path: puntos2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
+					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
 				});
 				++contador2;
 				++contadorGeneral;
