@@ -23,7 +23,7 @@ async function camion2Track(){
         if(cont2 >0){
             marcadorCamion2.setMap(null);
         }
-        porcentajetemp2 = datos[3];
+        porcentajetemp2 = palabra[3];
 			if(porcentajetemp2 > 100){
 					y = 0;
 			}else{
