@@ -1012,6 +1012,14 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 			}
 
 
+			#left{
+				float: left;
+			}
+
+			#right{
+				float: right;
+			}
+
 /* Banner */
 
 	#banner {
@@ -1214,10 +1222,17 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 	display: none;
   }
   
+  
   .select-items div:hover, .same-as-selected {
 	background-color: rgba(0, 0, 0, 0.1);
   }
+<<<<<<< HEAD
 *{
+=======
+  
+
+  *{
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
@@ -1367,4 +1382,8 @@ input[type="time"]::-webkit-calendar-picker-indicator{
   @keyframes wave-sway{
 	0%{ transform: translateX(-100%);}
 	100%{ transform: translateX(100%);}
+<<<<<<< HEAD
   }
+=======
+  }
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14

@@ -23,12 +23,16 @@ async function camion2Track(){
         if(cont2 >0){
             marcadorCamion2.setMap(null);
         }
+<<<<<<< HEAD
         porcentajetemp2 = datos[3];
 			if(porcentajetemp2 > 100){
 					y = 0;
 			}else{
 				y = 100-palabra[3];
 			}
+=======
+        y = palabra[3];
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14
         document.getElementById("y").innerHTML = y;
         actualPuntero2(latitudC2,longitudC2);
         setTimeout(camion2Track,5000);

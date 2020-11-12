@@ -13,12 +13,19 @@
 		let latit2;
 		let lngit2;
 		let contadorGeneral = 0;
+<<<<<<< HEAD
 		var linea2 = [];
 		var linea3 = [];
 		var tiempoCorreg = [];
 		var TiemposMostrados;
 
 
+=======
+		let linea2 = [];
+		let linea3 = [];
+		var tiempoCorreg = [];
+		var TiemposMostrados;
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14
 		const Radio = 6371; //Radio de la tierra
 			const formLogin = document.querySelector('#formulario');
 			
@@ -160,6 +167,7 @@
 				coordenadas = event.latLng;
 				latpri = coordenadas.lat();
 				lngpri = coordenadas.lng();	
+<<<<<<< HEAD
 				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.01/Radio);
 				
 				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.01/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
@@ -167,6 +175,15 @@
 				latit = parseFloat(coordenadas.lat()) - rad2deg(0.01/Radio);
 				
 				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.01/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+=======
+				latit2 = parseFloat(coordenadas.lat()) + rad2deg(0.005/Radio);
+				
+				lngit2 = parseFloat(coordenadas.lng()) + (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+				
+				latit = parseFloat(coordenadas.lat()) - rad2deg(0.005/Radio);
+				
+				lngit = parseFloat(coordenadas.lng()) - (rad2deg(Math.asin(0.005/Radio)))/(Math.cos(deg2rad(coordenadas.lat())));
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14
 				
 				ValoresConsul = valores.filter(filtrarPorPosicion);
 				if(ValoresConsul.length == 0){
@@ -179,15 +196,36 @@
 					for(var i = 1;i<4;++i){
 						tiempoCorreg[i] = tiempoConsul[i];
 					}
+<<<<<<< HEAD
 					//let tiemposreales = set(tiempoCorreg);
 					console.log("Valores muy grandes");
 					TiemposMostrados = tiempoCorreg.join(" // ");
+=======
+					let tiemposreales = set(tiempoCorreg);
+					console.log("Valores muy grandes");
+					TiemposMostrados = tiemposCorreg.join(" // ");
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14
 					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 				}else{
 					console.log("Valores optimos");
 					TiemposMostrados = tiempoConsul.join(" // ");
 					document.getElementById("resultiempo").innerHTML = TiemposMostrados;
 				}
+<<<<<<< HEAD
+=======
+				/*
+				let tiemposreales = Set(tiempoConsul);
+				//let TiemposMostrados = tiemposreales.join(" // ");
+				//if (TiemposMostrados.length>3){
+					for(i = 1;i>3;++i){
+						tiemposCorregidos[i] = TiemposMostrados[i];
+					}
+
+				document.getElementById("resultiempo").innerHTML = tiemposCorregidos;
+				}else{
+
+				} */
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14
 			}
 				
 				/*
@@ -206,7 +244,11 @@
 			
 
 			function filtrarPorPosicion(obj) {
+<<<<<<< HEAD
 				tolerancia = 0.01;
+=======
+				tolerancia = 0.005;
+>>>>>>> 711fa13cb615ba6a6bc499f49588e426dc8cee14
 				//distanciaMaxi = Math.acos(Math.sin(latpri)*)
 				if (obj.lat >= latit && obj.lng >= lngit && obj.lat <= latit2 && obj.lng <= lngit2) {
 					pruebs = Math.acos(Math.sin(deg2rad((latit+latit2)/2))*Math.sin(deg2rad(obj.lat))+Math.cos(deg2rad((latit+latit2)/2))*Math.cos(deg2rad(obj.lat))*Math.cos(deg2rad(obj.lng)-deg2rad((lngit+lngit2)/2)));
