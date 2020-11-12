@@ -62,6 +62,12 @@
 		};
 		fetch('/resp',options).then((response) => response.json())
 				.then((json) => {
+					if(contador != 0){
+						linea2.setMap(null);
+					}
+					if(contador2 != 0){
+						linea3.setMap(null);
+					}
 					valores = json.val;
 					ValoresId2 = 0;
 					ValoresId1 = 0;
@@ -93,12 +99,7 @@
 					
 
 					// Aplicamos 
-					if(contador != 0){
-						linea2.setMap(null);
-					}
-					if(contador2 != 0){
-						linea3.setMap(null);
-					}
+					
 					/*if(contadorGeneral >0){
 						//if(contador>0){
 							if(contador2>0){
@@ -220,26 +221,26 @@
 			}
 			function dibujarpoli2(camino2){
 				
-				linea2 = new google.maps.Polyline({
+				var linea2 = new google.maps.Polyline({
 				path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
 }
 );
 				linea2.setMap(map1);
-				addLatLng(camino2);
+				//addLatLng(camino2);
 				++contador;
 				++contadorGeneral;
 }
 			
 			function dibujarpolicamion2(puntos2){
-				linea3 = new google.maps.Polyline({
+				var linea3 = new google.maps.Polyline({
 					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
 				});
 				linea3.setMap(map1);
-				addLatLng(puntos2);
+				//addLatLng(puntos2);
 				++contador2;
 				++contadorGeneral;
 			}
-			function addLatLng(caminoP){
+			/*function addLatLng(caminoP){
 				const path = caminoP;
 				path.push;
-			}
+			}*/
