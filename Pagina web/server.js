@@ -109,13 +109,13 @@ app.post('/resp',function (req,res) {
 		console.log(tiempoconsulta1);
 		console.log(tiempoconsulta2);
 		if (camion == 3 || camion == 0){
-        let sql2 = 'SELECT * FROM usuarios2 WHERE tiempo BETWEEN ? AND ?';
+        let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = 1 OR id = 2) ';
         let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
         };
         valores = result;
-	res.json({val: valores});
+	res.json({val: valores, iden: 3});
 });
 		}else{
 			let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
@@ -124,7 +124,7 @@ app.post('/resp',function (req,res) {
 				console.trace('error = ' +err.message);
 				};
 				valores = result;
-			res.json({val: valores});
+			res.json({val: valores, iden:camion});
 		});
 		}
 });

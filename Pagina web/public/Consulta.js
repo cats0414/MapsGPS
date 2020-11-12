@@ -70,8 +70,24 @@
 					}else{
 					// Si estamos en esta parte, significa que llegaron datos del servidor
 					// aplicamos un filtro dependiendo del id.
-					ValoresId1= json.val.filter(filtrarPorId1);
-					ValoresId2 = json.val.filter(filtrarPorId2);
+					if(json.iden == 1){
+						// Significa que solo tengo datos el primer camion:
+						ValoresId1 = json.val;
+					}
+					if(json.iden == 2){
+						// Solo llegaron datos del segundo camion:
+						ValoresId2 = json.val;
+					}
+					if(json.iden == 3){
+						// Seleccionaron ambos camiones.
+						ValoresId1= json.val.filter(element => element.id = 1 );
+						console.log(ValoresId1);
+						ValoresId2 = json.val.filter(element => element.id = 2);
+						console.log(ValoresId2);
+					}
+					
+
+					// Aplicamos 
 					if(contador != 0){
 						linea2.setMap(null);
 					}
