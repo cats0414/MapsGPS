@@ -63,7 +63,8 @@
 		fetch('/resp',options).then((response) => response.json())
 				.then((json) => {
 					valores = json.val;
-
+					ValoresId2 = 0;
+					ValoresId1 = 0;
 					// Identifiquemos primero si llego un array vacio:
 					if(json.val.length == 0){
 						alert("No se tienen datos del periodo ingresado, favor ingresar nuevo periodo.");
@@ -73,11 +74,13 @@
 					if(json.iden == 1){
 						// Significa que solo tengo datos el primer camion:
 						ValoresId1 = json.val;
+						console.log(ValoresId2);
 						ValoresId2 = [];
 					}
 					if(json.iden == 2){
 						// Solo llegaron datos del segundo camion:
 						ValoresId2 = json.val;
+						console.log(ValoresId2);
 						ValoresId1 = [];
 					}
 					if(json.iden == 3){
