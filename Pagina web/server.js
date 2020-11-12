@@ -114,8 +114,11 @@ app.post('/resp',function (req,res) {
         if(err){
         console.trace('error = ' +err.message);
         };
-        valores = result;
-	res.json({val: valores, iden: 3});
+		valores = result;
+		// Podria realizar un filtro en esta parte
+		valoresCamion1 = valores.filter(filtrarPorId1);
+		valoresCamion2 = valores.filter(filtrarPorId2);
+	res.json({val: valores, iden: 3, valC1 : valoresCamion1, valC2 : valoresCamion2});
 });
 		}else{
 			let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
@@ -128,6 +131,21 @@ app.post('/resp',function (req,res) {
 		});
 		}
 });
+function filtrarPorId1(obj){
+	if(obj.id == 1){
+		return true;
+	}else{
+		return false;
+	}
+}
+function filtrarPorId2(obj){
+	if(obj.id == 2){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 
 app.use(express.static(__dirname + '/public'));
 

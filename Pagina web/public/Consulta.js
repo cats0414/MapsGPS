@@ -80,9 +80,9 @@
 					}
 					if(json.iden == 3){
 						// Seleccionaron ambos camiones.
-						ValoresId1= json.val.filter(filtrarPorId1);
+						ValoresId1= json.valC1;
 						console.log(ValoresId1);
-						ValoresId2 = json.val.filter(filtrarPorId2);
+						ValoresId2 = json.valC2;
 						console.log(ValoresId2);
 					}
 					
@@ -203,20 +203,8 @@
 				  return false;
 				}
 			  }
-			function filtrarPorId1(obj){
-				if(obj.id == 1){
-					return true;
-				}else{
-					return false;
-				}
-			}
-			function filtrarPorId2(obj){
-				if(obj.id == 2){
-					return true;
-				}else{
-					return false;
-				}
-			}
+			
+			
 			function rad2deg(radians){
 				var pi = Math.PI;
 				return radians*(180/pi);
