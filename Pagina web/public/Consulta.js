@@ -231,7 +231,7 @@
 				return angulo*(pi/180);
 			}
 			function dibujarpoli2(camino2){
-				linea3 = new google.maps.Polyline({
+				linea2 = new google.maps.Polyline({
 					path: camino2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
 				});
 				linea2.setMap(map1);
@@ -244,6 +244,7 @@
 				linea3 = new google.maps.Polyline({
 					path: puntos2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
 				});
+				linea3.setMap(map1);
 				++contador2;
 				++contadorGeneral;
 			}
