@@ -13,17 +13,10 @@
 		let latit2;
 		let lngit2;
 		let contadorGeneral = 0;
-		let linea2 = [];
-		let linea3 = [];
+		var linea2 = [];
+		var linea3 = [];
 		var tiempoCorreg = [];
 		var TiemposMostrados;
-		var linea3 = new google.maps.Polyline({
-			path: [], strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
-		});
-		var linea2 = new google.maps.Polyline({
-			path: [], strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
-}
-);
 
 
 		const Radio = 6371; //Radio de la tierra
@@ -104,6 +97,14 @@
 						console.log(ValoresId1);
 						ValoresId2 = json.valC2;
 						console.log(ValoresId2);
+						if(cont != 0){
+							linea2.setMap(null);
+
+						}
+						if(cont2 != 0){
+							linea3.setMap(null);
+
+						}
 					}
 					
 
@@ -229,9 +230,9 @@
 				return angulo*(pi/180);
 			}
 			function dibujarpoli2(camino2){
-				linea2.path = camino2
-				//var path1 = linea2.getPath();
-				//path1.push(camino2);
+				linea3 = new google.maps.Polyline({
+					path: camino2, strokeColor: '#0000FF', strokeOpacity: 1.0, strokeWeight:2
+				});
 				linea2.setMap(map1);
 				//addLatLng(camino2);
 				++contador;
@@ -239,9 +240,9 @@
 }
 			
 			function dibujarpolicamion2(puntos2){
-				linea3.path = puntos2;
-				linea3.setMap(map1);
-				//addLatLng(puntos2);
+				linea3 = new google.maps.Polyline({
+					path: puntos2, strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight:2
+				});
 				++contador2;
 				++contadorGeneral;
 			}
