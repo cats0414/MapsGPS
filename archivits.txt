@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 Tous, opino que deberiamos hacer la pagina un poco mas emo.
 Espero que lo consideres
 saludos.
 
+=======
+Tous, sugiero que la pagina tenga un diseño mas emo
+Y que Alfredo también
+
+Sugerencia: La pagina debería tener un mensaje de alerta cuando la fecha de 
+inicio es mayor a la fecha de final. 
+>>>>>>> f792fc65d6e862cc5253cfe225e0221db9b522a8

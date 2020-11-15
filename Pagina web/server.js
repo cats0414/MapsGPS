@@ -4,7 +4,9 @@ const mysql = require('mysql');
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 const path = require('path');
-var mensaje = 'Hola';
+var x,y,z;
+var mensaje = ' ';
+var mensajeC2 = ' ';
 var rut = 'Loquesea';
 var valores = [];
 var bodyParser = require('body-parser');
@@ -14,6 +16,7 @@ var cons = require('consolidate');
 app.set('views', path.join(__dirname, 'views'));
 app.set('imagenes', path.join(__dirname, '/public/imagenes'));
 app.set('calendar', path.join(__dirname, '/public/calendar'));
+app.use(express.json({limit:'1mb'}));
 require('dotenv').config();
 // Creamos credenciales para ingresar a la base de datos
 const database = mysql.createConnection({
@@ -45,13 +48,27 @@ server.on('error', (err) => {
 });
 
 server.on('message', (msg, rinfo) => {
-    // console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
-    mensaje = msg;
-    msg = msg.toString().split(",")
+    console.log(`server got: ${msg}`);
+    //mensaje = msg;
+	msg = msg.toString().split(",");
+	
     lati = parseFloat(msg[0]).toFixed(4);
-    longi = parseFloat(msg[1]).toFixed(4);
-    msg = {id : "1" ,lat: lati, lng: longi, tiempo: msg[2]}
-    msg2 = {id: "1" ,lat: msg[0], lng: msg[1],tiempo: msg[2]} 
+	longi = parseFloat(msg[1]).toFixed(4);
+	ID = parseInt(msg[4]);
+	console.log(ID);
+	fecha = new Date(msg[2]);
+	if(ID == 1){
+		mensaje = msg;
+		console.log("Camion1");
+		console.log(mensaje);
+	}else{
+		mensajeC2 = msg;
+		console.log("Camion2");
+		console.log(mensajeC2);
+	}
+	// Hay que verificar que el mensaje ha cambiado.
+
+    msg = {id : ID ,lat: lati, lng: longi, tiempo: fecha}
     let sql = 'INSERT INTO usuarios2 SET ?';
     let query = database.query(sql, msg, (err, result) => {
     if (err){
@@ -72,26 +89,64 @@ app.get('/', function (req, res) {
 		msg: mensaje,
 	});
 });
-app.post('/resp', urlencodedParser, function (req,res) {
-        console.log(req.body);
+app.post('/resp',function (req,res) {
+		// esto recibe la información. 
+		console.log("LLego informacion del cliente");
         data1 = req.body;
         dat = data1.datetimes;
-	hora1 = data1.hora_inicial;
-	hora2 = data1.hora_final;
-	datapri = dat.toString().split(" - ");
-	da1 = datapri[0].concat(" " ,hora1);
-	da2 = datapri[1].concat( " " ,hora2);
-	console.log(da1);
-	console.log(da2);
-        let sql2 = 'SELECT lat, lng FROM usuarios2 WHERE (tiempo > ? AND tiempo < ?)';
-        let query2 = database.query(sql2,[da1,da2],(err, result) => {
+		hora1 = data1.hora_inicial;
+		hora2 = data1.hora_final;
+		minutoIni = data1.minuto_inicial;
+		minutoFin = data1.minuto_final;
+		camion = parseInt(data1.camion);
+		console.log(camion);
+		console.log(typeof(camion));
+		datapri = dat.toString().split(" - ");
+		da1 = datapri[0].concat(" " ,hora1,":",minutoIni);
+		da2 = datapri[1].concat( " " ,hora2,":",minutoFin);
+		var tiempoconsulta1 = new Date(da1);
+		var tiempoconsulta2 = new Date(da2); 
+		console.log(tiempoconsulta1);
+		console.log(tiempoconsulta2);
+		if (camion == 3 || camion == 0){
+        let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = 1 OR id = 2) ';
+        let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2],(err, result) => {
         if(err){
         console.trace('error = ' +err.message);
         };
-        valores = result;
-	res.render('index',{msg: mensaje, valores});
+		valores = result;
+		// Podria realizar un filtro en esta parte
+		valoresCamion1 = valores.filter(filtrarPorId1);
+		valoresCamion2 = valores.filter(filtrarPorId2);
+	res.json({val: valores, iden: 3, valC1 : valoresCamion1, valC2 : valoresCamion2});
 });
+		}else{
+			let sql2 = 'SELECT * FROM usuarios2 WHERE (tiempo BETWEEN ? AND ?) AND (id = ?)';
+			let query2 = database.query(sql2,[tiempoconsulta1,tiempoconsulta2,camion],(err, result) => {
+				if(err){
+				console.trace('error = ' +err.message);
+				};
+				valores = result;
+			res.json({val: valores, iden:camion});
+		});
+		}
 });
+function filtrarPorId1(obj){
+	if(obj.id == 1){
+		return true;
+	}else{
+		return false;
+	}
+}
+function filtrarPorId2(obj){
+	if(obj.id == 2){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
 app.use(express.static(__dirname + '/public'));
 
 
@@ -100,9 +155,11 @@ app.get('/ruta', function (req, res) {
 	res.json({ msg: mensaje });
 });
 
-app.get('/resp', function (req,res){
-	res.json({valores});
+app.get('/camion2', function (req,res){
+	res.json({ msg2: mensajeC2});
 });
+
+
 
 app.listen('40000', function () {
 	console.log('Todo en orden');
