@@ -1,4 +1,3 @@
-        let data;
 		let fuent;
 		let contador = 0;
 		let contador2 = 0;
@@ -98,15 +97,22 @@
 						console.log(ValoresId1);
 						ValoresId2 = json.valC2;
 						console.log(ValoresId2);
-						if(cont != 0){
+						console.log(contadorGeneral);
+						
+					}
+					if(contadorGeneral != 0){
+						if(contador != 0){
 							linea2.setMap(null);
 
 						}
-						if(cont2 != 0){
+
+						// No deberia de cumplir esto si cont 2 no se aumenta.
+						if(contador2 != 0){
 							linea3.setMap(null);
 
 						}
 					}
+					
 					
 
 					// Aplicamos 
