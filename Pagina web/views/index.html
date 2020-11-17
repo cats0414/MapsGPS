@@ -339,6 +339,9 @@
 			var cont = 0;
 			var cont2 = 0;
 			let coorde = [];
+			let latit;
+			let longi;
+			let coor;
 			update();
 			async function update() {
 				const response = await fetch('/ruta');
@@ -397,8 +400,8 @@
 					*/
 				}
 				}
-			function actualPuntero(latit,longi){
-				var coor = new google.maps.LatLng(latit,longi);
+			function actualPuntero(la,lo){
+				coor = new google.maps.LatLng(la,lo);
 				//map.setCenter(coor);
 				marcador = new google.maps.Marker({
 					position: coor ,

@@ -8,7 +8,7 @@ if(data.msg == " "){
 }else{
     console.log("Hay datos para centrar");
     // Realizamos el centrado cada vez que llegue un nuevo valor
-    map.setCenter(coorde);
+    map.setCenter(coor);
 }
 }
 
