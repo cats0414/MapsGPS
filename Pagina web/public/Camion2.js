@@ -20,7 +20,7 @@ async function camion2Track(){
         console.log(palabra);
         latitudC2 = parseFloat(palabra[0]).toFixed(4);
         longitudC2 = parseFloat(palabra[1]).toFixed(4);
-        coorC2 = {lat: latitudC2, lng: longitudC2};
+        coorC2 = new google.maps.LatLng(latitudC2,longitudC2); 
         //var coordeC2 = {lat: latitudC2, lng: longitudC2};
         if(cont2 >0){
             marcadorCamion2.setMap(null);
