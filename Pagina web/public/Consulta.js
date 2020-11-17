@@ -98,6 +98,10 @@
 						console.log(ValoresId1);
 						ValoresId2 = json.valC2;
 						console.log(ValoresId2);
+						console.log(contadorGeneral);
+						
+					}
+					if(contadorGeneral != 0){
 						if(cont != 0){
 							linea2.setMap(null);
 
@@ -107,6 +111,7 @@
 
 						}
 					}
+					
 					
 
 					// Aplicamos 
