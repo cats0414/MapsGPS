@@ -62,11 +62,19 @@
 		</body>
 		<section id="Maps" class="wrapper style1">
 			<main>
+				<button class = "button big special" onclick="CentradoPrimerCamion()"">Primer Camion</button>
+				<button class = "button big special" onclick="CentradoSegundoCamion()"">Segundo Camion</button>
+				<button class = "button big special" onclick="Centradodesabilitado()"">Ambos camiones</button>
 				<div id="map"></div>
-						
+				<script src = "/Centrado.js">
+				</script>		
 			</main>
 			<div id="resulsensor">
 			<div id = "left" class="6u">
+				<br>
+				<br>
+				<br>
+				<br>
 				<br>
 				<p>Indicador de combustible</p>
 				<p>Camion 1 = </p><p id="x"></p> <p>%</p>	
@@ -320,7 +328,7 @@
 		</script>
 		<script>
 			let str;
-			let datos;
+			let data = [];
 			let latitud;
 			let longitud;
 			let fecha_hora;
@@ -330,10 +338,11 @@
 			var caminoCamion2 = [];
 			var cont = 0;
 			var cont2 = 0;
+			let coorde = [];
 			update();
 			async function update() {
 				const response = await fetch('/ruta');
-				const data = await response.json();
+				data = await response.json();
 				//console.log(data.msg);
 				var str = '';
 				if(data.msg == " "){
@@ -359,7 +368,7 @@
 						
 						//console.log(latit);
 						//console.log(longi);
-						var coorde = {lat: latit, lng: longi};
+						coorde = {lat: latit, lng: longi};
 						// Significa que llego un mensaje con informacion del primer camion.
 							if (cont > 0){
                                 marcador.setMap(null);
@@ -390,7 +399,7 @@
 				}
 			function actualPuntero(latit,longi){
 				var coor = new google.maps.LatLng(latit,longi);
-				map.setCenter(coor);
+				//map.setCenter(coor);
 				marcador = new google.maps.Marker({
 					position: coor ,
 					icon: {

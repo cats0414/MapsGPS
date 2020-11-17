@@ -1,4 +1,3 @@
-        let data;
 		let fuent;
 		let contador = 0;
 		let contador2 = 0;
