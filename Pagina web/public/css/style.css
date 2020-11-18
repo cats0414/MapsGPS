@@ -782,6 +782,9 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 			font-size: 1.2em;
 			height: 2.65em;
 			line-height: 2.65em;
+			position: relative;
+			bottom: 45px;
+			box-shadow: 13px 9px 12px 1px #3a8bd3
 		}
 
 		input[type="submit"].alt,
@@ -818,8 +821,9 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 		input[type="reset"].special,
 		input[type="button"].special,
 		.button.special,.button.big.alt {
-			background-color: #272727;
+			background-color: #3b3b3b;
 			color: #ffffff !important;
+			
 		}
 		
 
@@ -1052,7 +1056,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 		}
 
 		#banner .button.alt {
-			box-shadow: 4px 4px 9px 1px #629DD1;
+			box-shadow: 13px 9px 12px 1px #629DD1;
 			color: #ffffff !important;
 		}
 
