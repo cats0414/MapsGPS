@@ -108,13 +108,11 @@
 						
 					}
 					if(contadorGeneral != 0){
-						if(contador != 0){
+						if(cont != 0){
 							linea2.setMap(null);
 
 						}
-
-						// No deberia de cumplir esto si cont 2 no se aumenta.
-						if(contador2 != 0){
+						if(cont2 != 0){
 							linea3.setMap(null);
 
 						}
