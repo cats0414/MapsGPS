@@ -69,7 +69,7 @@
 				<script src = "/Centrado.js">
 				</script>		
 			</main>
-			<div id="resulsensor">
+		<div id="resulsensor">
 			<div id = "left" class="6u">
 				<br>
 				<br>
@@ -255,7 +255,7 @@
 		<div id="cuadro" class="container">
 			<div class="row">
 				<div style = "margin-left: 25%;" id = "resultiempo" class="6u">
-					<p>Esto contendra los resultados de busqueda</p>
+					<p>Esto contendra los resultados de busqueda: </p>
 				</div>
 			</div>
 		</div>			
@@ -375,13 +375,8 @@
 						// Significa que llego un mensaje con informacion del primer camion.
 							if (cont > 0){
                                 marcador.setMap(null);
-								};
-								porcentajetemp = datos[3];
-								if(porcentajetemp > 100){
-									x = 0;
-								}else{
-									x = 100-datos[3];
-								}
+                                };
+								x=datos[3];
 								// Aca termina el filtro.
 								document.getElementById("x").innerHTML = x;
 								actualPuntero(latit,longi);
