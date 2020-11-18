@@ -30,4 +30,6 @@ function CentradoSegundoCamion(){
 }
 function Centradodesabilitado(){
     map.setCenter(null);
+    controlador1 = false;
+    controlador2 = false;
 }
