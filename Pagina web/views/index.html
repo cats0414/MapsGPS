@@ -86,7 +86,7 @@
 				<br>
 				<br>
 				<p>Combustible Camión 1</p>
-				<section class="containe" style="--liquid: 70%;">
+				<section class="containe" id="ca1" style="--liquid: 70%;">
 					<div class="rowier">
 						
 						<span class="box"></span>    
@@ -94,7 +94,7 @@
 				</section>
 				<br>
 				<p>Combustible Camión 2</p>
-				<section class="containe" style="--liquid: 50%;">
+				<section id="ca2" class="containe" style="--liquid: 50%;">
 					
 					<div class="rowier">
 					
@@ -379,6 +379,8 @@
 								x=datos[3];
 								// Aca termina el filtro.
 								document.getElementById("x").innerHTML = x;
+								let vc=x;
+								document.getElementById("ca1").style.setProperty('--liquid', '--liquid: '+vc);
 								actualPuntero(latit,longi);
 								setTimeout(update, 5000);
 					//else{
