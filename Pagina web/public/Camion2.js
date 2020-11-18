@@ -25,29 +25,20 @@ async function camion2Track(){
         if(cont2 >0){
             marcadorCamion2.setMap(null);
         }
-<<<<<<< HEAD
 
         porcentajetemp2 = datos[3];
         porcentajetemp2 = palabra[3];
-=======
->>>>>>> f848ab34b613a9ad29f6022ab0abd24495edd2a4
 			if(porcentajetemp2 > 100){
 					y = 0;
 			}else{
 				y = 100-palabra[3];
 			}
-<<<<<<< HEAD
         y = palabra[3];
         document.getElementById("y").innerHTML = y;
         let vic=y;
 		document.getElementById("ca2").style.setProperty('--liquid', '--liquid: '+vic);
         actualPuntero2(latitudC2,longitudC2);
         setTimeout(camion2Track,5000);
-=======
-            document.getElementById("y").innerHTML = y;
-            actualPuntero2(latitudC2,longitudC2);
-            setTimeout(camion2Track,5000);
->>>>>>> f848ab34b613a9ad29f6022ab0abd24495edd2a4
     }
     function actualPuntero2(latit,longi){
         var coorden2 = new google.maps.LatLng(latit,longi);
