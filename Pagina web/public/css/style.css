@@ -1230,9 +1230,13 @@ input[type="time"]::-webkit-calendar-picker-indicator{
   .select-items div:hover, .same-as-selected {
 	background-color: rgba(0, 0, 0, 0.1);
   }
+<<<<<<< HEAD
   
 
   *{
+=======
+*{
+>>>>>>> f848ab34b613a9ad29f6022ab0abd24495edd2a4
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
