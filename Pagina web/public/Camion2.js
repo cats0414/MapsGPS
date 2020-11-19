@@ -32,8 +32,8 @@ async function camion2Track(){
 				y = 100-palabra[3];
 			}
             document.getElementById("y").innerHTML = y;
-            let vic=y;
-            document.getElementById("ca2").style.setProperty('--liquid', '--liquid: '+vic+"%");
+            let vic=y+"%";
+            document.getElementById("ca2").style.setProperty('--liquid', '--liquid: '+vic);
             actualPuntero2(latitudC2,longitudC2);
             setTimeout(camion2Track,5000);
     }

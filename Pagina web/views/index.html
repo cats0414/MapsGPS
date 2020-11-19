@@ -377,16 +377,17 @@
 						if (cont > 0){
                                 marcador.setMap(null);
                                 };
-								x=datos[3];
 								// Aca termina el filtro.
+								porcentajetemp = datos[3];
+                                if(porcentajetemp > 100){​​​​
+                                    x = 0;
+                                }​​​​else{​​​​
+                                    x = 100-datos[3];
+                                }​​​​
 								document.getElementById("x").innerHTML = x;
-								if(x>100){
-									x=0;
-								}else{
-									d=100-x;
-								}
-								let vc=d;
+								let vc=x+"%";
 								document.getElementById("ca1").style.setProperty('--liquid', '--liquid: '+vc+"%");
+								console.log(vc);
 								actualPuntero(latit,longi);
 								setTimeout(update, 5000);
 					//else{
