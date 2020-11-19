@@ -1064,7 +1064,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 		}
 
 		#banner .button.alt {
-			box-shadow: 13px 9px 12px 1px #629DD1;
+			box-shadow: 13px 9px 12px 2px #629DD1;
 			color: #ffffff !important;
 		}
 

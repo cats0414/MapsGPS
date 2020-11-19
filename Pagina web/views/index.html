@@ -406,6 +406,9 @@
 			function actualPuntero(la,lo){
 				coor = new google.maps.LatLng(la,lo);
 				//map.setCenter(coor);
+				if(controlador1 == true){
+					map.setCenter(coor);
+				}
 				marcador = new google.maps.Marker({
 					position: coor ,
 					icon: {

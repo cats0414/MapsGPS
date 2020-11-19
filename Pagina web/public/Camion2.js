@@ -47,7 +47,9 @@ async function camion2Track(){
             },
             map: map
         });
-        
+        if(controlador2 == true){
+            map.setCenter(coorC2);
+        }
         caminoCamion2[cont2] = coorden2;
         cont2 = cont2+1;
         dibujarpoliCamion2(caminoCamion2); 
