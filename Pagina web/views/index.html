@@ -385,8 +385,9 @@
 								}else{
 									d=100-x;
 								}
-								let vc=d;
-								document.getElementById("ca1").style.setProperty('--liquid', '--liquid: '+vc+"%");
+								let vc=d+"%";
+								console.log(d);
+								document.getElementById("ca1").style.setProperty('--liquid', '--liquid: '+vc);
 								actualPuntero(latit,longi);
 								setTimeout(update, 5000);
 					//else{
