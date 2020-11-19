@@ -77,9 +77,9 @@
 				<br>
 				<br>
 				<p>Indicador de combustible</p>
-				<p>Camion 1 = </p><p id="x"></p> <p>%</p>	
+				<p>Porcentaje de combustible camión 1 (%) = </p><p id="x"></p> 	
 				<br>
-				<p>Camion 2 = </p> <p id="y"></p> <p>%</p>
+				<p>Porcentaje de combustible camión 2 (%) = </p> <p id="y"></p>
 			</div>
 			<div class="6u" id="right">
 				<br>
@@ -102,6 +102,8 @@
 					</div>
 				</section>
 			</div>
+			<br><br>
+			<br><br>
 			<br><br>
 			<br><br>
 			<br><br>
@@ -364,27 +366,14 @@
 						//console.log(fecha);
 						latit = parseFloat(latitud).toFixed(4);
 						longi = parseFloat(longitud).toFixed(4);
-						// Filtro Pagina web javascript
-						//tempor = datos[3].toString();
-						//tempor2 = tempor.split("\r\n");
-						//max = tempor2.length-2;
-						
-						//console.log(latit);
-						//console.log(longi);
 						coorde = {lat: latit, lng: longi};
 						// Significa que llego un mensaje con informacion del primer camion.
 						var d=0;	
 						if (cont > 0){
                                			marcador.setMap(null);
                                			};
-								// Aca termina el filtro.
+						// Aca termina el filtro.
 						porcentajetemp = datos[3];
-						
-                                		//if(porcentajetemp > 100){​​​​
-                                    		//x = 0;
-                               		//	}​​​​else{​​​​
-                                    	//	x = 100-datos[3];
-                                	//	}​​​
 						if(porcentajetemp > 100){
 						x=0;}else{
 						x=100-datos[3];
@@ -395,18 +384,7 @@
 								console.log(vc);
 								actualPuntero(latit,longi);
 								setTimeout(update, 5000);
-						//else{
-						// LLego informacion del segundo camion.
-						// No se tiene en cuenta que el id sea diferente de 1 o 2
-							/*if (cont2 >0){
-								marcadorCamion2.setMap(null);
-							}
-							y = datos[3];
-							document.getElementById("y").innerHTML = y;
-							actualPuntero2(latit,longi);
-							setTimeout(update,2000);
-					}
-					*/
+						
 				}
 				}
 			function actualPuntero(la,lo){
