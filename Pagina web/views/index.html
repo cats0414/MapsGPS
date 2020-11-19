@@ -86,7 +86,7 @@
 				<br>
 				<br>
 				<p>Combustible Camión 1</p>
-				<section class="containe" id="ca1" style="--liquid: 70%;">
+				<section class="containe" id="ca1" style="--liquid: ;">
 					<div class="rowier">
 						
 						<span class="box"></span>    
@@ -94,7 +94,7 @@
 				</section>
 				<br>
 				<p>Combustible Camión 2</p>
-				<section id="ca2" class="containe" style="--liquid: 50%;">
+				<section id="ca2" class="containe" style="--liquid: ;">
 					
 					<div class="rowier">
 					
@@ -375,22 +375,27 @@
 						// Significa que llego un mensaje con informacion del primer camion.
 						var d=0;	
 						if (cont > 0){
-                                marcador.setMap(null);
-                                };
+                               			marcador.setMap(null);
+                               			};
 								// Aca termina el filtro.
-								porcentajetemp = datos[3];
-                                if(porcentajetemp > 100){​​​​
-                                    x = 0;
-                                }​​​​else{​​​​
-                                    x = 100-datos[3];
-                                }​​​​
+						porcentajetemp = datos[3];
+						
+                                		//if(porcentajetemp > 100){​​​​
+                                    		//x = 0;
+                               		//	}​​​​else{​​​​
+                                    	//	x = 100-datos[3];
+                                	//	}​​​
+						if(porcentajetemp > 100){
+						x=0;}else{
+						x=100-datos[3];
+						}
 								document.getElementById("x").innerHTML = x;
 								let vc=x+"%";
 								document.getElementById("ca1").style.setProperty('--liquid', '--liquid: '+vc+"%");
 								console.log(vc);
 								actualPuntero(latit,longi);
 								setTimeout(update, 5000);
-					//else{
+						//else{
 						// LLego informacion del segundo camion.
 						// No se tiene en cuenta que el id sea diferente de 1 o 2
 							/*if (cont2 >0){
