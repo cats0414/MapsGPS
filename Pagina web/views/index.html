@@ -373,14 +373,20 @@
 						//console.log(longi);
 						coorde = {lat: latit, lng: longi};
 						// Significa que llego un mensaje con informacion del primer camion.
-							if (cont > 0){
+						var d=0;	
+						if (cont > 0){
                                 marcador.setMap(null);
                                 };
 								x=datos[3];
 								// Aca termina el filtro.
 								document.getElementById("x").innerHTML = x;
-								let vc=x;
-								document.getElementById("ca1").style.setProperty('--liquid', '--liquid: '+vc);
+								if(x>100){
+									x=0;
+								}else{
+									d=100-x;
+								}
+								let vc=d;
+								document.getElementById("ca1").style.setProperty('--liquid', '--liquid: '+vc+"%");
 								actualPuntero(latit,longi);
 								setTimeout(update, 5000);
 					//else{
